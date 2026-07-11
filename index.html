@@ -242,6 +242,8 @@
   .cform-status{font-size:.9rem;min-height:1.2em;text-align:center;margin-top:2px}
   .cform-status.ok{color:var(--accent);font-weight:600}
   .cform-status.err{color:#B23B3B;font-weight:600}
+  .spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;margin-right:.55em;vertical-align:-2px}
+  .ok-check{width:58px;height:58px;margin:0 auto 10px;border-radius:50%;background:color-mix(in srgb,var(--accent) 12%,var(--paper));color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:700}
   .cta-alt{margin-top:24px;font-size:.92rem;color:var(--ink-soft)}
   .cta-alt a{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
   .cta-alt a:hover{color:var(--accent-2)}
@@ -581,6 +583,17 @@
   </div>
 </div>
 
+<!-- Success popup (after form submit) -->
+<div class="modal" id="okModal" role="dialog" aria-modal="true" aria-labelledby="okTitle" hidden>
+  <div class="modal-card">
+    <button class="modal-close" type="button" aria-label="닫기" data-okclose>✕</button>
+    <div class="ok-check" aria-hidden="true">✓</div>
+    <h2 id="okTitle">문의가 접수됐어요</h2>
+    <p class="modal-desc">확인 후 남겨주신 이메일로 회신드릴게요. 감사합니다!</p>
+    <div class="modal-actions"><button type="button" class="btn btn-primary" data-okclose style="flex:1;justify-content:center">확인</button></div>
+  </div>
+</div>
+
 <script>
 (function(){
   // header shadow on scroll
@@ -685,22 +698,38 @@
     });
   });
 
+  // success popup (after form submit)
+  var okM=document.getElementById('okModal');
+  var closeOk=function(){if(okM){okM.hidden=true;document.body.style.overflow='';}};
+  var showOk=function(){if(okM){okM.hidden=false;document.body.style.overflow='hidden';var b=okM.querySelector('[data-okclose]');if(b)b.focus();}};
+  if(okM){
+    okM.addEventListener('click',function(e){if(e.target===okM||e.target.closest('[data-okclose]'))closeOk();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!okM.hidden)closeOk();});
+  }
+
   // contact form → Google Apps Script (Sheet 적립 + 메일 알림). no-cors: fire-and-forget.
   var cform=document.getElementById('cform');
   if(cform){
     var SCRIPT_URL='https://script.google.com/macros/s/AKfycbzp1Vja3jlVK5drfKSMNPCc_tiGt_t8i26PbRe4uv73OHxSu14ixpbD3HKfOjGktKQJ/exec';
     var cstatus=document.getElementById('cf-status'),csub=document.getElementById('cf-submit'),sending=false;
+    var origBtn=csub.innerHTML,spinTimer=null;
+    var startSpin=function(){
+      csub.innerHTML='<span class="spin" id="cf-spin"></span>보내는 중…';
+      var sp=document.getElementById('cf-spin'),d=0;
+      spinTimer=setInterval(function(){d=(d+30)%360;if(sp)sp.style.transform='rotate('+d+'deg)';},60);
+    };
+    var stopSpin=function(){if(spinTimer){clearInterval(spinTimer);spinTimer=null;}csub.innerHTML=origBtn;};
     cform.addEventListener('submit',function(e){
       e.preventDefault();
       if(sending)return;
       var email=(cform.email.value||'').trim(),msg=(cform.message.value||'').trim();
       if(!email||!msg){cstatus.textContent='이메일과 문의 내용을 입력해 주세요.';cstatus.className='cform-status err';return;}
       if(!cform.agree.checked){cstatus.textContent='개인정보 수집·이용 동의가 필요합니다.';cstatus.className='cform-status err';return;}
-      sending=true;csub.disabled=true;cstatus.textContent='보내는 중…';cstatus.className='cform-status';
+      sending=true;csub.disabled=true;cstatus.textContent='';cstatus.className='cform-status';startSpin();
       fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(cform))})
-        .then(function(){cform.reset();cstatus.textContent='문의가 접수됐습니다. 확인 후 이메일로 회신드릴게요. 감사합니다!';cstatus.className='cform-status ok';})
+        .then(function(){cform.reset();showOk();})
         .catch(function(){cstatus.textContent='전송에 실패했어요. 잠시 후 다시 시도하거나 lgt31311@gmail.com 으로 보내주세요.';cstatus.className='cform-status err';})
-        .finally(function(){sending=false;csub.disabled=false;});
+        .finally(function(){sending=false;csub.disabled=false;stopSpin();});
     });
   }
 
