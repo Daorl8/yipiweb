@@ -223,6 +223,28 @@
   .cta-mail{margin-top:16px;font-size:.9rem;color:var(--ink-soft)}
   .mailcopy{background:none;border:0;cursor:pointer;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px;font-size:.9rem;font-family:inherit;padding:0}
   .mailcopy:hover{color:var(--accent-2)}
+  .cform{max-width:560px;margin:clamp(28px,4vw,38px) auto 0;text-align:left;display:grid;gap:16px}
+  .cfield{display:grid;gap:7px}
+  .cfield label{font-size:.82rem;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .cfield .req{color:var(--accent)}
+  .cform input[type=text],.cform input[type=email],.cform textarea{
+    width:100%;font-family:inherit;font-size:1rem;color:var(--ink);background:var(--paper);
+    border:1px solid var(--line-2);border-radius:4px;padding:12px 14px;transition:border-color .2s ease
+  }
+  .cform input::placeholder,.cform textarea::placeholder{color:var(--ink-faint)}
+  .cform input:focus,.cform textarea:focus{outline:none;border-color:var(--accent)}
+  .cform textarea{resize:vertical;min-height:112px;line-height:1.6}
+  .cagree{display:flex;align-items:flex-start;gap:9px;font-size:.86rem;color:var(--ink-soft);cursor:pointer;line-height:1.55}
+  .cagree input{margin-top:3px;width:16px;height:16px;accent-color:var(--accent);flex-shrink:0}
+  .cagree-sub{color:var(--ink-faint);font-size:.82rem}
+  .cform-submit{justify-content:center;margin-top:4px}
+  .cform-submit[disabled]{opacity:.6;cursor:default}
+  .cform-status{font-size:.9rem;min-height:1.2em;text-align:center;margin-top:2px}
+  .cform-status.ok{color:var(--accent);font-weight:600}
+  .cform-status.err{color:#B23B3B;font-weight:600}
+  .cta-alt{margin-top:24px;font-size:.92rem;color:var(--ink-soft)}
+  .cta-alt a{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+  .cta-alt a:hover{color:var(--accent-2)}
 
   /* ---------- Footer ---------- */
   footer{border-top:1px solid var(--line);padding:clamp(46px,6vw,72px) 0 40px;background:var(--paper-2)}
@@ -488,12 +510,31 @@
     <div class="wrap">
       <p class="eyebrow rv">지금 시작하기</p>
       <h2 class="rv">완성본을 먼저 보고,<br><span class="em">결정하세요.</span></h2>
-      <p class="rv">지금 바로 문의해 보세요. 편한 채널로 남겨주시면, 가게 느낌에 맞춰 한 장 먼저 잡아 보여드릴게요.</p>
-      <div class="hero-actions rv">
-        <a href="https://instagram.com/your.page_yp" class="btn btn-primary" target="_blank" rel="noopener">인스타 DM 보내기 <span class="arrow">→</span></a>
-        <a href="mailto:lgt31311@gmail.com?subject=이피웹%20홈페이지%20제작%20문의" class="btn btn-ghost">이메일 문의 <span class="arrow">→</span></a>
-      </div>
-      <p class="cta-mail rv">메일 앱이 안 열리면 <button type="button" class="mailcopy" data-mail="lgt31311@gmail.com">lgt31311@gmail.com 복사</button></p>
+      <p class="rv">아래로 남겨주시면 가게 느낌에 맞춰 <b>한 장 먼저 잡아</b> 보여드려요. 확인 후 이메일로 회신드립니다.</p>
+
+      <form class="cform rv" id="cform" novalidate>
+        <div class="cfield">
+          <label for="cf-name">가게명 · 이름</label>
+          <input id="cf-name" name="name" type="text" autocomplete="organization" placeholder="예: 하루치 베이커리 / 김사장">
+        </div>
+        <div class="cfield">
+          <label for="cf-email">연락받을 이메일 <span class="req">*</span></label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="reply@example.com">
+        </div>
+        <div class="cfield">
+          <label for="cf-msg">문의 내용 <span class="req">*</span></label>
+          <textarea id="cf-msg" name="message" rows="4" required placeholder="어떤 가게인지, 원하시는 느낌이나 참고 사이트 등 편하게 적어주세요."></textarea>
+        </div>
+        <label class="cagree">
+          <input type="checkbox" id="cf-agree" name="agree" value="1" required>
+          <span>개인정보 수집·이용에 동의합니다. <span class="cagree-sub">(수집: 이메일·문의내용 / 목적: 문의 응대 / 보유: 응대 후 파기)</span></span>
+        </label>
+        <input type="hidden" name="source" value="yipiweb">
+        <button type="submit" class="btn btn-primary cform-submit" id="cf-submit">문의 보내기 <span class="arrow">→</span></button>
+        <p class="cform-status" id="cf-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="cta-alt rv">또는 편한 채널로 — <a href="https://instagram.com/your.page_yp" target="_blank" rel="noopener">인스타 DM</a> · <button type="button" class="mailcopy" data-mail="lgt31311@gmail.com">lgt31311@gmail.com 복사</button></p>
       <div class="event rv"><span class="gift">Gift.</span> 지금 <b>선착순 3팀</b>, 베이직 홈페이지를 <b>무료</b>로 만들어 드립니다. <span style="color:var(--ink-soft)">(조건: 완성 후 후기 + 사례 노출 동의)</span></div>
     </div>
   </section>
@@ -636,12 +677,30 @@
   }
 
   // mail copy fallback (mailto may not open on all devices)
-  var mc=document.querySelector('.mailcopy');
-  if(mc){
+  [].slice.call(document.querySelectorAll('.mailcopy')).forEach(function(mc){
     mc.addEventListener('click',function(){
       var mail=mc.getAttribute('data-mail');
       var done=function(){mc.textContent='복사됨 ✓';setTimeout(function(){mc.textContent=mail+' 복사';},1600);};
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(mail).then(done,done);}else{done();}
+    });
+  });
+
+  // contact form → Google Apps Script (Sheet 적립 + 메일 알림). no-cors: fire-and-forget.
+  var cform=document.getElementById('cform');
+  if(cform){
+    var SCRIPT_URL='https://script.google.com/macros/s/AKfycbzp1Vja3jlVK5drfKSMNPCc_tiGt_t8i26PbRe4uv73OHxSu14ixpbD3HKfOjGktKQJ/exec';
+    var cstatus=document.getElementById('cf-status'),csub=document.getElementById('cf-submit'),sending=false;
+    cform.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(sending)return;
+      var email=(cform.email.value||'').trim(),msg=(cform.message.value||'').trim();
+      if(!email||!msg){cstatus.textContent='이메일과 문의 내용을 입력해 주세요.';cstatus.className='cform-status err';return;}
+      if(!cform.agree.checked){cstatus.textContent='개인정보 수집·이용 동의가 필요합니다.';cstatus.className='cform-status err';return;}
+      sending=true;csub.disabled=true;cstatus.textContent='보내는 중…';cstatus.className='cform-status';
+      fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(cform))})
+        .then(function(){cform.reset();cstatus.textContent='문의가 접수됐습니다. 확인 후 이메일로 회신드릴게요. 감사합니다!';cstatus.className='cform-status ok';})
+        .catch(function(){cstatus.textContent='전송에 실패했어요. 잠시 후 다시 시도하거나 lgt31311@gmail.com 으로 보내주세요.';cstatus.className='cform-status err';})
+        .finally(function(){sending=false;csub.disabled=false;});
     });
   }
 
