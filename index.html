@@ -92,8 +92,8 @@
   .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
   .hero-bg .hbimg{
     position:absolute;inset:-2%;background-size:cover;background-position:center;
-    opacity:0;filter:grayscale(.32) contrast(1.02);
-    animation:hbFade 45s linear infinite;will-change:opacity,transform
+    opacity:0;filter:grayscale(.15) contrast(1.03);
+    animation:hbFade 40s linear infinite;will-change:opacity,transform
   }
   .hero-bg .hbimg:nth-child(1){animation-delay:0s}
   .hero-bg .hbimg:nth-child(2){animation-delay:9s}
@@ -101,13 +101,13 @@
   .hero-bg .hbimg:nth-child(4){animation-delay:27s}
   .hero-bg .hbimg:nth-child(5){animation-delay:36s}
   @keyframes hbFade{
-    0%{opacity:0;transform:scale(1.05) translateX(2.5%)}
-    3%{opacity:.6}
-    17%{opacity:.6}
-    20%{opacity:0}
-    100%{opacity:0;transform:scale(1.12) translateX(-2.5%)}
+    0%{opacity:0;transform:scale(1.04) translateX(2%)}
+    4%{opacity:.9}
+    18%{opacity:.9}
+    22%{opacity:0}
+    100%{opacity:0;transform:scale(1.1) translateX(-2%)}
   }
-  .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.68) 42%,rgba(255,255,255,.86))}
+  .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.56) 42%,rgba(255,255,255,.80))}
   .hero .wrap{position:relative;z-index:2}
   .hero .eyebrow{margin-bottom:clamp(22px,3vw,32px)}
   .hero h1{
@@ -173,6 +173,9 @@
   .gmeta .gname .en{font-size:.78rem;color:var(--ink-faint);margin-left:.45em;text-transform:uppercase;letter-spacing:.12em}
   .gmeta .gcat{font-family:var(--disp);font-weight:300;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;flex-shrink:0}
   .gnote{margin-top:clamp(24px,4vw,34px);display:flex;align-items:center;gap:.6em;font-size:.9rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:20px}
+  .wbar{height:6px;background:var(--line);border-radius:100px;position:relative;margin-top:20px;cursor:pointer;touch-action:none}
+  .wbar-thumb{position:absolute;top:0;left:0;height:100%;min-width:30px;width:30px;background:var(--accent);border-radius:100px;transition:background .2s}
+  .wbar:hover .wbar-thumb{background:var(--accent-2)}
 
   /* ---------- Value (dark) ---------- */
   .value{background:var(--dark);color:#fff}
@@ -184,7 +187,7 @@
   .value-item{padding:clamp(26px,3vw,34px) 0;border-top:1px solid var(--dark-line);display:flex;flex-direction:column;gap:12px}
   .value-item:last-child{border-bottom:1px solid var(--dark-line)}
   .value-item .vnum{font-family:var(--serif);font-style:italic;color:var(--dark-soft);font-size:1.15rem}
-  .value-item h3{font-size:clamp(1.3rem,2.4vw,1.75rem);font-weight:700;letter-spacing:-.02em;color:#fff}
+  .value-item h3{font-size:clamp(1.18rem,2vw,1.5rem);font-weight:700;letter-spacing:-.02em;color:#fff;text-wrap:balance}
   .value-item p{color:var(--dark-soft);max-width:54ch;font-size:1rem}
 
   /* ---------- Process ---------- */
@@ -228,6 +231,9 @@
   }
   .event b{color:var(--accent)}
   .event .gift{font-family:var(--serif);font-style:italic;color:var(--accent);font-weight:500}
+  .cta-mail{margin-top:16px;font-size:.9rem;color:var(--ink-soft)}
+  .mailcopy{background:none;border:0;cursor:pointer;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px;font-size:.9rem;font-family:inherit;padding:0}
+  .mailcopy:hover{color:var(--accent-2)}
 
   /* ---------- Footer ---------- */
   footer{border-top:1px solid var(--line);padding:clamp(46px,6vw,72px) 0 40px;background:var(--paper-2)}
@@ -259,7 +265,7 @@
   .modal-desc b{color:var(--accent)}
   .modal-desc .modal-sub{display:block;margin-top:6px;font-size:.84rem;color:var(--ink-faint)}
   .modal-actions{display:flex;flex-direction:column;gap:10px;margin-top:24px}
-  .modal-actions .btn{justify-content:center}
+  .modal-actions .btn{justify-content:center;text-align:center;line-height:1.3}
   .modal-dismiss{margin-top:16px;background:none;border:0;cursor:pointer;font-size:.84rem;color:var(--ink-faint);text-decoration:underline;text-underline-offset:3px}
   .modal-dismiss:hover{color:var(--ink-soft)}
 
@@ -269,8 +275,6 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .rv{opacity:1;transform:none;transition:none}
-    .hero-bg .hbimg{animation:none;opacity:0}
-    .hero-bg .hbimg:first-child{opacity:.14}
     *{transition:none!important}
   }
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
@@ -340,7 +344,7 @@
       <p class="eyebrow rv">웹사이트 제작 · 감성 소상공인 전문</p>
       <h1 class="rv">우리 가게를 <span class="em accent">닮은</span><br>홈페이지 <span class="em">한 장.</span></h1>
       <p class="sub rv">A one-page website, in your shop's own mood.</p>
-      <p class="hero-lead rv">인스타 감성 그대로, 매달 나가는 돈은 <b>0원.</b> 사장님은 사진만 주세요 — 나머지는 제가 다 합니다. <b>완성본을 먼저 보고,</b> 마음에 들 때만 결제하세요.</p>
+      <p class="hero-lead rv">인스타 감성 그대로, 매달 나가는 돈은 <b>0원.</b> 사장님은 사진만 주세요. 나머지는 제가 다 합니다. <b>완성본을 먼저 보고,</b> 마음에 들 때만 결제하세요.</p>
       <div class="hero-actions rv">
         <a href="#contact" class="btn btn-primary">무료로 먼저 만들어 보기 <span class="arrow">→</span></a>
         <a href="#work" class="btn btn-ghost">작업물 보기</a>
@@ -349,7 +353,7 @@
         <div class="stat"><b>16<small>종+</small></b><span>업종별 실제 샘플</span></div>
         <div class="stat"><b>0<small>원</small></b><span>매달 유지비</span></div>
         <div class="stat"><b>100<small>%</small></b><span>사장님 완전 소유</span></div>
-        <div class="stat"><b>3–5<small>일</small></b><span>사진 받고 완성</span></div>
+        <div class="stat"><b>3~5<small>일</small></b><span>사진 받고 완성</span></div>
       </div>
     </div>
   </section>
@@ -384,7 +388,8 @@
       </div>
     </div>
     <div class="wrap">
-      <p class="gnote rv">— 총 16종, 모두 실제로 제작해 배포한 사이트예요. 옆으로 넘기거나 카드를 눌러 직접 둘러보세요.</p>
+      <div class="wbar" id="wbar" aria-hidden="true"><div class="wbar-thumb" id="wthumb"></div></div>
+      <p class="gnote rv">— 총 16종, 모두 실제로 제작해 배포한 사이트예요. 아래 바를 마우스로 끌거나, 카드를 눌러 직접 둘러보세요.</p>
     </div>
   </section>
 
@@ -399,17 +404,17 @@
       <div class="value-grid">
         <div class="value-item rv">
           <span class="vnum">i.</span>
-          <h3>매달 0원</h3>
-          <p>보통 홈페이지엔 매달 관리비 1~3만 원이 붙습니다. 여기는 한 번 만들면 끝 — 월 고정비가 없어요. 3년이면 수십만 원이 차이 납니다.</p>
+          <h3>유지비는 없습니다.</h3>
+          <p>보통 홈페이지엔 매달 관리비 1~3만 원이 붙습니다. 여기는 한 번 만들면 끝. 월 고정비가 없어요. 3년이면 수십만 원이 차이 납니다.</p>
         </div>
         <div class="value-item rv">
           <span class="vnum">ii.</span>
-          <h3>100% 사장님 소유</h3>
+          <h3>100% 사장님 소유입니다.</h3>
           <p>제 이름이 아니라 사장님 명의로 만들어 인계합니다. 제가 사라져도 사장님 사이트는 사장님 거예요. 특정 업체에 묶이는 락인이 없습니다.</p>
         </div>
         <div class="value-item rv">
           <span class="vnum">iii.</span>
-          <h3>사장님 할 일 거의 없음</h3>
+          <h3>맡기고 본업에 집중하세요.</h3>
           <p>직접 만들기(아임웹 등)는 20시간 배워도 어설픕니다. 여기는 사진 몇 장만 주시면 제가 다 합니다. 신청하고, 자료 주고, 확인하면 끝이에요.</p>
         </div>
       </div>
@@ -431,19 +436,19 @@
         </div>
         <div class="step rv">
           <span class="snum">02</span>
-          <div class="sbody"><h3>무료 제작 <span class="free">무료</span></h3><p>사장님 가게에 맞춰 <b>완성본을 먼저 만들어</b> 보여드려요. 미리보기까지 전부 공짜입니다.</p></div>
+          <div class="sbody"><h3>무료 시안 &amp; 수정 <span class="chip">무료 · 수정 2~3회</span></h3><p>사장님 가게에 맞춰 <b>완성본을 먼저 만들어</b> 보여드려요. 여기서 색·문구·구성을 원하시는 대로 <b>수정(패키지별 2~3회)까지 전부 무료</b>. 미리보기도 수정도 결제 전이라 공짜입니다.</p></div>
         </div>
         <div class="step rv">
           <span class="snum">03</span>
-          <div class="sbody"><h3>보고 나서 결제</h3><p>결과물이 마음에 드실 때만 결제하세요. 별로면 안 하셔도 됩니다 — 선결제 없음.</p></div>
+          <div class="sbody"><h3>보고 나서 결제</h3><p>결과물이 마음에 드실 때만 결제하세요. 별로면 안 하셔도 됩니다. 선결제 없음.</p></div>
         </div>
         <div class="step rv">
           <span class="snum">04</span>
-          <div class="sbody"><h3>수정 &amp; 납품 <span class="chip">수정 2~3회</span></h3><p>시안을 보고 색·문구·구성을 원하시는 대로 다듬어요. <b>수정은 패키지별 2~3회 포함</b>(베이직 2회 · 스탠다드/프리미엄 3회). 확정되면 사장님 명의로 계정·소유권을 인계합니다.</p></div>
+          <div class="sbody"><h3>납품 · 소유권 인계</h3><p>확정되면 사장님 명의로 계정과 소유권을 넘겨드려요. 이제 사이트는 온전히 사장님 것입니다.</p></div>
         </div>
         <div class="step rv">
           <span class="snum">05</span>
-          <div class="sbody"><h3>30일 무료 AS <span class="chip">하자보수</span></h3><p>납품 후 오류·깨짐 같은 <b>하자 보수</b>는 30일간 무료예요. 위 <b>‘수정 2~3회’와는 별개</b>입니다 — 색·문구·구성을 새로 바꾸는 건 수정 횟수에 해당해요.</p></div>
+          <div class="sbody"><h3>30일 무료 AS <span class="chip">결제 후</span></h3><p>결제·납품 후 <b>30일간은 오류·깨짐은 물론 수정까지 모두 무료</b>예요. (30일 이후 간단 수정은 건당 1~3만 원)</p></div>
         </div>
       </div>
     </div>
@@ -461,18 +466,18 @@
         <div class="price-card rv">
           <div class="pcol-a">
             <div class="ptop"><span class="pname">베이직</span><span class="ptag">보여주기</span></div>
-            <p class="pwho">가게를 깔끔한 한 장으로 보여주기만 — 소개·메뉴·지도·연락.</p>
+            <p class="pwho">가게를 깔끔한 한 장으로 보여주기만. 소개·메뉴·지도·연락.</p>
           </div>
           <div class="pcol-b"><div class="pprice">9.9<small>만원</small></div></div>
-          <p class="pdesc">디지털 명함 같은 원페이지. 문의 폼 없음. 수정 2회 포함.</p>
+          <p class="pdesc">디지털 명함 같은 원페이지. 문의 폼 없음. 무료 시안 수정 2회.</p>
         </div>
         <div class="price-card rv">
           <div class="pcol-a">
             <div class="ptop"><span class="pname">스탠다드</span><span class="ptag">문의받기</span><span class="badge">추천</span></div>
-            <p class="pwho">손님이 사이트에서 직접 문의·예약하게 — 폼·연동·검색 노출까지.</p>
+            <p class="pwho">손님이 사이트에서 직접 문의·예약하게. 폼·연동·검색 노출까지.</p>
           </div>
           <div class="pcol-b"><div class="pprice">18<small>만원</small></div></div>
-          <p class="pdesc">문의/예약 폼 · 카톡·네이버 연동 · 인스타 · 검색 노출 세팅. 수정 3회 포함.</p>
+          <p class="pdesc">문의/예약 폼 · 카톡·네이버 연동 · 인스타 · 검색 노출 세팅. 무료 시안 수정 3회.</p>
         </div>
         <div class="price-card rv">
           <div class="pcol-a">
@@ -480,12 +485,11 @@
             <p class="pwho">멀티페이지·고급 구성이나 네이버예약 등 외부 연동이 필요할 때.</p>
           </div>
           <div class="pcol-b"><div class="pprice">32<small>만원~</small></div></div>
-          <p class="pdesc">멀티페이지 · 갤러리 · 고급 폼 · 네이버예약/인스타 연동. 수정 3회 포함.</p>
+          <p class="pdesc">멀티페이지 · 갤러리 · 고급 폼 · 네이버예약/인스타 연동. 무료 시안 수정 3회.</p>
         </div>
       </div>
       <p class="price-note rv">
-        · <b>매달 유지비 0원</b> — 위 가격은 처음 한 번만 냅니다. 이후 간단 수정(영업시간·메뉴 글자 등)은 건당 1~3만 원, 매달 약정 없음.<br>
-        · 지금 가격은 <b>첫 후기를 모으는 동안의 한정가</b>예요. 후기가 쌓이면 정착가로 올라갑니다.
+        · <b>매달 유지비 0원</b>. 위 가격은 처음 한 번만 냅니다. 결제·납품 후 30일간 수정은 무료, 이후 간단 수정(영업시간·메뉴 글자 등)은 건당 1~3만 원이에요.
       </p>
     </div>
   </section>
@@ -500,6 +504,7 @@
         <a href="https://instagram.com/your.page_yp" class="btn btn-primary" target="_blank" rel="noopener">인스타 DM 보내기 <span class="arrow">→</span></a>
         <a href="mailto:lgt31311@gmail.com?subject=이피웹%20홈페이지%20제작%20문의" class="btn btn-ghost">이메일 문의 <span class="arrow">→</span></a>
       </div>
+      <p class="cta-mail rv">메일 앱이 안 열리면 <button type="button" class="mailcopy" data-mail="lgt31311@gmail.com">lgt31311@gmail.com 복사</button></p>
       <div class="event rv"><span class="gift">Gift.</span> 지금 <b>선착순 3팀</b>, 베이직 홈페이지를 <b>무료</b>로 만들어 드립니다. <span style="color:var(--ink-soft)">(조건: 완성 후 후기 + 사례 노출 동의)</span></div>
     </div>
   </section>
@@ -539,8 +544,8 @@
     <h2 id="evtTitle">선착순 <span class="em">3팀</span>,<br>홈페이지 무료 제작</h2>
     <p class="modal-desc">지금 신청하시는 <b>선착순 3팀</b>께 베이직 홈페이지를 <b>무료</b>로 만들어 드려요. 완성본을 먼저 보고 결정하시면 됩니다.<span class="modal-sub">(조건: 완성 후 후기 + 사례 노출 동의)</span></p>
     <div class="modal-actions">
-      <a href="https://instagram.com/your.page_yp" target="_blank" rel="noopener" class="btn btn-primary">인스타 DM 신청 <span class="arrow">→</span></a>
-      <a href="mailto:lgt31311@gmail.com?subject=이피웹%20무료%20제작%20이벤트%20신청" class="btn btn-ghost">이메일 신청</a>
+      <a href="https://instagram.com/your.page_yp" target="_blank" rel="noopener" class="btn btn-primary">인스타<br>DM 신청 <span class="arrow">→</span></a>
+      <a href="mailto:lgt31311@gmail.com?subject=이피웹%20무료%20제작%20이벤트%20신청" class="btn btn-ghost">이메일<br>신청</a>
     </div>
     <button class="modal-dismiss" type="button" data-dismiss-today>오늘 하루 안 보기</button>
   </div>
@@ -577,29 +582,68 @@
     setTimeout(function(){els.forEach(function(el){el.classList.add('in')})},1600);
   }
 
-  // work carousel — auto horizontal scroll + manual swipe/scroll, seamless loop
-  var mq=document.getElementById('wscroll'),track=document.getElementById('wtrack');
-  if(mq&&track&&!reduce){
+  // work carousel — slow auto scroll (loops) + draggable scrollbar + manual scroll.
+  // Runs regardless of reduced-motion (owner-requested gentle motion); pausable.
+  var mq=document.getElementById('wscroll'),track=document.getElementById('wtrack'),
+      bar=document.getElementById('wbar'),thumb=document.getElementById('wthumb');
+  if(mq&&track){
     track.insertAdjacentHTML('beforeend',track.innerHTML); // duplicate for seamless loop
-    var paused=false,resumeT;
+    var half=function(){return track.scrollWidth/2;};
+    var dragging=false,paused=false,resumeT;
     var pause=function(){paused=true;clearTimeout(resumeT);};
-    var resumeLater=function(){clearTimeout(resumeT);resumeT=setTimeout(function(){paused=false;},1200);};
+    var resumeLater=function(){clearTimeout(resumeT);resumeT=setTimeout(function(){paused=false;},1400);};
     mq.addEventListener('pointerenter',pause);
-    mq.addEventListener('pointerleave',function(){paused=false;});
-    mq.addEventListener('focusin',pause);
-    mq.addEventListener('focusout',function(){paused=false;});
+    mq.addEventListener('pointerleave',function(){if(!dragging)paused=false;});
     mq.addEventListener('touchstart',pause,{passive:true});
     mq.addEventListener('touchend',resumeLater,{passive:true});
     mq.addEventListener('wheel',function(){pause();resumeLater();},{passive:true});
+
+    var refresh=function(){
+      if(!bar||!thumb)return;
+      var h=half();if(h<=0)return;
+      var bw=bar.clientWidth;
+      var vis=Math.min(mq.clientWidth/h,1);
+      var tw=Math.max(bw*vis,30);
+      var prog=(mq.scrollLeft%h)/h;
+      thumb.style.width=tw+'px';
+      thumb.style.left=(prog*(bw-tw))+'px';
+    };
+    mq.addEventListener('scroll',function(){
+      var h=half();
+      if(h>0&&mq.scrollLeft>=h){mq.scrollLeft-=h;}
+      refresh();
+    },{passive:true});
+
+    if(bar){
+      var barToScroll=function(clientX){
+        var r=bar.getBoundingClientRect();
+        var ratio=Math.min(Math.max((clientX-r.left)/r.width,0),1);
+        mq.scrollLeft=ratio*half();
+      };
+      bar.addEventListener('pointerdown',function(e){dragging=true;pause();try{bar.setPointerCapture(e.pointerId);}catch(_){}barToScroll(e.clientX);e.preventDefault();});
+      bar.addEventListener('pointermove',function(e){if(dragging)barToScroll(e.clientX);});
+      var endDrag=function(){if(dragging){dragging=false;resumeLater();}};
+      bar.addEventListener('pointerup',endDrag);
+      bar.addEventListener('pointercancel',endDrag);
+    }
+
     var tick=function(){
-      if(!paused){
-        var half=track.scrollWidth/2;
-        mq.scrollLeft+=0.6;
-        if(half>0&&mq.scrollLeft>=half){mq.scrollLeft-=half;}
-      }
+      if(!paused&&!dragging){mq.scrollLeft+=0.4;} // slow; scroll handler normalizes loop
       requestAnimationFrame(tick);
     };
+    window.addEventListener('resize',refresh);
+    setTimeout(refresh,300);refresh();
     requestAnimationFrame(tick);
+  }
+
+  // mail copy fallback (mailto may not open on all devices)
+  var mc=document.querySelector('.mailcopy');
+  if(mc){
+    mc.addEventListener('click',function(){
+      var mail=mc.getAttribute('data-mail');
+      var done=function(){mc.textContent='복사됨 ✓';setTimeout(function(){mc.textContent=mail+' 복사';},1600);};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(mail).then(done,done);}else{done();}
+    });
   }
 
   // event popup (first visit; "오늘 하루 안 보기" via localStorage)
