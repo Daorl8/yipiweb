@@ -1,0 +1,13 @@
+.git
+.git/**
+wrangler.toml
+.assetsignore
+README.md
+CHANGELOG.md
+index_analog.html
+index_v3.html
+index_v4.html
+index_v5.html
+index_v6.html
+index_mono.html
+index_v1_paper.html
