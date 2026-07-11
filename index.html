@@ -627,13 +627,12 @@
       bar.addEventListener('pointercancel',endDrag);
     }
 
-    var tick=function(){
-      if(!paused&&!dragging){mq.scrollLeft+=0.4;} // slow; scroll handler normalizes loop
-      requestAnimationFrame(tick);
-    };
+    // setInterval (not rAF) so it keeps moving even where rAF is throttled
+    setInterval(function(){
+      if(!paused&&!dragging){mq.scrollLeft+=0.7;} // slow; scroll handler normalizes loop
+    },28);
     window.addEventListener('resize',refresh);
     setTimeout(refresh,300);refresh();
-    requestAnimationFrame(tick);
   }
 
   // mail copy fallback (mailto may not open on all devices)
