@@ -92,21 +92,10 @@
   .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
   .hero-bg .hbimg{
     position:absolute;inset:-2%;background-size:cover;background-position:center;
-    opacity:0;filter:grayscale(.15) contrast(1.03);
-    animation:hbFade 40s linear infinite;will-change:opacity,transform
+    opacity:0;transform:scale(1.06);filter:grayscale(.15) contrast(1.03);
+    transition:opacity 1.6s ease, transform 7s ease!important;will-change:opacity,transform
   }
-  .hero-bg .hbimg:nth-child(1){animation-delay:0s}
-  .hero-bg .hbimg:nth-child(2){animation-delay:9s}
-  .hero-bg .hbimg:nth-child(3){animation-delay:18s}
-  .hero-bg .hbimg:nth-child(4){animation-delay:27s}
-  .hero-bg .hbimg:nth-child(5){animation-delay:36s}
-  @keyframes hbFade{
-    0%{opacity:0;transform:scale(1.04) translateX(2%)}
-    4%{opacity:.9}
-    18%{opacity:.9}
-    22%{opacity:0}
-    100%{opacity:0;transform:scale(1.1) translateX(-2%)}
-  }
+  .hero-bg .hbimg.active{opacity:.9;transform:scale(1)}
   .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.56) 42%,rgba(255,255,255,.80))}
   .hero .wrap{position:relative;z-index:2}
   .hero .eyebrow{margin-bottom:clamp(22px,3vw,32px)}
@@ -570,6 +559,17 @@
   });
 
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // hero background crossfade — JS-driven so it never freezes (owner-requested)
+  var hbimgs=[].slice.call(document.querySelectorAll('.hbimg'));
+  if(hbimgs.length){
+    var hi=0;hbimgs[0].classList.add('active');
+    setInterval(function(){
+      hbimgs[hi].classList.remove('active');
+      hi=(hi+1)%hbimgs.length;
+      hbimgs[hi].classList.add('active');
+    },5000);
+  }
 
   // scroll reveal
   var els=[].slice.call(document.querySelectorAll('.rv'));
