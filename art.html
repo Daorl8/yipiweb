@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YIPI WEB — RAW EDITION</title>
+<meta name="description" content="이피웹 아트 에디션. 팔 생각 없이, 만들고 싶은 대로 만든 단 하나의 페이지. NO USABILITY. NO GRID. NO MERCY.">
+<meta property="og:title" content="YIPI WEB — RAW EDITION">
+<meta property="og:description" content="팔 생각 없이 만든 브루탈리스트 실험. NO USABILITY. NO GRID. NO MERCY.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EEEEEE'/%3E%3Crect x='4' y='4' width='24' height='24' fill='%230000FF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEEEEE;
+    --ink:#000000;
+    --blue:#0000FF;
+    --pad:clamp(16px,3.5vw,40px);
+    --mono:'Courier New',ui-monospace,'D2Coding','DejaVu Sans Mono',monospace;
+    --disp:'Helvetica Neue',Helvetica,Arial,'Black Han Sans','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+    --han:'Black Han Sans','Helvetica Neue',Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);color:var(--ink);font-family:var(--mono);
+    font-size:14px;line-height:1.45;overflow-x:hidden;cursor:crosshair;
+  }
+  a{color:var(--blue);text-decoration:none}
+  ::selection{background:var(--blue);color:var(--bg)}
+  .pad{padding-left:var(--pad);padding-right:var(--pad)}
+
+  /* cursor block — mix-blend difference invert trail */
+  #cb{position:fixed;top:0;left:0;width:46px;height:46px;background:var(--blue);
+    z-index:9999;pointer-events:none;mix-blend-mode:difference;will-change:transform;transform:translate(-100px,-100px)}
+
+  /* header bar */
+  header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:3px solid var(--ink);
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.02em;text-transform:uppercase;
+    padding:10px var(--pad);flex-wrap:wrap}
+  header b{font-weight:700}
+  header .r{display:flex;gap:16px;align-items:center}
+  header a.real{border:2px solid var(--ink);padding:5px 10px;color:var(--ink);background:var(--bg)}
+  header a.real:hover{background:var(--blue);color:var(--bg);border-color:var(--blue)}
+
+  /* HERO */
+  .hero{padding:clamp(30px,7vh,90px) var(--pad) clamp(24px,5vh,60px);border-bottom:3px solid var(--ink)}
+  .kick{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px}
+  .kick b{background:var(--ink);color:var(--bg);padding:2px 6px}
+  .mega{font-family:var(--han);line-height:.86;letter-spacing:-.01em;
+    font-size:clamp(3.4rem,15vw,13rem);text-transform:none}
+  .mega .b{color:var(--blue)}
+  .mega .k{display:block}
+  .sub{font-family:var(--mono);margin-top:26px;font-size:clamp(13px,1.5vw,16px);text-transform:uppercase;letter-spacing:.04em;max-width:60ch}
+  .sub .hl{background:var(--blue);color:var(--bg);padding:1px 5px}
+
+  /* MARQUEE */
+  .marq{border-bottom:3px solid var(--ink);background:var(--blue);color:var(--bg);overflow:hidden;white-space:nowrap;padding:10px 0}
+  .marq .track{display:inline-block;font-family:var(--han);font-size:clamp(1.4rem,3.4vw,2.4rem);text-transform:uppercase;will-change:transform;animation:marq 22s linear infinite}
+  .marq .track span{padding:0 .5em}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* MANIFESTO */
+  .manifesto{padding:clamp(30px,6vh,70px) var(--pad);border-bottom:3px solid var(--ink)}
+  .manifesto .h{font-family:var(--han);font-size:clamp(1.6rem,5vw,3rem);margin-bottom:22px;text-transform:uppercase}
+  .mlist{border:3px solid var(--ink);max-width:900px}
+  .mrow{display:flex;gap:16px;padding:14px 16px;border-bottom:1px solid var(--ink);font-family:var(--mono);font-size:clamp(13px,1.5vw,16px)}
+  .mrow:last-child{border-bottom:0}
+  .mrow .n{color:var(--blue);font-weight:700;flex-shrink:0}
+  .mrow:hover{background:var(--blue);color:var(--bg)}
+  .mrow:hover .n{color:var(--bg)}
+
+  /* INDEX of works */
+  .index{padding:clamp(30px,6vh,70px) 0 0;border-bottom:3px solid var(--ink)}
+  .index .h{font-family:var(--han);font-size:clamp(1.6rem,5vw,3rem);text-transform:uppercase;margin:0 var(--pad) 6px}
+  .index .hs{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin:0 var(--pad) 22px}
+  .wlist{border-top:3px solid var(--ink)}
+  .wrow{display:flex;align-items:baseline;gap:clamp(12px,2vw,28px);padding:clamp(10px,1.6vw,20px) var(--pad);
+    border-bottom:3px solid var(--ink);color:var(--ink);position:relative;overflow:hidden}
+  .wrow:last-child{border-bottom:0}
+  .wrow .wn{font-family:var(--mono);font-size:clamp(13px,1.4vw,15px);color:var(--blue);flex-shrink:0;width:3.4ch}
+  .wrow .wt{font-family:var(--han);font-size:clamp(1.5rem,5.5vw,3.6rem);line-height:.95;text-transform:uppercase}
+  .wrow .wk{font-family:var(--mono);font-size:clamp(11px,1.2vw,13px);text-transform:uppercase;letter-spacing:.04em;color:var(--ink);margin-left:auto;align-self:center;white-space:nowrap}
+  .wrow .go{font-family:var(--mono);font-size:clamp(11px,1.2vw,13px);align-self:center;opacity:0;transform:translateX(-8px);transition:opacity .12s,transform .12s}
+  .wrow:hover{background:var(--blue);color:var(--bg)}
+  .wrow:hover .wn,.wrow:hover .wk,.wrow:hover .wt{color:var(--bg)}
+  .wrow:hover .go{opacity:1;transform:none}
+
+  /* FOOTER */
+  footer{padding:clamp(30px,6vh,70px) var(--pad);font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.03em;line-height:2}
+  footer .big{font-family:var(--han);font-size:clamp(2rem,9vw,7rem);text-transform:none;line-height:.9;margin-bottom:24px}
+  footer a{border-bottom:2px solid var(--blue)}
+  footer a:hover{background:var(--blue);color:var(--bg);border-color:var(--blue)}
+
+  @media (prefers-reduced-motion:reduce){
+    .marq .track{animation:none}
+    #cb{display:none}
+    body{cursor:auto}
+  }
+</style>
+</head>
+<body>
+<div id="cb" aria-hidden="true"></div>
+
+<header>
+  <b>YIPI&nbsp;WEB — RAW EDITION</b>
+  <div class="r">
+    <span id="clk">--:--:--</span>
+    <a class="real" href="/index.html">← 실제 사이트</a>
+  </div>
+</header>
+
+<section class="hero">
+  <p class="kick"><b>EXPERIMENTAL</b>&nbsp;&nbsp;NON-COMMERCIAL&nbsp;&nbsp;버전 001</p>
+  <h1 class="mega">
+    <span class="k">이 페이지는</span>
+    <span class="k">팔 생각이</span>
+    <span class="k b">없습니다.</span>
+  </h1>
+  <p class="sub">NO USABILITY. NO GRID. NO MERCY. <span class="hl">만들고 싶은 대로</span> 만든 단 하나의 페이지 — 이피웹의 다른 얼굴.</p>
+</section>
+
+<div class="marq" aria-hidden="true">
+  <div class="track">
+    <span>RAW ✳ 사용성 없음 ✳ NO GRID ✳ 순수 실험 ✳ 팔 생각 없음 ✳ 만들고 싶은 대로 ✳ BRUTALIST ✳ </span><span>RAW ✳ 사용성 없음 ✳ NO GRID ✳ 순수 실험 ✳ 팔 생각 없음 ✳ 만들고 싶은 대로 ✳ BRUTALIST ✳ </span>
+  </div>
+</div>
+
+<section class="manifesto">
+  <p class="h">선언 / MANIFESTO</p>
+  <div class="mlist">
+    <div class="mrow"><span class="n">001</span><span>이 페이지엔 그리드가 없다. 정렬은 기분 따라.</span></div>
+    <div class="mrow"><span class="n">002</span><span>둥근 모서리·그림자·그라데이션 — 전부 없음. 플랫하게, 날것으로.</span></div>
+    <div class="mrow"><span class="n">003</span><span>색은 셋뿐: 검정 · 그레이 · 일렉트릭 블루(#0000FF).</span></div>
+    <div class="mrow"><span class="n">004</span><span>사용성은 고려하지 않았다. 그래도 로드는 되고, 스크롤은 된다.</span></div>
+    <div class="mrow"><span class="n">005</span><span>본업은 저기 있다. 깔끔하고, 팔리고, 사장님 것. 여긴 그냥, 나.</span></div>
+  </div>
+</section>
+
+<section class="index">
+  <p class="h">인덱스 / INDEX</p>
+  <p class="hs">지금까지 실제로 만든 것들 — 16 / 눌러서 진짜로 들어가짐</p>
+  <div class="wlist">
+    <a class="wrow" href="https://stay-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">001</span><span class="wt">GOYO</span><span class="wk">독채 스테이</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://flower-studio-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">002</span><span class="wt">FLEUR</span><span class="wk">플라워 스튜디오</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://studio-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">003</span><span class="wt">NOON</span><span class="wk">프로필 사진</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://bar-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">004</span><span class="wt">NOCTURNE</span><span class="wk">칵테일 바</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://select-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">005</span><span class="wt">QUINZE</span><span class="wk">패션 셀렉트샵</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://cafe-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">006</span><span class="wt">HARUCHI</span><span class="wk">동네 베이커리</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://interior-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">007</span><span class="wt">ONJIP</span><span class="wk">인테리어 시공</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://object-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">008</span><span class="wt">VESSEL</span><span class="wk">오브제 편집숍</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://gyeol-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">009</span><span class="wt">GYEOL</span><span class="wk">프라이빗 헤어살롱</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://nail-atelier-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">010</span><span class="wt">ATELIER</span><span class="wk">네일샵</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://pilates-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">011</span><span class="wt">VERDURE</span><span class="wk">필라테스</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://social-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">012</span><span class="wt">ROUND</span><span class="wk">소셜 다이닝</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://portfolio-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">013</span><span class="wt">YEOBAEK</span><span class="wk">디자인 스튜디오</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://academy-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">014</span><span class="wt">정상학원</span><span class="wk">입시 학원</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://sogon-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">015</span><span class="wt">소곤소곤</span><span class="wk">소품 가게</span><span class="go">열기 →</span></a>
+    <a class="wrow" href="https://pogeun-pet-sample.lgt3232.workers.dev" target="_blank" rel="noopener"><span class="wn">016</span><span class="wt">POGEUN</span><span class="wk">반려동물 미용</span><span class="go">열기 →</span></a>
+  </div>
+</section>
+
+<footer>
+  <p class="big">그래서<br><span style="color:var(--blue)">만들었다.</span></p>
+  <p>© 2026 YIPI WEB · RAW EDITION · NON-COMMERCIAL · 아무것도 팔지 않음</p>
+  <p>진짜 일 맡기실 분은 → <a href="/index.html">실제 사이트로</a> · 문의: <a href="mailto:lgt31311@gmail.com">lgt31311@gmail.com</a></p>
+</footer>
+
+<script>
+(function(){
+  // clock (mono, brutalist detail)
+  var clk=document.getElementById('clk');
+  function tick(){var d=new Date();var p=function(n){return(n<10?'0':'')+n;};clk.textContent=p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());}
+  tick();setInterval(tick,1000);
+
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce)return;
+
+  // cursor block — lerp follow, mix-blend difference
+  var cb=document.getElementById('cb');
+  var tx=-100,ty=-100,cx=-100,cy=-100,active=false;
+  window.addEventListener('pointermove',function(e){tx=e.clientX-23;ty=e.clientY-23;active=true;},{passive:true});
+  window.addEventListener('pointerdown',function(){cb.style.width='90px';cb.style.height='90px';cb.style.marginLeft='-22px';cb.style.marginTop='-22px';});
+  window.addEventListener('pointerup',function(){cb.style.width='46px';cb.style.height='46px';cb.style.marginLeft='0';cb.style.marginTop='0';});
+  (function loop(){
+    cx+=(tx-cx)*0.18;cy+=(ty-cy)*0.18;
+    cb.style.transform='translate('+cx.toFixed(1)+'px,'+cy.toFixed(1)+'px)';
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>
