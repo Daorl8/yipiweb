@@ -58,9 +58,8 @@
 
   /* MARQUEE */
   .marq{border-bottom:3px solid var(--ink);background:var(--blue);color:var(--bg);overflow:hidden;white-space:nowrap;padding:10px 0}
-  .marq .track{display:inline-block;font-family:var(--han);font-size:clamp(1.4rem,3.4vw,2.4rem);text-transform:uppercase;will-change:transform;animation:marq 22s linear infinite}
+  .marq .track{display:inline-block;font-family:var(--han);font-size:clamp(1.4rem,3.4vw,2.4rem);text-transform:uppercase;will-change:transform}
   .marq .track span{padding:0 .5em}
-  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* MANIFESTO */
   .manifesto{padding:clamp(30px,6vh,70px) var(--pad);border-bottom:3px solid var(--ink)}
@@ -95,7 +94,6 @@
   footer a:hover{background:var(--blue);color:var(--bg);border-color:var(--blue)}
 
   @media (prefers-reduced-motion:reduce){
-    .marq .track{animation:none}
     #cb{display:none}
     body{cursor:auto}
   }
@@ -174,6 +172,15 @@
   var clk=document.getElementById('clk');
   function tick(){var d=new Date();var p=function(n){return(n<10?'0':'')+n;};clk.textContent=p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());}
   tick();setInterval(tick,1000);
+
+  // marquee — setInterval transform (runs regardless of reduced-motion / automation freeze)
+  var track=document.querySelector('.marq .track');
+  if(track){
+    var mx=0,half=0;
+    function measure(){half=track.scrollWidth/2;}
+    measure();setTimeout(measure,600);window.addEventListener('resize',measure);
+    setInterval(function(){if(!half){measure();return;}mx-=0.6;if(-mx>=half)mx+=half;track.style.transform='translateX('+mx.toFixed(1)+'px)';},16);
+  }
 
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(reduce)return;

@@ -1,5 +1,9 @@
 # CHANGELOG — yipiweb (이피웹 전용 사이트)
 
+## 2026-07-13 — art.html 마퀴 구동 + index.html 가격 정렬 수정
+- **art.html 마퀴(띠) 안 돎 → setInterval 구동으로 전환**. CSS `animation:marq`가 감소된 모션(자동화/사용자 설정)에서 얼어 정지 → 프로젝트 표준대로 JS setInterval transform(트랙 폭 절반 단위로 무한 랩)로 교체, reduced-motion에서도 회전. `@keyframes marq`·reduced-motion animation:none 제거.
+- **index.html 가격 정렬 어긋남 수정**: `.price-card` 그리드 `1.1fr .9fr auto` → **`1.1fr .7fr 1.5fr`**(+ 자식 min-width:0). 세 번째(기능설명) 열이 `auto`라 행마다 텍스트 길이로 열폭이 바뀌어 가운데 가격 열 시작 x가 어긋남(9.9/18/32만원 좌우 불일치) → 고정 fr로 전 행 정렬 통일.
+
 ## 2026-07-13 — art.html 폰트·블루 조정 (가독성)
 - 디스플레이 폰트 **Black Han Sans → Do Hyeon**(옛 간판체 기반). Black Han Sans가 초대형에서 획 뭉개져 판독 불가 → Do Hyeon은 개성 유지하면서 큰 글씨서도 또렷(다올: 프리텐다드/정형 산세리프는 배제). `--han`/`--disp` 교체, Latin도 Do Hyeon 우선(GOYO 등 인덱스 타이틀 통일).
 - 악센트 블루 **#0000FF → #2E38C8**(채도↓). 순블루가 "블루스크린" 느낌 → 인디고 쪽으로 살짝, 톤 다운. 라이브 렌더로 가독성·톤 확인 후 배포.
