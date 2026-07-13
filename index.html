@@ -214,12 +214,16 @@
   .cta p{margin:22px auto 0;max-width:46ch;color:var(--ink-2);font-size:1.06rem}
   .cta .hero-actions{justify-content:center;margin-top:30px}
   .event{
-    margin:34px auto 0;max-width:580px;border:1px solid var(--accent);border-radius:4px;
-    padding:18px 24px;background:color-mix(in srgb,var(--accent) 5%, var(--paper));
-    font-size:.96rem;color:var(--ink-2)
+    position:relative;overflow:hidden;margin:clamp(30px,5vw,42px) auto 0;max-width:600px;
+    border-radius:18px;padding:clamp(24px,4vw,32px) clamp(26px,4vw,36px);text-align:center;
+    background:linear-gradient(135deg,#22436d 0%,#152b47 100%);color:#fff;
+    box-shadow:0 18px 46px rgba(16,32,52,.30)
   }
-  .event b{color:var(--accent)}
-  .event .gift{font-family:var(--serif);font-style:italic;color:var(--accent);font-weight:500}
+  .event::before{content:'';position:absolute;width:230px;height:230px;right:-70px;top:-90px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%);pointer-events:none}
+  .event .gift{font-family:var(--serif);font-style:italic;font-weight:500;color:#AFC3E2;margin-right:.12em}
+  .event-main{position:relative;font-size:clamp(1.02rem,2.1vw,1.24rem);font-weight:700;letter-spacing:-.015em;line-height:1.55;color:#fff}
+  .event-main b{color:#fff;font-weight:800;box-shadow:inset 0 -2px 0 rgba(175,195,226,.5)}
+  .event-cond{position:relative;margin-top:11px;font-size:.85rem;color:#A7B6CD;line-height:1.55}
   .cta-mail{margin-top:16px;font-size:.9rem;color:var(--ink-soft)}
   .mailcopy{background:none;border:0;cursor:pointer;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px;font-size:.9rem;font-family:inherit;padding:0}
   .mailcopy:hover{color:var(--accent-2)}
@@ -261,14 +265,19 @@
   .foot-legal{margin-top:38px;padding-top:22px;border-top:1px solid var(--line-2);font-size:.78rem;color:var(--ink-faint);line-height:1.7}
 
   /* ---------- Event modal (first visit) ---------- */
-  .modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(10,10,11,.55)}
+  .modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(10,10,11,.55);animation:mIn .3s ease both}
   .modal[hidden]{display:none}
+  .modal.closing{animation:mOut .34s ease forwards}
+  @keyframes mIn{from{opacity:0}to{opacity:1}}
+  @keyframes mOut{from{opacity:1}to{opacity:0}}
   .modal-card{
     position:relative;background:var(--paper);border-radius:6px;max-width:440px;width:100%;
     padding:clamp(28px,5vw,40px);text-align:center;box-shadow:0 24px 70px rgba(10,10,11,.28);
-    animation:modalIn .4s cubic-bezier(.2,.7,.2,1) both
+    animation:cardIn .5s cubic-bezier(.2,.9,.2,1) both
   }
-  @keyframes modalIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+  .modal.closing .modal-card{animation:cardOut .32s cubic-bezier(.4,0,1,1) forwards}
+  @keyframes cardIn{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+  @keyframes cardOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(48px)}}
   .modal-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border:0;background:none;cursor:pointer;font-size:1.1rem;color:var(--ink-soft);border-radius:100px;line-height:1}
   .modal-close:hover{background:var(--paper-2);color:var(--ink)}
   .modal-kicker{font-family:var(--disp);font-weight:300;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
@@ -537,7 +546,10 @@
       </form>
 
       <p class="cta-alt rv">또는 편한 채널로 — <a href="https://instagram.com/your.page_yp" target="_blank" rel="noopener">인스타 DM</a> · <button type="button" class="mailcopy" data-mail="lgt31311@gmail.com">lgt31311@gmail.com 복사</button></p>
-      <div class="event rv"><span class="gift">Gift.</span> 지금 <b>선착순 3팀</b>, 베이직 홈페이지를 <b>무료</b>로 만들어 드립니다. <span style="color:var(--ink-soft)">(조건: 완성 후 후기 + 사례 노출 동의)</span></div>
+      <div class="event rv">
+        <p class="event-main"><span class="gift">Gift.</span> 지금 <b>선착순 3팀</b>, 베이직 홈페이지를 <b>무료</b>로 만들어 드려요.</p>
+        <p class="event-cond">완성본을 먼저 보고 결정하세요 · 조건: 완성 후 후기 + 사례 노출 동의</p>
+      </div>
     </div>
   </section>
 </main>
@@ -698,10 +710,21 @@
     });
   });
 
+  // shared animated modal open/close (rise up / slide down; setTimeout fallback for reduced-motion)
+  var closeModal=function(el){
+    if(!el||el.hidden)return;
+    el.classList.add('closing');document.body.style.overflow='';
+    setTimeout(function(){el.hidden=true;el.classList.remove('closing');},330);
+  };
+  var openModal=function(el,focusSel){
+    if(!el)return;el.classList.remove('closing');el.hidden=false;document.body.style.overflow='hidden';
+    var f=focusSel?el.querySelector(focusSel):null;if(f)f.focus();
+  };
+
   // success popup (after form submit)
   var okM=document.getElementById('okModal');
-  var closeOk=function(){if(okM){okM.hidden=true;document.body.style.overflow='';}};
-  var showOk=function(){if(okM){okM.hidden=false;document.body.style.overflow='hidden';var b=okM.querySelector('[data-okclose]');if(b)b.focus();}};
+  var closeOk=function(){closeModal(okM);};
+  var showOk=function(){openModal(okM,'[data-okclose]');};
   if(okM){
     okM.addEventListener('click',function(e){if(e.target===okM||e.target.closest('[data-okclose]'))closeOk();});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!okM.hidden)closeOk();});
@@ -739,8 +762,8 @@
     var KEY='yp_evt_hide';
     var today=function(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();};
     var hide=null;try{hide=localStorage.getItem(KEY);}catch(e){}
-    var close=function(){m.hidden=true;document.body.style.overflow='';};
-    var open=function(){m.hidden=false;document.body.style.overflow='hidden';var c=m.querySelector('.modal-close');if(c)c.focus();};
+    var close=function(){closeModal(m);};
+    var open=function(){openModal(m,'.modal-close');};
     if(hide!==today()){setTimeout(open,800);}
     m.addEventListener('click',function(e){
       if(e.target===m||e.target.closest('[data-close]')){close();return;}
