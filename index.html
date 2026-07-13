@@ -161,7 +161,8 @@
   .gmeta .gname{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
   .gmeta .gname .en{font-size:.78rem;color:var(--ink-faint);margin-left:.45em;text-transform:uppercase;letter-spacing:.12em}
   .gmeta .gcat{font-family:var(--disp);font-weight:300;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;flex-shrink:0}
-  .gnote{margin-top:clamp(24px,4vw,34px);display:flex;align-items:center;gap:.6em;font-size:.9rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:20px}
+  .gnote{margin-top:clamp(24px,4vw,34px);font-size:.9rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:20px;line-height:1.6}
+  .brm{display:none}
   .wbar{height:6px;background:var(--line);border-radius:100px;position:relative;margin-top:20px;cursor:pointer;touch-action:none}
   .wbar-thumb{position:absolute;top:0;left:0;height:100%;min-width:30px;width:30px;background:var(--accent);border-radius:100px;transition:background .2s}
   .wbar:hover .wbar-thumb{background:var(--accent-2)}
@@ -321,6 +322,7 @@
     .price-card .pcol-b{margin-top:2px}
   }
   @media (max-width:767px){
+    .brm{display:inline}
     .nav-links{
       position:fixed;inset:68px 0 auto 0;background:var(--paper);border-bottom:1px solid var(--line);
       flex-direction:column;align-items:stretch;gap:0;padding:8px var(--pad) 20px;
@@ -411,7 +413,7 @@
     </div>
     <div class="wrap">
       <div class="wbar" id="wbar" aria-hidden="true"><div class="wbar-thumb" id="wthumb"></div></div>
-      <p class="gnote rv">— 총 16종, 모두 실제로 제작해 배포한 사이트예요. 아래 바를 마우스로 끌거나, 카드를 눌러 직접 둘러보세요.</p>
+      <p class="gnote rv">— 총 16종, 모두 실제로 제작해 배포한 사이트예요. <br class="brm">아래 바를 마우스로 끌거나, 카드를 눌러 직접 둘러보세요.</p>
     </div>
   </section>
 
@@ -432,7 +434,7 @@
         <div class="value-item rv">
           <span class="vnum">ii.</span>
           <h3>100% 사장님 소유입니다.</h3>
-          <p>전부 사장님 명의로 만들어 드립니다.<br>제작 후에는 이피웹이 관여하지 않아요.<br>가만히 두어도 몇 년 간 편하게 사용할 수 있어요.</p>
+          <p>전부 사장님 명의로 만들어 드립니다. 제작 후에는 이피웹이 관여하지 않아요. 가만히 두어도 몇 년 간 편하게 사용할 수 있어요.</p>
         </div>
         <div class="value-item rv">
           <span class="vnum">iii.</span>
@@ -458,11 +460,11 @@
         </div>
         <div class="step rv">
           <span class="snum">02</span>
-          <div class="sbody"><h3>무료 시안 &amp; 수정 <span class="chip">무료 · 수정 2~3회</span></h3><p>사장님 가게에 맞춰 <b>완성본을 먼저 만들어</b> 보여드려요.<br>여기서 색·문구·구성을 원하시는 대로 <b>수정(패키지별 2~3회)까지 전부 무료</b>.<br>미리보기도 수정도 결제 전이라 공짜입니다.</p></div>
+          <div class="sbody"><h3>무료 시안 &amp; 수정 <span class="chip">무료 · 수정 2~3회</span></h3><p>사장님 가게에 맞춰 <b>완성본을 먼저 만들어</b> 보여드려요. 여기서 색·문구·구성을 원하시는 대로 <b>수정(패키지별 2~3회)까지 전부 무료</b>. 미리보기도 수정도 결제 전이라 공짜입니다.</p></div>
         </div>
         <div class="step rv">
           <span class="snum">03</span>
-          <div class="sbody"><h3>보고 나서 결제</h3><p>결과물이 마음에 드실 때만 결제하세요. 마음에 들지 않으면 안 하셔도 됩니다.</p></div>
+          <div class="sbody"><h3>보고 나서 결제</h3><p>결과물이 마음에 드실 때만 결제하세요. <br class="brm">마음에 들지 않으면 안 하셔도 됩니다.</p></div>
         </div>
         <div class="step rv">
           <span class="snum">04</span>
@@ -521,7 +523,7 @@
     <div class="wrap">
       <p class="eyebrow rv">지금 시작하기</p>
       <h2 class="rv">완성본을 먼저 보고,<br><span class="em">결정하세요.</span></h2>
-      <p class="rv">아래로 남겨주시면 가게 느낌에 맞춰 <b>한 장 먼저 잡아</b> 보여드려요.<br>확인 후 이메일로 회신드립니다.</p>
+      <p class="rv">아래로 남겨주시면 가게 느낌에 맞춰 <br class="brm"><b>한 장 먼저 잡아</b> 보여드려요.<br>확인 후 이메일로 회신드립니다.</p>
 
       <form class="cform rv" id="cform" novalidate>
         <div class="cfield">
