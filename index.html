@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>이피웹 · YIPI WEB — 감성 소상공인 홈페이지 제작</title>
 <meta name="description" content="인스타 감성 그대로, 매달 0원인 홈페이지 한 장. 사진만 주시면 3~5일 안에 완성 — 완성본을 먼저 보고 결제하세요. 만든 사이트는 100% 사장님 소유.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23fff' text-anchor='middle' font-style='italic'%3EY%3C/text%3E%3C/svg%3E">
@@ -39,7 +40,7 @@
     --serif:'EB Garamond','Noto Serif KR',Georgia,serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;color-scheme:light}
   body{
     font-family:var(--sans);background:var(--paper);color:var(--ink-2);
     line-height:1.68;font-size:16px;letter-spacing:-.006em;
@@ -50,6 +51,7 @@
   img{max-width:100%;display:block}
   ::selection{background:var(--accent);color:#fff}
   .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+  @media (hover:none){.btn-primary:hover,.btn-ghost:hover{transform:none}}
 
   /* ---- shared editorial atoms (studioddang-derived) ---- */
   .eyebrow{
@@ -774,6 +776,148 @@
     });
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close();});
   }
+})();
+</script>
+
+<!-- Cloudflare Web Analytics (쿠키 없음 · 방문/레퍼러/기기 베이스라인) -->
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a70241e82e564826b47b1b83d95509c0"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+<!-- ── 인사이트 비콘 (익명 집계 · 쿠키 없음) ─────────────────────
+     EP/K 가 비어 있으면 아무 동작도 하지 않음(안전).
+     Apps Script 웹앱 배포 후 EP=/exec URL, K=TOKEN 을 채우면 수집 시작.
+     자기 방문 제외: 주소에 ?admin=1 로 한 번 접속 → 이후 내 방문은 미수집 (?admin=0 로 해제)
+     문서: 문서/인사이트_수집_설계.md -->
+<script>
+(function(){
+  var EP = 'https://script.google.com/macros/s/AKfycbz3nPPvtcMIjz7V598utmnRQVoon0raKLfO47WUXxGJKpf8ctzk1NGYsjIaaS2N-9Gj/exec';
+  var K  = 'yw_a8f3k1qz';   // Apps Script 의 TOKEN 과 동일 (채워짐)
+  if(!EP || !K) return;                       // 미설정 = 무동작
+
+  // 1) 자기 방문 제외
+  try{
+    var q0 = new URLSearchParams(location.search);
+    if(q0.get('admin')==='1') localStorage.setItem('yw_admin','1');
+    if(q0.get('admin')==='0') localStorage.removeItem('yw_admin');
+    if(localStorage.getItem('yw_admin')==='1') return;
+  }catch(e){}
+
+  // 2) 봇 제외
+  var ua = navigator.userAgent || '';
+  if(/bot|crawl|spider|slurp|headless|lighthouse|preview|facebookexternalhit|bingpreview/i.test(ua)) return;
+
+  // 3) 세션 ID (탭 단위 · 쿠키 아님 · 재방문 추적 안 함)
+  var sid='nostore';
+  try{
+    sid = sessionStorage.getItem('yw_sid');
+    if(!sid){ sid = Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4); sessionStorage.setItem('yw_sid',sid); }
+  }catch(e){}
+
+  // 4) 환경 판별
+  var qp = new URLSearchParams(location.search);
+  var device = /iPad|Tablet/i.test(ua) ? 'tablet' : (/Mobi|Android|iPhone/i.test(ua) ? 'mobile' : 'desktop');
+  var os = /iPhone|iPad|iPod/i.test(ua)?'iOS' : /Android/i.test(ua)?'Android' : /Mac OS X/i.test(ua)?'macOS' : /Windows/i.test(ua)?'Windows' : 'other';
+  var browser = /Edg/i.test(ua)?'Edge' : /SamsungBrowser/i.test(ua)?'Samsung' : /CriOS|Chrome/i.test(ua)?'Chrome'
+              : (/Safari/i.test(ua)&&!/Chrome|CriOS/i.test(ua))?'Safari' : /Firefox|FxiOS/i.test(ua)?'Firefox' : 'other';
+  // 인앱 브라우저 = "어디서 눌러 들어왔나"의 가장 확실한 신호
+  var inapp = /Instagram/i.test(ua)?'instagram' : /KAKAOTALK/i.test(ua)?'kakaotalk' : /FBAN|FBAV/i.test(ua)?'facebook'
+            : /NAVER\(inapp/i.test(ua)?'naver' : /DaumApps/i.test(ua)?'daum' : /Line\//i.test(ua)?'line' : '';
+
+  var scrollMax = 0, t0 = Date.now(), sent = {}, exited = false;
+
+  function send(ev, detail, value, extra, beacon){
+    var d = {
+      k:K, event:ev, page:location.pathname, detail:detail||'', value:(value==null?'':String(value)),
+      utm_source:qp.get('utm_source')||'', utm_medium:qp.get('utm_medium')||'',
+      utm_campaign:qp.get('utm_campaign')||'', utm_content:qp.get('utm_content')||'',
+      referrer:document.referrer||'', inapp:inapp, device:device, os:os, browser:browser,
+      viewport:(innerWidth+'x'+innerHeight), lang:navigator.language||'', sid:sid,
+      scroll_max:(extra&&extra.scroll_max!=null)?String(extra.scroll_max):'',
+      secs:(extra&&extra.secs!=null)?String(extra.secs):''
+    };
+    var body = new URLSearchParams(d).toString();
+    try{
+      if(beacon && navigator.sendBeacon){
+        navigator.sendBeacon(EP, new Blob([body],{type:'application/x-www-form-urlencoded;charset=UTF-8'}));
+      }else{
+        fetch(EP,{method:'POST',mode:'no-cors',keepalive:true,
+          headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:body});
+      }
+    }catch(e){}
+  }
+
+  // 5) 방문
+  send('page_view', document.title||'');
+
+  // 6) 섹션 도달 (섹션당 1회) — 어디까지 읽고 어디서 이탈하나
+  try{
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){
+            var id = en.target.id;
+            if(id && !sent['sec_'+id]){ sent['sec_'+id]=1; send('section_view', id); }
+          }
+        });
+      },{threshold:.35});
+      ['value','work','process','price','contact'].forEach(function(id){
+        var el=document.getElementById(id); if(el) io.observe(el);
+      });
+    }
+  }catch(e){}
+
+  // 7) 클릭 (위임)
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a,button') : null;
+    if(!a) return;
+    var href = a.getAttribute('href')||'';
+    var txt  = (a.textContent||'').trim().slice(0,60);
+    if(/workers\.dev/i.test(href)){                       // 작업물 샘플 = 어떤 업종이 먹히나
+      send('click_work', txt || href.replace(/^https?:\/\//,'').split('.')[0]);
+    }else if(/^mailto:/i.test(href)){
+      send('click_channel','email');
+    }else if(/instagram\.com/i.test(href)){
+      send('click_channel','instagram');
+    }else if(a.classList && (a.classList.contains('btn-primary')||a.classList.contains('btn-ghost')||a.classList.contains('nav-cta'))){
+      send('click_cta', txt);
+    }
+  }, true);
+
+  // 8) 문의 폼 제출
+  try{
+    var cf = document.getElementById('cform');
+    if(cf) cf.addEventListener('submit', function(){ send('form_submit',''); }, true);
+  }catch(e){}
+
+  // 9) 이벤트 팝업 반응 (기존 코드 미수정 — hidden 속성 변화만 관찰)
+  try{
+    var em = document.getElementById('evtModal');
+    if(em && 'MutationObserver' in window){
+      var wasOpen = !em.hidden;
+      new MutationObserver(function(){
+        var open = !em.hidden;
+        if(open && !wasOpen) send('popup_shown','event');
+        if(!open && wasOpen) send('popup_close','event');
+        wasOpen = open;
+      }).observe(em,{attributes:true,attributeFilter:['hidden']});
+    }
+  }catch(e){}
+
+  // 10) 스크롤 최대 깊이
+  addEventListener('scroll', function(){
+    try{
+      var h = document.documentElement.scrollHeight - innerHeight;
+      if(h>0){ var p = Math.round((scrollY/h)*100); if(p>scrollMax) scrollMax = Math.min(p,100); }
+    }catch(e){}
+  }, {passive:true});
+
+  // 11) 이탈 시 1회: 최대 스크롤 % + 체류 초
+  function exit(){
+    if(exited) return; exited = true;
+    send('exit','', '', {scroll_max:scrollMax, secs:Math.round((Date.now()-t0)/1000)}, true);
+  }
+  addEventListener('pagehide', exit);
+  addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden') exit(); });
 })();
 </script>
 </body>
