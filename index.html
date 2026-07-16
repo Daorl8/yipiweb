@@ -833,7 +833,7 @@
       utm_source:qp.get('utm_source')||'', utm_medium:qp.get('utm_medium')||'',
       utm_campaign:qp.get('utm_campaign')||'', utm_content:qp.get('utm_content')||'',
       referrer:document.referrer||'', inapp:inapp, device:device, os:os, browser:browser,
-      viewport:(innerWidth+'x'+innerHeight), lang:navigator.language||'', sid:sid,
+      viewport:(innerWidth+'x'+innerHeight), lang:navigator.language||'', yw_sid:sid,  // ⚠️ 키 이름이 'sid' 면 안 된다 — 구글 프론트가 doPost 전에 400 으로 자른다(2026-07-16 실측: sid= 0/6, yw_sid= 6/6)
       scroll_max:(extra&&extra.scroll_max!=null)?String(extra.scroll_max):'',
       secs:(extra&&extra.secs!=null)?String(extra.secs):''
     };
