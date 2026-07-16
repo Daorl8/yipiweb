@@ -784,14 +784,16 @@
 <!-- End Cloudflare Web Analytics -->
 
 <!-- ── 인사이트 비콘 (익명 집계 · 쿠키 없음) ─────────────────────
+     경로: 브라우저 → CF Worker(yw-collect) → Apps Script /exec → 시트.  (2026-07-16 전환, 설계 §10-9)
+     ⚠️ Apps Script 로 직행하지 않는다. no-cors 직행은 응답이 불투명해 실패가 안 보였다(§10-8).
+        Worker 경유 = CORS 정상 = 실패가 콘솔에 그대로 뜬다.
      EP/K 가 비어 있으면 아무 동작도 하지 않음(안전).
-     Apps Script 웹앱 배포 후 EP=/exec URL, K=TOKEN 을 채우면 수집 시작.
      자기 방문 제외: 주소에 ?admin=1 로 한 번 접속 → 이후 내 방문은 미수집 (?admin=0 로 해제)
      문서: 문서/인사이트_수집_설계.md -->
 <script>
 (function(){
-  var EP = 'https://script.google.com/macros/s/AKfycbz3nPPvtcMIjz7V598utmnRQVoon0raKLfO47WUXxGJKpf8ctzk1NGYsjIaaS2N-9Gj/exec';
-  var K  = 'yw_a8f3k1qz';   // Apps Script 의 TOKEN 과 동일 (채워짐)
+  var EP = 'https://daorl8-yw-collect.lgt3232.workers.dev/';  // CF Worker 프록시. Apps Script /exec 는 Worker 안(UPSTREAM)에만 있음
+  var K  = 'yw_a8f3k1qz';   // Apps Script 의 TOKEN 과 동일 (Worker 는 검증 안 함 — body 그대로 통과)
   if(!EP || !K) return;                       // 미설정 = 무동작
 
   // 1) 자기 방문 제외
@@ -836,14 +838,21 @@
       secs:(extra&&extra.secs!=null)?String(extra.secs):''
     };
     var body = new URLSearchParams(d).toString();
+    // ⚠️ no-cors 는 의도적으로 쓰지 않는다 — 불투명한 응답이 2026-07-16 삽질의 뿌리였다(§10-8).
     try{
       if(beacon && navigator.sendBeacon){
-        navigator.sendBeacon(EP, new Blob([body],{type:'application/x-www-form-urlencoded;charset=UTF-8'}));
+        // 이탈(pagehide) 전용. 응답은 못 읽지만 페이지가 죽어도 전송이 보장된다.
+        var q = navigator.sendBeacon(EP, new Blob([body],{type:'application/x-www-form-urlencoded;charset=UTF-8'}));
+        if(!q) console.warn('[yw-collect] '+ev+' → sendBeacon 큐 거부');
       }else{
-        fetch(EP,{method:'POST',mode:'no-cors',keepalive:true,
-          headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:body});
+        fetch(EP,{method:'POST',keepalive:true,
+          headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:body})
+          .then(function(r){ return r.text().then(function(t){
+              if(!r.ok || t.slice(0,3)!=='OK ') console.warn('[yw-collect] '+ev+' → '+r.status+' '+t);
+            }); })
+          .catch(function(e){ console.warn('[yw-collect] '+ev+' → 전송 실패: '+(e&&e.message)); });
       }
-    }catch(e){}
+    }catch(e){ console.warn('[yw-collect] '+ev+' → '+(e&&e.message)); }
   }
 
   // 5) 방문
