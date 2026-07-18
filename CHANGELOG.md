@@ -1,5 +1,66 @@
 # CHANGELOG — yipiweb (이피웹 전용 사이트)
 
+## 2026-07-18 — 인스타 DM CTA를 프로필 링크 → **DM 딥링크**로 교체 (깔때기 마지막 문 수리)
+- **문제:** "DM 신청"이라 적힌 CTA 3곳이 전부 `https://instagram.com/your.page_yp`(=**프로필**)로 가고 있었다. 누른 사람이 DM 작성창이 아니라 프로필에 떨어져 **직접 메시지 버튼을 찾아 눌러야 하는 한 홉**이 더 있었다. 바이오 링크가 링크트리 → 이 사이트로 바뀐 뒤(7/16) 이 팝업이 **깔때기의 마지막 문**이 되었기 때문에 손실 지점이었다.
+- **수정:** 3곳 전부 `https://ig.me/m/your.page_yp` 로 교체 (딥링크 = 클릭 시 DM 창 즉시 열림, 다올이 실기기에서 동작 확인 완료).
+  - L553 문의 섹션 `.cta-alt` "인스타 DM"
+  - L577 하단 채널 "Instagram DM →"
+  - L596 **런치 이벤트 팝업 "인스타 DM 신청"** `.btn-primary` ← 핵심
+- **추적:** L596은 `class="btn btn-primary"` 라 기존 `click_cta` 이벤트가 이미 붙어 있음. → 7/17 시점 `popup_shown` 2 / `click_cta` 0 은 **추적 누락이 아니라 실제 미클릭**이었음이 확인됨(테스트 방문 2건 모두 팝업만 뜨고 버튼은 안 누름).
+- **측정:** 이후 `click_cta` 가 잡히기 시작하면 "팝업 노출 → 신청 클릭" 전환을 처음으로 잴 수 있다. 지금 깔때기 기준선 = 프로필 방문 158 → 외부링크 누름 9 (**5.7%**).
+- 백업: `/tmp/yipiweb_backup.html` (세션 한정). 배포는 다올이 커밋 후 Cloudflare 확인.
+
+
+## 2026-07-16 (4) — 🔴 진짜 원인 규명·수정 완료: **파라미터 이름 `sid` 를 구글이 차단**
+- **두 세션짜리 '비콘 미적립' 미스터리 종결. Apps Script 코드·배포·토큰·계정 전부 처음부터 정상이었다.**
+- **실측:** 실제 비콘형 랜덤 sid → `sid=` **0/6 성공** / `yw_sid=`(같은 값, 이름만 변경) **6/6 성공**. FAIL 시 `hit_count` **불변**(45→45) = **doPost 미도달**, 응답 본문은 Apps Script 것이 아니라 **Google Docs 에러 HTML** → **구글 프론트가 실행 전에 자른다.** `sid=abc` 는 통과해서 오랫동안 '산발적 실패'로 보였다.
+- **설계 §10-3 의 "sid 가설 반증"이 오판이었다** — 존재 여부만 보고 **값을 안 봤다.** 그 표의 모순(E_WITH_SID 성공/D_ENVHALF 실패)이 사실 **값 의존의 증거**였는데 모순으로 읽고 접었다. §10-0 의 "doGet 도달·doPost 0회"도 이걸로 완전히 설명됨(진짜 비콘은 항상 랜덤 sid → 100% 차단).
+- **수정:** ① **Worker 가 upstream 전달 직전 `sid` → `yw_sid` 개명**(브라우저→Worker 는 CF라 무해, 문제는 Worker→구글 구간뿐 → **라이브 index.html 을 안 고쳐도 즉시 수집이 산다.** 이미 yw_sid 면 no-op) ② **`analytics-appsscript.gs` 가 'sid' 컬럼을 `p.yw_sid` 에서 읽음**(폴백 `p.sid` 유지, 시트 스키마 불변).
+- **✅ 검증:** 수정 전 0/6 이던 body → **5/5 `OK 302`**. **진짜 비콘 실방문 → `last_ok = page_view`, hit_count 50→51, sheet_rows 51→52** — 비콘이 시트에 적힌 **최초** 기록.
+- **✅ Apps Script 재배포 완료**(16:3x) — `sid=MARKER-7788` 표식이 시트 `sid` 컬럼에 찍힘 확인 = 새 `.gs` 서빙 중. 시트 테스트 행도 정리됨.
+  - ⚠️ 배포 유형 함정: **"새 배포"는 URL이 바뀌고**(Worker UPSTREAM 도 같이 고쳐야 함), **"라이브러리 배포"(`/macros/library/d/…`)는 doPost 를 안 받는다.** 둘 다 한 번씩 잘못 골랐다. 정답 = **배포 관리 → 연필 → 버전: 새 버전**(웹 앱 / 실행=나 / 액세스=모든 사용자, URL `AKfycbz3…` 고정).
+  - ⚠️ 로그인된 브라우저에서 새 `/exec` 를 열면 `/macros/u/1/s/…` 로 라우팅되며 **404** 가 뜨는데 **이건 증거가 아니다**(§10-3 트랩 재확인).
+- **✅✅ 전 구간 검증 완료 — 수집 가동.** 시크릿창 실방문+스크롤+샘플클릭 → **`page_view`·`section_view`·`click_*` 전부 시트 적립 확인, `ts` 정상**(-16h 재발 없음 → §10-0b·§10-6-2 도 종결). **§10 전체 종결.**
+- **빈 셀은 설계상 정상**(다시 파지 말 것): `scroll_max`·`secs`=`exit` 에만 / `utm_*`=UTM 파라미터 있을 때만 / `referrer`=경유 방문만 / `inapp`=인앱 브라우저만 / `value`·`detail`=이벤트별. **비면 진짜 문제인 건** `ts`·`event`·`page`·`sid`·`device`·`os`·`browser`·`viewport`·`lang`. **`exit` 만 없는 것도 버그 아님**(sendBeacon 불투명, §10-9a).
+- ⚠️ `index.html` 로컬(`yw_sid`) ≠ 라이브(`sid`) — **Worker 개명 덕에 양쪽 다 정상 동작**(no-op). 다음 커밋 때 자연히 맞춰짐.
+- ⚠️ **새 함정: 업로드 도구가 파일명 기준 캐시.** 같은 세션에서 `index.html` 재업로드 시 **첫 업로드 바이트가 재전송**돼 **"0 file changed" 빈 커밋**이 생긴다. 커밋 목록엔 메시지가 멀쩡히 보여 **"커밋됐다"고 오판**(이번에 2회). **판정법: 커밋 후 `raw` 로 실제 바이트 확인.** 우회: 다른 파일명으로 업로드.
+- `index.html` 로컬은 `yw_sid` 로 보내도록 수정됨(**미커밋** — Worker 개명 덕에 불필요, 나중에 올려도 no-op).
+
+
+## 2026-07-16 (3) — ✅ Worker 라이브 확인 + 비콘 EP 교체 커밋 (수집 파이프라인 연결 완료)
+- **⚠️ 이 세션의 전제(“302 수정본이 커밋에 안 담겼다”)는 사실이 아니었다 — 실측으로 반증.** 레포 `Daorl8/Daorl8-yw-collect` 의 `index.js` = **170줄(=로컬과 동일)**, `redirect:'manual'` + `r.status===302` 성공 처리 + `/probe` 라우트 **전부 포함**. 로컬도 169줄이며 189줄인 파일은 존재하지 않는다. → **재업로드 안 함**(불필요).
+  - 혼선 원인 추정: 레포명이 `yw-collect` 가 아니라 **`Daorl8-yw-collect`**(CF 프로젝트명 `daorl8-yw-collect` 와 맞춤). 다른 곳을 봤을 가능성. **문서 곳곳의 `yw-collect` 표기를 실제 이름으로 정정**(아래 STRUCTURE·설계 §10 반영).
+- **라이브 실측(추론 아님, §10-8):**
+  - `GET /health` → `yw-collect ok`
+  - `GET /probe?d=…` → upstream **첫 응답 302 + Location=googleusercontent/echo** (= doPost 실행 완료 신호)
+  - **`POST /` (yipiweb 오리진에서 한글 body) → `status=200, body="OK 302"`** ← **302 수정본이 이미 라이브라는 직접 증거**
+  - `GET /debug?d=…` → `hit_count 3→4`, `sheet_rows 3→4`, `last_ok = LIVECHECK_302`, `last_error = -` → **브라우저 → Worker → Apps Script → 시트 전 구간 관통 확인.**
+  - ⚠️ `/debug` 는 캐시를 탄다 — **`&cb=<난수>` 를 붙이지 않으면 옛 카운터를 보고 “안 올랐다”고 오판한다**(이번에 실제로 한 번 속았음).
+- **`index.html` 비콘 EP 교체 커밋** — `https://yw-collect.lgt3232.workers.dev/`(**존재하지 않는 주소였음**) → **`https://daorl8-yw-collect.lgt3232.workers.dev/`**. 라이브 재확인: `var EP` = 새 주소, 비콘 `no-cors` 없음, 934줄·`</html>` 정상(잘림 0).
+  - 순서 준수(§10-9): Worker 배포 확인 **먼저**, index.html 커밋 **나중**. ✅
+- **⚠️ 남은 검증 1건 = 다올 몫: 시크릿창 또는 폰(셀룰러) 실방문 → 시트 `events` 행.** 이 브라우저로는 **원리적으로 검증 불가** — `localStorage.yw_admin='1'` 이 걸려 있어(설계 §10-9c) 비콘이 **정상적으로** 조기 return 한다. 실제로 이번에도 “실방문했는데 hit_count 안 오름”이 나왔으나 **버그가 아니라 admin 제외가 작동한 것**. 이 함정에 두 세션 연속 걸렸다 → **admin=1 브라우저는 검증에 쓰지 않는다**(원칙: 검증=시크릿창 / admin=1=평소 브라우저).
+- ⚠️ **정리 필요: `yw-collect/src/index.js`(112줄) 는 죽은 중복본**이다. `wrangler.toml` 의 `main = "index.js"`(루트)만 배포되고 `src/` 는 아무도 안 읽는다. 다음에 이걸 고치면 라이브에 반영이 안 돼 또 헤맨다 → **삭제 권장.**
+
+
+## 2026-07-16 (2) — 비콘을 CF Worker(`yw-collect`) 경유로 전환 ⚠️ 배포 대기
+- **원인 규명 종결 → 구조 전환.** `?debug=` 실측에서 `hit_count`가 시크릿창 실방문 전후 **0으로 불변** = doPost 미도달 = 판정표(설계 §10-5)의 "진짜 전송 문제" → 타임박스대로 원인 추적을 끝내고 **CF Worker 프록시**로 전환(설계 §10-9).
+- **신규 `yw-collect/`** (별도 Worker 프로젝트 — ⚠️ **yipiweb 의 `wrangler.toml` 은 손대지 않음**. `[assets] directory="./"` 정적 전용이라 잘 도는 배포에 위험 얹지 않는다): `src/index.js`(프록시) · `wrangler.toml`(`[vars] UPSTREAM` + `[observability] enabled=true`) · `README.md`(배포·검증 절차).
+  - 라우트: `POST /`(이벤트 프록시, 응답 `OK 200 | …`) · `GET /health` · `GET /debug?d=<TOKEN>`(Apps Script 카운터 통과).
+  - 프록시는 **의도적으로 멍청하다** — 토큰 검증·저장·개인정보 취급 전부 없음. body 그대로 통과.
+- **`index.html` 비콘 수정**: `EP` = `https://yw-collect.lgt3232.workers.dev/`, **`mode:'no-cors'` 제거**(일반 CORS fetch), 실패 시 `console.warn('[yw-collect] …')`, sendBeacon 큐 거부도 경고. **문의 폼 스크립트는 미변경**(SCRIPT_URL·no-cors 그대로 — 개인정보 경로는 분리 유지).
+- **왜 이게 끝인가**: 오늘 문제의 뿌리는 no-cors = **에러가 안 보인다**였다. Worker 는 CORS 헤더를 우리가 주므로 브라우저가 상태·본문을 그대로 본다 → 장님 디버깅이 **구조적으로 불가능**해짐. 서버사이드 fetch라 구글 계정 라우팅(`/u/N/`)·302 리다이렉트와도 무관.
+- **자체 검증**: Worker를 node+fetch 스텁으로 모의 실행 — 프리플라이트 204 / 성공 `OK 200` / 허용외 Origin 403 / Origin 없음 통과 / 빈 body 400 / 8KB↑ 413 / upstream 예외·5xx → 502(메시지 노출) / **한글 body 무손실** / `redirect:'follow'`. 비콘 `node --check` 통과, 비콘 앞 785줄 백업과 동일(잘림 0).
+- ⚠️ **다올 몫 (순서 고정)**: ① GitHub `Daorl8/yw-collect` 레포 생성·업로드 → ② CF Workers → Import a repository → 배포(빌드 커맨드 비움) → ③ 시크릿창에서 `/health` = `yw-collect ok` 확인 → ④ **그 다음에** index.html 커밋 → ⑤ **시크릿창/폰(셀룰러) 실방문** 후 시트 `events` 행 확인. **Worker보다 index.html을 먼저 커밋하면 그동안 방문이 유실된다.**
+- ⚠️ 검증은 **시크릿창/폰으로만**(§5-8: 로그인 브라우저·자동화 탭 결과는 증거로 쓰지 말 것). 실패 시 진단: `…/debug?d=yw_a8f3k1qz` 의 `hit_count` ↑면 Apps Script 내부(`last_error` 확인), 정지면 CF 대시보드 → yw-collect → **Logs**(익명 요청도 남음).
+
+## 2026-07-16 — 인사이트 수집 3층 켜기 (커밋 08af24b, 1커밋)
+- **CF Web Analytics 스니펫**(토큰 a70241e8…) 삽입 — 쿠키 없는 방문·레퍼러·기기 베이스라인.
+- **이벤트 비콘 활성화** — `EP`=gmail(lgt31311@) Apps Script `/exec`(AKfycbz3…), `K`=TOKEN. 수집: page_view·section_view·click_work/cta/channel·form_submit·popup·exit(scroll_max·secs). 익명 집계만, 쿠키 0(sessionStorage sid), `?admin=1` 자기방문 제외.
+- **크로스환경 방어**: `<meta name="color-scheme">`, `html{-webkit-text-size-adjust:100%;color-scheme:light}`, `@media(hover:none)` 호버 transform 리셋. (DESIGN_CHECKLIST §12)
+- 설계·스키마·UTM 규칙·함정 = `문서/인사이트_수집_설계.md`. 수집 스크립트 원본 = `yipiweb/analytics-appsscript.gs`.
+- ⚠️ **미해결: 비콘 `page_view` 3회 연속 미적립**(수동 fetch 7건은 적립됨, 산발적 실패). + `ts` -16h(PDT) 원인 미상. **다음 세션 실행 스펙 = `문서/인사이트_수집_설계.md` §10**(반증된 가설표 · PropertiesService 카운터+`?debug=` 진단 · 판정표 · 타임박스 1h30m 초과 시 무조건 CF Worker 프록시). CF Web Analytics는 정상 가동이라 급하지 않음.
+- ⚠️ **엔드포인트 디버깅에 크게 헤맴 — 교훈 4개를 설계 문서 §5에 기록.** 요약: (1) **로그인된 브라우저로는 `/exec` 검증 불가** — 계정 2개면 `/u/N/` 라우팅 때문에 같은 URL이 GET은 ok, POST는 404. 시크릿창에선 정상. 이 404들을 근거로 "배포가 깨졌다"고 2번 오판함. (2) **실행(Executions) 로그 0건은 아무것도 증명 못 함** — 익명 웹앱 실행은 안 남음. (3) **코드 저장 ≠ 배포** — 버전 안 올리면 옛 코드 서빙(실제로 토큰 빈 버전이 돌고 있었음). (4) `/a/macros/{도메인}/s/…`는 잘못된 URL이 아니라 표시용 접두사.
+
 ## 2026-07-13 — art.html 마퀴 구동 + index.html 가격 정렬 수정
 - **art.html 마퀴(띠) 안 돎 → setInterval 구동으로 전환**. CSS `animation:marq`가 감소된 모션(자동화/사용자 설정)에서 얼어 정지 → 프로젝트 표준대로 JS setInterval transform(트랙 폭 절반 단위로 무한 랩)로 교체, reduced-motion에서도 회전. `@keyframes marq`·reduced-motion animation:none 제거.
 - **index.html 가격 정렬 어긋남 수정**: `.price-card` 그리드 `1.1fr .9fr auto` → **`1.1fr .7fr 1.5fr`**(+ 자식 min-width:0). 세 번째(기능설명) 열이 `auto`라 행마다 텍스트 길이로 열폭이 바뀌어 가운데 가격 열 시작 x가 어긋남(9.9/18/32만원 좌우 불일치) → 고정 fr로 전 행 정렬 통일.
