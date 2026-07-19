@@ -23,8 +23,11 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{
-    font-family:var(--round);color:#111;overflow-x:hidden;position:relative;
+  body{font-family:var(--round);color:#111;overflow-x:hidden;position:relative}
+  /* 배경+스크롤 연동 필터를 body 가 아닌 독립 고정 레이어로 분리.
+     body 에 filter 를 걸면 페이지 전체(모든 애니메이션 자식+이모지)를 매 스크롤 프레임 재렌더 → 렉.
+     이 레이어에만 걸면 콘텐츠 트리는 영향 없음. */
+  .bg{position:fixed;inset:0;z-index:-2;pointer-events:none;
     background:
       repeating-linear-gradient(45deg,#ff00cc22 0 22px,transparent 22px 44px),
       repeating-linear-gradient(-45deg,#00e5ff22 0 22px,transparent 22px 44px),
@@ -35,7 +38,7 @@
     background-size:auto,auto,cover,cover,cover,400% 400%;
     animation:bgmove 12s linear infinite;
     filter:saturate(calc(1 + var(--lvl)*1.4)) contrast(calc(1 + var(--lvl)*.25));
-  }
+    will-change:filter,background-position}
   @keyframes bgmove{to{background-position:0 0,0 0,0 0,0 0,0 0,100% 100%}}
   ::selection{background:#000;color:#0f0}
 
@@ -70,7 +73,8 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin:24px 0}
   .cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:var(--impact);
     font-size:clamp(20px,4vw,34px);color:#fff;border:3px solid #000;text-shadow:2px 2px 0 #000;animation:blink 1.4s steps(2) infinite}
-  @keyframes blink{50%{filter:invert(1)}}
+  /* filter:invert(1) 는 셀마다 리페인트라 비쌈 → opacity(컴포지터, 저비용)로 교체. 깜빡임 룩 유지 */
+  @keyframes blink{50%{opacity:.45}}
 
   .shout{font-family:var(--impact);font-size:clamp(30px,7vw,80px);color:#fff;-webkit-text-stroke:2px #000;
     text-shadow:4px 4px 0 #ff00cc;margin:6px 0;transform:rotate(-1deg)}
@@ -87,6 +91,7 @@
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true"></div>
 
 <div class="noise">소음 🔊<span class="bar"><span class="fill" id="nfill"></span></span><br><span id="nlabel">LEVEL 0 · 준비</span></div>
 <div class="warn">⚠ 경고: 이 페이지는 스크롤할수록 시끄러워집니다 · 볼륨이 아니라 눈이 시끄러움 ⚠</div>
@@ -174,7 +179,7 @@
 
   // 이모지 비 — 레벨 높을수록 자주. rAF 낙하(백그라운드탭이면 자연히 멈춤 = 무해).
   var rain=['💥','⭐','🔥','✨','🌈','🎉','🎊','⚡','💫','🅰','◆','★'];
-  var actives=[], MAXE=60;
+  var actives=[], MAXE=28;  // 60→28: 동시 이모지 수 축소로 리페인트 부담 완화(룩엔 충분)
   function spawn(){
     // 레벨 0이면 거의 안 나오고, 1이면 활발히
     var chance = 0.15 + lvl*0.85;

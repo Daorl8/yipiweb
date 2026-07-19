@@ -93,10 +93,9 @@
   footer a{border-bottom:2px solid var(--blue)}
   footer a:hover{background:var(--blue);color:var(--bg);border-color:var(--blue)}
 
-  @media (prefers-reduced-motion:reduce){
-    #cb{display:none}
-    body{cursor:auto}
-  }
+  /* 동작 줄이기(reduced-motion) 강제 무시 — 오너 결정: 커서 블록 항상 출력.
+     이전엔 여기서 #cb{display:none} 으로 껐고 JS에도 if(reduce)return 이 있어
+     윈도우11(애니메이션 효과 끄기)에선 커서 이펙트가 통째로 사라졌음. 둘 다 제거. */
 </style>
 </head>
 <body>
@@ -182,9 +181,7 @@
     setInterval(function(){if(!half){measure();return;}mx-=0.6;if(-mx>=half)mx+=half;track.style.transform='translateX('+mx.toFixed(1)+'px)';},16);
   }
 
-  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(reduce)return;
-
+  // 커서 블록은 reduced-motion 여부와 무관하게 항상 실행(오너 결정). 이전의 if(reduce)return 제거.
   // cursor block — lerp follow, mix-blend difference
   var cb=document.getElementById('cb');
   var tx=-100,ty=-100,cx=-100,cy=-100,active=false;
