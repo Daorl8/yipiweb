@@ -680,6 +680,39 @@
     if(e.target.closest('a')){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','메뉴 열기');}
   });
 
+  // 앵커 부드러운 스크롤 — rAF 커스텀이라 OS '동작 줄이기'에서도 강제(오너 결정 2026-07-19).
+  // 네이티브 scroll-behavior:smooth 는 reduce 켜지면 브라우저가 즉시점프로 강제 → rAF 만 우회 가능.
+  // seq = 이 호출의 소유권 토큰: 연속 클릭 시 두 루프 경합(재진입) 방지. 먼저 끝난 게 나중 걸 죽이는 버그 차단.
+  // ⚠️ rAF 는 백그라운드 탭에서 프레임 0 → preventDefault 뒤라 링크가 죽음 → setTimeout(DUR+300) 즉시이동 가드 필수.
+  (function(){
+    var hdr=document.getElementById('hdr'), DUR=680, seq=0;
+    function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+    function go(el){
+      var my=++seq, off=(hdr?hdr.offsetHeight:0)+8, start=window.pageYOffset,
+          end=Math.max(0, el.getBoundingClientRect().top+start-off), t0=null, guard;
+      function step(ts){
+        if(my!==seq) return;
+        if(t0===null) t0=ts;
+        var p=Math.min(1,(ts-t0)/DUR);
+        window.scrollTo({top:start+(end-start)*ease(p), behavior:'instant'});
+        if(p<1) requestAnimationFrame(step); else clearTimeout(guard);
+      }
+      guard=setTimeout(function(){ if(my!==seq) return; window.scrollTo({top:end,behavior:'instant'}); }, DUR+300);
+      requestAnimationFrame(step);
+    }
+    document.addEventListener('click', function(e){
+      var a=e.target&&e.target.closest?e.target.closest('a[href^="#"]'):null;
+      if(!a) return;
+      var id=a.getAttribute('href');
+      if(!id||id==='#') return;
+      var el = id==='#top' ? document.body : document.querySelector(id);
+      if(!el) return;
+      e.preventDefault();
+      go(el);
+      if(history.replaceState) history.replaceState(null,'',id);
+    });
+  })();
+
   // 오너 결정(2026-07-19): 동작 줄이기가 켜져 있어도 전 효과 강제 출력 → reduce 를 항상 false 로.
   // (IntersectionObserver 미지원 구형 브라우저 안전망 + 1.6s 세이프티는 아래에서 그대로 유지.)
   var reduce=false;
