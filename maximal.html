@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>과잉 · MAXIMALISM — 스크롤할수록 시끄러워짐 ⚠</title>
+<meta name="description" content="이피웹 낙서장 실험작 003. 미니멀리즘은 죽었다. 색·폰트·움직임 전부 과포화. 스크롤할수록 더 시끄러워집니다. 볼륨 주의.">
+<meta property="og:title" content="과잉 · MAXIMALISM">
+<meta property="og:description" content="낙서장 실험작 003 · MORE IS MORE. 스크롤할수록 화면이 시끄러워짐. 정신 건강 주의.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='24'%3E%F0%9F%92%A5%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Nanum+Brush+Script&family=Press+Start+2P&family=Song+Myung&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --impact:'Black Han Sans','Jua',sans-serif;
+    --round:'Jua',sans-serif;
+    --brush:'Nanum Brush Script',cursive;
+    --pix:'Press Start 2P',monospace;
+    --serif:'Song Myung',serif;
+    --lvl:0; /* 스크롤 진행도 0..1 — JS가 갱신, 강도 램프에 사용 */
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--round);color:#111;overflow-x:hidden;position:relative;
+    background:
+      repeating-linear-gradient(45deg,#ff00cc22 0 22px,transparent 22px 44px),
+      repeating-linear-gradient(-45deg,#00e5ff22 0 22px,transparent 22px 44px),
+      radial-gradient(circle at 20% 10%,#fff200 0 8%,transparent 40%),
+      radial-gradient(circle at 80% 30%,#ff2d55 0 8%,transparent 40%),
+      radial-gradient(circle at 50% 80%,#00ff88 0 8%,transparent 45%),
+      linear-gradient(120deg,#ff9a00,#ff00cc,#7a00ff,#00e5ff,#00ff88);
+    background-size:auto,auto,cover,cover,cover,400% 400%;
+    animation:bgmove 12s linear infinite;
+    filter:saturate(calc(1 + var(--lvl)*1.4)) contrast(calc(1 + var(--lvl)*.25));
+  }
+  @keyframes bgmove{to{background-position:0 0,0 0,0 0,0 0,0 0,100% 100%}}
+  ::selection{background:#000;color:#0f0}
+
+  .noise{position:fixed;top:10px;right:10px;z-index:9998;background:#000;color:#fff;
+    border:3px solid #fff;box-shadow:4px 4px 0 #000;padding:8px 10px;font-family:var(--pix);font-size:9px;line-height:1.7}
+  .noise .bar{display:inline-block;width:90px;height:12px;background:#333;vertical-align:middle;margin-left:6px;border:1px solid #fff}
+  .noise .fill{height:100%;width:0;background:linear-gradient(90deg,#0f0,#ff0,#f00)}
+  .warn{position:fixed;left:0;right:0;bottom:0;z-index:9998;background:repeating-linear-gradient(45deg,#000 0 20px,#ffe600 20px 40px);
+    color:#fff;text-align:center;font-family:var(--pix);font-size:9px;padding:5px;text-shadow:1px 1px 0 #000}
+
+  .marq{border-top:4px solid #000;border-bottom:4px solid #000;font-family:var(--impact);font-size:clamp(22px,5vw,44px);
+    padding:6px 0;color:#fff;text-shadow:3px 3px 0 #000,-1px -1px 0 #000}
+  .m1{background:#ff00cc}.m2{background:#00e5ff;color:#000;text-shadow:3px 3px 0 #fff}.m3{background:#7a00ff}
+
+  .sec{position:relative;padding:clamp(40px,7vw,90px) 16px;text-align:center}
+  .stage{max-width:1000px;margin:0 auto}
+
+  .mega{font-family:var(--impact);line-height:.92;letter-spacing:-.01em;color:#fff200;
+    font-size:clamp(80px,24vw,240px);-webkit-text-stroke:3px #000;paint-order:stroke fill;
+    text-shadow:8px 8px 0 #ff00cc,16px 16px 0 #00e5ff;transform:rotate(-3deg)}
+  .mega2{font-family:var(--impact);font-size:clamp(40px,10vw,120px);color:#ff2d55;-webkit-text-stroke:2px #000;
+    text-shadow:5px 5px 0 #000;transform:rotate(2deg);line-height:1}
+  .kick{display:inline-block;font-family:var(--pix);font-size:clamp(9px,2.2vw,13px);background:#000;color:#0f0;
+    padding:8px 12px;transform:rotate(-2deg);margin:10px;border:2px solid #0f0}
+  .brush{font-family:var(--brush);font-size:clamp(34px,8vw,72px);color:#fff;text-shadow:2px 2px 0 #000;transform:rotate(-4deg)}
+  .serif{font-family:var(--serif);font-size:clamp(18px,3.4vw,26px);color:#111;background:#fffb;display:inline-block;padding:6px 14px;transform:rotate(1deg);border:2px dashed #000}
+
+  .stickers span{position:absolute;font-size:clamp(28px,6vw,56px);animation:spin 4s linear infinite;filter:drop-shadow(2px 2px 0 #000)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin:24px 0}
+  .cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:var(--impact);
+    font-size:clamp(20px,4vw,34px);color:#fff;border:3px solid #000;text-shadow:2px 2px 0 #000;animation:blink 1.4s steps(2) infinite}
+  @keyframes blink{50%{filter:invert(1)}}
+
+  .shout{font-family:var(--impact);font-size:clamp(30px,7vw,80px);color:#fff;-webkit-text-stroke:2px #000;
+    text-shadow:4px 4px 0 #ff00cc;margin:6px 0;transform:rotate(-1deg)}
+  .wave span{display:inline-block;animation:wave 1s ease-in-out infinite}
+  @keyframes wave{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+
+  .calm{background:#111;color:#eee;text-align:center;padding:70px 16px 90px;font-family:var(--round)}
+  .calm .big{font-size:clamp(26px,5vw,44px);margin-bottom:10px}
+  .calm .sm{color:#aaa;font-size:15px;line-height:1.9}
+  .calm a{color:#4fd1ff}
+
+  .emoji{position:fixed;top:-40px;z-index:1;pointer-events:none;will-change:transform;font-size:clamp(20px,4vw,38px)}
+  @media (max-width:520px){ .mega{text-shadow:5px 5px 0 #ff00cc,10px 10px 0 #00e5ff} }
+</style>
+</head>
+<body>
+
+<div class="noise">소음 🔊<span class="bar"><span class="fill" id="nfill"></span></span><br><span id="nlabel">LEVEL 0 · 준비</span></div>
+<div class="warn">⚠ 경고: 이 페이지는 스크롤할수록 시끄러워집니다 · 볼륨이 아니라 눈이 시끄러움 ⚠</div>
+
+<div class="marq m1"><marquee scrollamount="12" direction="left">MORE IS MORE ✦ 더 많이 ✦ 더 크게 ✦ 더 시끄럽게 ✦ 미니멀리즘은 죽었다 ✦ MORE IS MORE ✦ 더 많이 ✦ 더 크게 ✦</marquee></div>
+
+<section class="sec">
+  <div class="stickers" aria-hidden="true">
+    <span style="top:6%;left:6%">💥</span><span style="top:12%;right:8%;animation-duration:3s">⭐</span>
+    <span style="bottom:10%;left:12%;animation:pulse 1.6s infinite">🔥</span><span style="bottom:16%;right:14%;animation-duration:5s">✨</span>
+  </div>
+  <div class="stage">
+    <span class="kick">EXPERIMENTAL ✦ 003 ✦ 볼륨 주의</span>
+    <div class="mega">과잉</div>
+    <div class="brush">넘치게 만들었습니다</div>
+    <p class="serif">미니멀은 용기가 없어서 비운 거다 — 라고 우겨보는 페이지</p>
+  </div>
+</section>
+
+<div class="marq m2"><marquee scrollamount="16" direction="right">🎉 색이 부족하다 🎨 폰트가 부족하다 🅰 움직임이 부족하다 🌀 여백은 사치다 ⬛ 🎉 색이 부족하다 🎨 폰트가 부족하다 🅰</marquee></div>
+
+<section class="sec">
+  <div class="stage">
+    <div class="mega2">색을 다 쓰자</div>
+    <div class="grid" id="grid"></div>
+    <div class="shout wave" id="waveText"></div>
+  </div>
+</section>
+
+<div class="marq m3"><marquee scrollamount="20" direction="left">⚡ 아직 안 시끄러운가요? 더 내려보세요 ⚡ 밑으로 갈수록 정신없어집니다 ⚡ 이것이 과잉의 미학 ⚡ ⚡ 아직 안 시끄러운가요? ⚡</marquee></div>
+
+<section class="sec">
+  <div class="stickers" aria-hidden="true">
+    <span style="top:8%;left:10%;animation-duration:2s">🌈</span><span style="top:20%;right:12%">💫</span>
+    <span style="bottom:12%;left:20%;animation:pulse 1.2s infinite">🎊</span><span style="bottom:8%;right:10%;animation-duration:2.5s">⚡</span>
+  </div>
+  <div class="stage">
+    <div class="shout">한 화면에</div>
+    <div class="mega2" style="color:#00ff88">전부</div>
+    <div class="shout" style="text-shadow:4px 4px 0 #00e5ff">쏟아붓기</div>
+    <p class="serif" style="margin-top:20px">그래도 로드는 됩니다. 스크롤도 됩니다. 그게 규칙이에요.</p>
+  </div>
+</section>
+
+<div class="calm">
+  <div class="big">…</div>
+  <div class="big">이제 숨 쉬세요. 😮‍💨</div>
+  <p class="sm">
+    과했죠? 이게 <b style="color:#fff">낙서장 실험작 003 · 과잉</b>이에요.<br>
+    미니멀이 정답인 이유를 역설적으로 증명하는 페이지.<br><br>
+    진짜 일은 조용하고 깔끔하게 합니다 →
+    <a href="/index.html">실제 사이트로</a><br>
+    다른 실험작 보기 → <a href="/art.html">RAW</a> · <a href="/y2k.html">Y2K</a>
+  </p>
+  <p class="sm" style="margin-top:20px;font-family:var(--pix);font-size:9px;color:#666">© 2026 이피웹 · 낙서장 003 · MAXIMALISM · 아무것도 안 팝니다</p>
+</div>
+
+<script>
+(function(){
+  // 색 그리드 채우기
+  var cols=['#ff00cc','#00e5ff','#fff200','#ff2d55','#7a00ff','#00ff88','#ff9a00','#1a4cff','#ff5edb','#0affd9'];
+  var words=['過','剩','MAX','더','!!','色','∞','GO','▲','◆','★','＋'];
+  var grid=document.getElementById('grid');
+  if(grid){ for(var i=0;i<24;i++){ var c=document.createElement('div'); c.className='cell';
+    c.style.background=cols[i%cols.length]; c.style.animationDelay=(i*0.06)+'s';
+    c.textContent=words[i%words.length]; grid.appendChild(c);} }
+
+  // 물결 텍스트
+  var wt=document.getElementById('waveText');
+  if(wt){ '아직 더 있어요'.split('').forEach(function(ch,i){ var s=document.createElement('span'); s.textContent=ch; s.style.animationDelay=(i*0.08)+'s'; wt.appendChild(s);}); }
+
+  // 스크롤 = 시끄러움 램프. --lvl 0..1, 소음 게이지, 이모지 비 강도.
+  var nfill=document.getElementById('nfill'), nlabel=document.getElementById('nlabel');
+  var labels=['준비','워밍업','시끄러움','매우 시끄러움','최대 소음'];
+  var lvl=0;
+  function onScroll(){
+    var h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+    lvl = max>0 ? Math.min(1, h.scrollTop/max) : 0;
+    document.documentElement.style.setProperty('--lvl', lvl.toFixed(3));
+    if(nfill) nfill.style.width=(lvl*100).toFixed(0)+'%';
+    var li=Math.min(4,Math.floor(lvl*5));
+    if(nlabel) nlabel.textContent='LEVEL '+li+' · '+labels[li];
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // 이모지 비 — 레벨 높을수록 자주. rAF 낙하(백그라운드탭이면 자연히 멈춤 = 무해).
+  var rain=['💥','⭐','🔥','✨','🌈','🎉','🎊','⚡','💫','🅰','◆','★'];
+  var actives=[], MAXE=60;
+  function spawn(){
+    // 레벨 0이면 거의 안 나오고, 1이면 활발히
+    var chance = 0.15 + lvl*0.85;
+    if(Math.random()<chance && actives.length<MAXE){
+      var e=document.createElement('div'); e.className='emoji';
+      e.textContent=rain[Math.floor(Math.random()*rain.length)];
+      var x=Math.random()*100; e.style.left=x+'vw';
+      var vy=2+Math.random()*3+lvl*4, rot=(Math.random()*2-1)*6, y=-40, r=0;
+      e.style.opacity=(0.5+lvl*0.5).toFixed(2);
+      document.body.appendChild(e);
+      var o={el:e,y:y,vy:vy,r:r,rot:rot};
+      actives.push(o);
+    }
+    // 이동
+    for(var i=actives.length-1;i>=0;i--){
+      var o=actives[i]; o.y+=o.vy; o.r+=o.rot;
+      o.el.style.transform='translateY('+o.y+'px) rotate('+o.r+'deg)';
+      if(o.y>window.innerHeight+60){ o.el.remove(); actives.splice(i,1); }
+    }
+    requestAnimationFrame(spawn);
+  }
+  requestAnimationFrame(spawn);
+})();
+</script>
+</body>
+</html>
