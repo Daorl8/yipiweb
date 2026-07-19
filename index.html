@@ -173,18 +173,14 @@
   /* 샘플과 종류가 다른 '실제 납품' 증거. n=1 이라 무거운 번호 섹션 대신
      paper-2 틴트 밴드 + featured 카드 하나. 사례 늘면 정식 섹션 승격. */
   .case{background:var(--paper-2)}
-  .case .case-ey{display:flex;align-items:baseline;gap:14px;margin-bottom:clamp(26px,4vw,40px);flex-wrap:wrap}
-  .case .case-ey h2{font-size:clamp(1.5rem,3.2vw,2.3rem);font-weight:800;letter-spacing:-.03em;line-height:1.12;color:var(--ink)}
-  .case .case-ey h2 .em{font-family:var(--serif);font-style:italic;font-weight:500;padding:0 .08em}
+  .case .case-ey{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(26px,4vw,40px);flex-wrap:wrap}
+  .case .case-ey h2{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;letter-spacing:-.034em;line-height:1.1;color:var(--ink)}
   .case .case-ey .tail{margin-left:auto;font-family:var(--disp);font-weight:300;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;color:var(--ink-faint);align-self:center}
   .casecard{display:grid;grid-template-columns:1.05fr 1fr;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
   .casecard .cc-img{position:relative;overflow:hidden;min-height:240px}
-  .casecard .cc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-  .casecard:hover .cc-img img{transform:scale(1.04)}
-  .cc-badge{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:7px;
-    background:var(--accent);color:#fff;font-family:var(--disp);font-weight:400;font-size:.68rem;letter-spacing:.12em;
-    text-transform:uppercase;padding:7px 13px;border-radius:100px}
-  .cc-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#7FE0A6}
+  .casecard .cc-img img{width:100%;height:100%;object-fit:cover;transform:translateZ(0) scale(1.001);
+    will-change:transform;transition:transform 1.05s cubic-bezier(.22,.61,.36,1)}
+  @media (hover:hover){.casecard:hover .cc-img img{transform:translateZ(0) scale(1.055)}}
   .cc-body{padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column}
   .cc-cat{font-family:var(--disp);font-weight:300;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
   .cc-name{font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800;letter-spacing:-.03em;color:var(--ink);margin:10px 0 2px}
@@ -456,13 +452,11 @@
   <section class="case" id="case">
     <div class="wrap">
       <div class="case-ey rv">
-        <span class="eyebrow">실제 제작 사례</span>
-        <h2>샘플이 아니라, <span class="em">진짜로</span> 만들어 드린 가게</h2>
+        <h2>실제 제작 사례</h2>
         <span class="tail">Real Case</span>
       </div>
       <article class="casecard rv">
         <a class="cc-img" href="https://www.summerhilldessert.workers.dev" target="_blank" rel="noopener" aria-label="썸머힐디저트 실제 사이트 새 창으로 열기">
-          <span class="cc-badge">실제 납품 완료</span>
           <img src="case-summerhill.webp" alt="썸머힐디저트 링크 허브 사이트 미리보기" width="1200" height="800" loading="lazy">
         </a>
         <div class="cc-body">
