@@ -11,15 +11,17 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0D0E'/%3E%3Ctext x='6' y='25' font-size='22' fill='%23C9A86A' font-family='Georgia,serif' font-style='italic'%3EY%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700&family=Hahmlet:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Noto+Serif+KR:wght@200;300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#0D0D0E; --paper:#F2EDE3; --paper-2:#E7E0D2; --soft:#6B655A; --faint:#938C7E;
     --gold:#B8975A; --gold-2:#C9A86A; --oxblood:#5A2A2A;
-    --disp:'Playfair Display','Hahmlet','Noto Serif KR',serif;
-    --myeong:'Noto Serif KR','Hahmlet',serif;
-    --gara:'Cormorant Garamond','Playfair Display',serif;
-    --label:'Playfair Display',serif;
+    --disp:'Playfair Display','Noto Serif KR',serif;
+    --myeong:'Noto Serif KR',serif;
+    /* ⚠️ Cormorant·Playfair 는 한글 글리프가 없다. 한글 텍스트가 이 변수로 스타일되면
+       Noto Serif KR 로 받아야 시스템 궁서/바탕 폴백을 막는다(메모리 web-font-default). */
+    --gara:'Cormorant Garamond','Noto Serif KR',serif;
+    --label:'Playfair Display','Noto Serif KR',serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{-webkit-text-size-adjust:100%;color-scheme:dark}
@@ -45,12 +47,12 @@
   .cover{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:60px 0 40px;position:relative}
   .cover .issue{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:6vh}
   .cover .issue .kick{color:var(--gold-2)}
-  .cover h1{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:-.02em;
+  .cover h1{font-family:var(--disp);font-weight:600;line-height:.86;letter-spacing:-.02em;
     font-size:clamp(88px,26vw,340px);color:var(--paper)}
   .cover h1 .it{font-style:italic;font-weight:500;color:var(--gold-2)}
   .cover .sub{margin-top:5vh;display:grid;grid-template-columns:1fr;gap:22px}
   @media(min-width:820px){.cover .sub{grid-template-columns:1.4fr 1fr;align-items:end}}
-  .cover .sub h2{font-family:var(--myeong);font-weight:800;font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.25;letter-spacing:-.01em}
+  .cover .sub h2{font-family:var(--myeong);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.3;letter-spacing:-.01em}
   .cover .sub h2 em{font-family:var(--gara);font-style:italic;color:var(--gold-2);font-weight:500}
   .cover .sub .desc{color:var(--soft);font-size:.98rem;line-height:1.9;font-family:var(--myeong)}
 
@@ -64,7 +66,7 @@
   .ednote .side .kick{display:block;margin-bottom:16px}
   .ednote .side .lab{font-size:1.3rem;display:block;line-height:1.4}
   .ednote .body{font-family:var(--myeong);font-size:clamp(1.05rem,1.8vw,1.28rem);line-height:2.05;color:#E3DCCD}
-  .ednote .body .dropcap::first-letter{font-family:var(--disp);font-weight:800;float:left;font-size:5.2em;line-height:.72;
+  .ednote .body .dropcap::first-letter{font-family:var(--disp);font-weight:500;float:left;font-size:5.2em;line-height:.72;
     padding:.05em .12em 0 0;color:var(--gold-2)}
 
   /* 피처 스프레드 */
@@ -85,10 +87,10 @@
   .plate .cap{position:absolute;right:16px;top:16px;writing-mode:vertical-rl;font-family:var(--label);
     font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(242,237,227,.7)}
   .feat .txt .kick{display:block;margin-bottom:20px}
-  .feat .txt h3{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.05;
+  .feat .txt h3{font-family:var(--disp);font-weight:600;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.1;
     letter-spacing:-.02em;margin-bottom:8px}
   .feat .txt h3 .it{font-style:italic;font-weight:500;color:var(--gold-2)}
-  .feat .txt .kr{font-family:var(--myeong);font-weight:800;font-size:clamp(1.1rem,2vw,1.4rem);color:#E3DCCD;margin-bottom:24px}
+  .feat .txt .kr{font-family:var(--myeong);font-weight:500;font-size:clamp(1.1rem,2vw,1.4rem);color:#E3DCCD;margin-bottom:24px}
   .feat .txt p{color:var(--soft);font-size:1.02rem;line-height:2;margin-bottom:14px}
   .feat .txt p b{color:var(--paper);font-weight:400;font-family:var(--myeong)}
 
