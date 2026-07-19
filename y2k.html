@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이피웹 홈페이지 ☆ 환영합니다 ☆ — Y2K EDITION</title>
+<meta name="description" content="이피웹 낙서장 실험작 002. 2000년대 개인 홈페이지 감성. 방문자 여러분 환영합니다. BGM 켜고 즐감하세요 ♪">
+<meta property="og:title" content="이피웹 홈페이지 ☆ 환영합니다 ☆">
+<meta property="og:description" content="낙서장 실험작 002 · Y2K 웹1.0 향수. Internet Explorer 6.0 최적화(농담).">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%98%86%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#ff3d9a; --cyan:#00e5ff; --lime:#b6ff00; --purple:#8a2be2;
+    --yellow:#ffe600; --blue:#1a4cff;
+    --disp:'Jua','굴림',Gulim,'Malgun Gothic',sans-serif;
+    --pix:'Press Start 2P','Jua',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--disp);color:#222;line-height:1.55;font-size:16px;
+    cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ctext y='22' font-size='22'%3E%E2%9C%A8%3C/text%3E%3C/svg%3E") 4 4, auto;
+    /* 2000년대 타일 배경: 파스텔 별 타일 */
+    background-color:#c9f0ff;
+    background-image:
+      radial-gradient(circle at 12px 12px, rgba(255,255,255,.9) 2px, transparent 3px),
+      radial-gradient(circle at 32px 32px, rgba(255,61,154,.35) 2px, transparent 3px),
+      linear-gradient(135deg,#c9f0ff 0%,#ffd9f2 50%,#d9ffe6 100%);
+    background-size:44px 44px,44px 44px,100% 100%;
+    overflow-x:hidden;
+  }
+  a{color:var(--blue)}
+  ::selection{background:var(--pink);color:#fff}
+
+  /* 최상단 흐르는 환영 마퀴 (native marquee — reduced-motion 무시하고 항상 흐름) */
+  .topbar{background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue),var(--cyan),var(--lime),var(--yellow),var(--pink));
+    background-size:400% 100%;animation:rainbow 6s linear infinite;color:#fff;
+    font-family:var(--pix);font-size:11px;padding:8px 0;border-bottom:3px solid #fff;text-shadow:1px 1px 0 #0006}
+  @keyframes rainbow{to{background-position:400% 0}}
+
+  .frame{max-width:860px;margin:16px auto;padding:0 12px}
+  /* 2000년대 창(테이블) 느낌 — 굵은 베벨 테두리 */
+  .win{background:#fff;border:3px solid #000;box-shadow:6px 6px 0 #0004;margin-bottom:18px}
+  .win-tt{background:linear-gradient(180deg,#3a6bff,#1a3cc8);color:#fff;font-family:var(--pix);font-size:10px;
+    padding:6px 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #000}
+  .win-tt .dots{display:flex;gap:4px}
+  .win-tt .dots i{width:11px;height:11px;background:#fff;border:1px solid #000;display:inline-block}
+  .win-bd{padding:16px}
+
+  /* 무지개 워드아트 타이틀 */
+  .hero{text-align:center;padding:10px 12px 4px}
+  .wordart{font-family:var(--disp);font-size:clamp(44px,11vw,96px);line-height:1;letter-spacing:.02em;
+    background:linear-gradient(180deg,#ff3d9a,#ffe600 45%,#00e5ff 55%,#8a2be2);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    -webkit-text-stroke:2px #000;paint-order:stroke fill;
+    filter:drop-shadow(3px 3px 0 #fff) drop-shadow(5px 5px 0 #0003);transform:skewX(-6deg)}
+  .hero .en{font-family:var(--pix);font-size:clamp(10px,2.4vw,15px);color:var(--purple);margin-top:8px;letter-spacing:.05em}
+  .blink{animation:blink 1s steps(2,start) infinite}
+  @keyframes blink{to{visibility:hidden}}
+
+  /* 공사중 배너 */
+  .construction{margin:12px auto;max-width:620px;background:repeating-linear-gradient(45deg,#ffe600 0 18px,#000 18px 36px);
+    padding:5px;border:3px solid #000}
+  .construction b{display:block;background:#fff;text-align:center;font-family:var(--disp);font-size:clamp(15px,3.4vw,20px);
+    padding:8px;letter-spacing:.04em}
+
+  /* 방문자 카운터 (오도미터) */
+  .counter{text-align:center}
+  .odo{display:inline-flex;gap:3px;background:#000;padding:8px;border:3px solid #666;border-radius:3px;margin:6px 0}
+  .odo span{font-family:var(--pix);font-size:clamp(16px,4.6vw,26px);color:var(--lime);background:#0a1a0a;
+    padding:6px 5px;min-width:22px;text-align:center;box-shadow:inset 0 0 6px #0f0a}
+  .counter .cap{font-size:14px;color:#555}
+
+  /* 메뉴 버튼 (베벨) */
+  .menu{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:6px 0}
+  .btn98{font-family:var(--disp);font-size:16px;padding:9px 16px;background:#e6e6e6;cursor:pointer;
+    border:2px solid;border-color:#fff #808080 #808080 #fff;box-shadow:1px 1px 0 #000;color:#000;text-decoration:none;white-space:nowrap}
+  .btn98:hover{background:#f4f4a0}
+  .btn98:active{border-color:#808080 #fff #fff #808080}
+
+  /* BGM */
+  .bgm{display:inline-flex;align-items:center;gap:8px}
+  #bgmBtn{font-family:var(--pix);font-size:10px}
+
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:15px}
+  .kv b{color:var(--pink)}
+  .marq2{background:#000;color:var(--lime);font-family:var(--pix);font-size:11px;padding:7px 0;border:2px solid var(--lime);margin-top:10px}
+
+  /* 방명록 */
+  .gb{list-style:none}
+  .gb li{border-bottom:1px dashed #bbb;padding:9px 4px}
+  .gb .who{font-weight:400;color:var(--purple)}
+  .gb .who .em{color:#888;font-size:12px;font-family:var(--pix)}
+  .gb .msg{margin-top:2px}
+  .gbform{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .gbform input{font-family:var(--disp);font-size:15px;padding:7px 9px;border:2px solid;border-color:#808080 #fff #fff #808080;flex:1;min-width:120px}
+
+  /* 웹링 / 배너 */
+  .webring{text-align:center;margin:8px 0}
+  .banner88{display:inline-block;width:auto;padding:8px 14px;background:linear-gradient(90deg,var(--cyan),var(--pink));
+    border:2px solid #000;font-family:var(--pix);font-size:9px;color:#000;margin:4px}
+
+  footer{text-align:center;font-size:13px;color:#444;padding:8px 12px 40px}
+  footer .opt{font-family:var(--pix);font-size:9px;color:#666;margin-top:8px;line-height:1.8}
+
+  .spark{position:fixed;pointer-events:none;z-index:9999;font-size:16px;will-change:transform,opacity}
+  @media (max-width:520px){ .wordart{-webkit-text-stroke-width:1.5px} .kv{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<div class="topbar"><marquee scrollamount="6">★☆★ 이피웹 홈페이지에 오신 것을 진심으로 환영합니다 ★☆★ 방명록 꼭 남겨주세요 ~ ★☆★ BGM 켜고 즐감하세요 ♪ ★☆★ 즐겨찾기 추가 필수 ★☆★</marquee></div>
+
+<div class="frame">
+
+  <div class="hero">
+    <div class="wordart">이피웹</div>
+    <div class="en">YIPI WEB ★ HOMEPAGE ★ EST.2026 ★ ver 0.02</div>
+  </div>
+
+  <div class="construction">
+    <b>🚧 이 홈페이지는 열심히 <span class="blink">공사중</span>입니다 🚧</b>
+  </div>
+
+  <div class="win">
+    <div class="win-tt"><span>★ 환영합니다.exe</span><span class="dots"><i></i><i></i><i></i></span></div>
+    <div class="win-bd counter">
+      <p style="font-size:17px">＼(^▽^)／ 안녕하세요, 방문해주셔서 감사합니다!</p>
+      <div class="odo" id="odo" aria-label="방문자 수"></div>
+      <p class="cap">당신은 <b id="visnum">00000</b> 번째 손님이에요 · 오늘 <span id="today"></span></p>
+      <div class="menu">
+        <span class="bgm"><a class="btn98" id="bgmBtn" role="button">♪ BGM 켜기</a></span>
+        <a class="btn98" href="#guest">📖 방명록</a>
+        <a class="btn98" href="#profile">🙋 주인장</a>
+        <a class="btn98" href="/index.html">🏠 실제 사이트</a>
+      </div>
+      <div class="marq2"><marquee scrollamount="4">지금 접속자 1명 ▚ 오늘 방문 247 ▚ 어제 방문 388 ▚ 전체 방문 128470 ▚ since 2026.07 ▚</marquee></div>
+    </div>
+  </div>
+
+  <div class="win" id="profile">
+    <div class="win-tt"><span>★ 주인장 소개.txt</span><span class="dots"><i></i><i></i><i></i></span></div>
+    <div class="win-bd">
+      <div class="kv">
+        <b>대문말</b><span>어서오세요~ 여긴 이피웹의 <u>낙서장 두 번째 방</u>이에요 (´｡• ᵕ •｡`)</span>
+        <b>정체</b><span>낮엔 소상공인 홈페이지 만드는 사람 · 밤엔 이런 거 만드는 사람</span>
+        <b>취미</b><span>안 팔릴 걸 알면서도 만들기, 옛날 감성 되살리기</span>
+        <b>싫어함</b><span>"요즘 이런 거 안 써요"</span>
+        <b>한마디</b><span class="blink" style="color:var(--pink)">♥ 방명록 안 쓰고 가기 없기 ♥</span>
+      </div>
+      <div class="webring">
+        <span class="banner88">◀ PREV</span>
+        <span class="banner88">YIPI WEBRING</span>
+        <span class="banner88">NEXT ▶</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="win" id="guest">
+    <div class="win-tt"><span>★ 방명록.gb</span><span class="dots"><i></i><i></i><i></i></span></div>
+    <div class="win-bd">
+      <ul class="gb" id="gblist">
+        <li><span class="who">지나가던나그네 <span class="em">2026.07.14</span></span><div class="msg">우와 진짜 옛날 감성이다... 미니홈피 도토리 생각남 ㅠㅠ 잘보고가요~</div></li>
+        <li><span class="who">냥냥펀치 <span class="em">2026.07.15</span></span><div class="msg">BGM 뭐에요?? 계속 듣고싶다 ♪♪ 즐겨찾기 추가함!!</div></li>
+        <li><span class="who">웹서핑중 <span class="em">2026.07.16</span></span><div class="msg">사장님 실제 사이트도 봤는데 완전 다른 사람이 만든 줄 ㅋㅋㅋ 이 갭 뭐야</div></li>
+      </ul>
+      <div class="gbform">
+        <input id="gbName" maxlength="16" placeholder="이름 (닉네임)">
+        <input id="gbMsg" maxlength="80" placeholder="한 마디 남기기...">
+        <a class="btn98" id="gbSubmit" role="button">✏ 남기기</a>
+      </div>
+      <p style="font-size:12px;color:#888;margin-top:6px">※ 실험용이라 새로고침하면 사라져요 (진짜 방명록 아님 ㅎㅎ)</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="webring">
+      <span class="banner88" style="background:linear-gradient(90deg,var(--lime),var(--yellow))">Netscape now!</span>
+      <span class="banner88" style="background:linear-gradient(90deg,var(--purple),var(--pink));color:#fff">best view 1024×768</span>
+    </div>
+    <p>© 2026 이피웹 · 낙서장 실험작 002 · Y2K EDITION · 아무것도 안 팝니다</p>
+    <p>진짜 일 맡기실 분은 → <a href="/index.html">실제 사이트로</a></p>
+    <p class="opt">이 홈페이지는 Internet Explorer 6.0 · 1024×768 해상도에 최적화되었습니다 (농담입니다)</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 오늘 날짜
+  var d=new Date(), pad=function(n){return(n<10?'0':'')+n;};
+  var td=document.getElementById('today');
+  if(td) td.textContent=d.getFullYear()+'.'+pad(d.getMonth()+1)+'.'+pad(d.getDate());
+
+  // 방문자 카운터 (localStorage 증가 — 없으면 12800대 시드)
+  var base=128470, n=base;
+  try{
+    var k='yw_y2k_visits';
+    var cur=parseInt(localStorage.getItem(k)||'0',10);
+    n = cur>base ? cur+1 : base+Math.floor(Math.random()*40)+1;
+    localStorage.setItem(k, String(n));
+  }catch(e){ n=base+7; }
+  var s=String(n).padStart(6,'0');
+  var odo=document.getElementById('odo');
+  if(odo){ odo.innerHTML=''; s.split('').forEach(function(ch){var e=document.createElement('span');e.textContent=ch;odo.appendChild(e);}); }
+  var vn=document.getElementById('visnum'); if(vn) vn.textContent=s;
+
+  // 방명록 추가 (세션 한정)
+  var sub=document.getElementById('gbSubmit');
+  if(sub) sub.addEventListener('click',function(){
+    var nm=(document.getElementById('gbName').value||'').trim()||'익명';
+    var ms=(document.getElementById('gbMsg').value||'').trim();
+    if(!ms){ document.getElementById('gbMsg').focus(); return; }
+    var li=document.createElement('li');
+    var now=new Date();
+    li.innerHTML='<span class="who"></span><div class="msg"></div>';
+    li.querySelector('.who').innerHTML=nm.replace(/[<>&]/g,'')+' <span class="em">'+now.getFullYear()+'.'+pad(now.getMonth()+1)+'.'+pad(now.getDate())+'</span>';
+    li.querySelector('.msg').textContent=ms;
+    var list=document.getElementById('gblist'); list.insertBefore(li,list.firstChild);
+    document.getElementById('gbName').value=''; document.getElementById('gbMsg').value='';
+  });
+
+  // 반짝이 커서 트레일
+  var chars=['✨','⭐','💫','★','♡','✧'];
+  var lastT=0;
+  window.addEventListener('pointermove',function(e){
+    var now=Date.now(); if(now-lastT<55) return; lastT=now;
+    var s=document.createElement('div'); s.className='spark';
+    s.textContent=chars[Math.floor(Math.random()*chars.length)];
+    s.style.left=(e.clientX-8)+'px'; s.style.top=(e.clientY-8)+'px';
+    document.body.appendChild(s);
+    var y=0, op=1;
+    (function fall(){ y+=1.4; op-=0.03; s.style.transform='translateY('+y+'px) rotate('+(y*4)+'deg)'; s.style.opacity=op;
+      if(op>0) requestAnimationFrame(fall); else s.remove(); })();
+  },{passive:true});
+
+  // BGM — WebAudio 8비트 멜로디 루프 (기본 꺼짐, 클릭해야 켜짐)
+  var ac=null, playing=false, seqTimer=null, btn=document.getElementById('bgmBtn');
+  var mel=[523,659,784,659,587,494,523,392, 440,523,659,523,494,440,392,330]; // 도미솔… 8비트풍
+  var idx=0;
+  function note(freq,dur){
+    var o=ac.createOscillator(), g=ac.createGain();
+    o.type='square'; o.frequency.value=freq;
+    g.gain.setValueAtTime(0.0001,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.09,ac.currentTime+0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001,ac.currentTime+dur);
+    o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime+dur);
+  }
+  function loop(){ if(!playing) return; note(mel[idx%mel.length],0.22); idx++; seqTimer=setTimeout(loop,230); }
+  if(btn) btn.addEventListener('click',function(){
+    if(!playing){
+      if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
+      if(ac.state==='suspended') ac.resume();
+      playing=true; idx=0; loop(); btn.textContent='♪ BGM 끄기';
+    }else{
+      playing=false; clearTimeout(seqTimer); btn.textContent='♪ BGM 켜기';
+    }
+  });
+})();
+</script>
+</body>
+</html>
