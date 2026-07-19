@@ -325,11 +325,9 @@
   /* ---------- Reveal ---------- */
   .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
   .rv.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    .rv{opacity:1;transform:none;transition:none}
-    *{transition:none!important}
-  }
+  /* 동작 줄이기(prefers-reduced-motion) 강제 무시 — 오너 결정(2026-07-19): 국내 대상,
+     모션이 페이드·호버 정도로 과격하지 않아 전 효과 강제 출력. 원래 있던 reduce 블록 제거.
+     콘텐츠 가시성 안전망은 아래 <noscript> 폴백 + JS 1.6s 세이프티로 대체. */
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
 
   /* ---------- Responsive ---------- */
@@ -366,6 +364,7 @@
     .menu-btn{display:flex}
   }
 </style>
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 <header id="hdr">
@@ -681,7 +680,9 @@
     if(e.target.closest('a')){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','메뉴 열기');}
   });
 
-  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  // 오너 결정(2026-07-19): 동작 줄이기가 켜져 있어도 전 효과 강제 출력 → reduce 를 항상 false 로.
+  // (IntersectionObserver 미지원 구형 브라우저 안전망 + 1.6s 세이프티는 아래에서 그대로 유지.)
+  var reduce=false;
 
   // hero background crossfade — JS-driven so it never freezes (owner-requested)
   var hbimgs=[].slice.call(document.querySelectorAll('.hbimg'));
