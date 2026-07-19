@@ -44,8 +44,7 @@
 
   .count{font-family:var(--mono);font-size:.78rem;color:var(--faint);margin:34px 0 14px;letter-spacing:.04em}
 
-  .tiles{display:grid;grid-template-columns:1fr;gap:16px;padding-bottom:70px}
-  @media(min-width:760px){.tiles{grid-template-columns:1fr 1fr 1fr}}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:16px;padding-bottom:70px}
   .tile{position:relative;display:flex;flex-direction:column;min-height:230px;
     background:var(--panel);border:1px solid var(--line);overflow:hidden;transition:transform .35s cubic-bezier(.22,.61,.36,1),border-color .35s}
   .tile:hover{transform:translateY(-6px);border-color:var(--tint,var(--accent))}
@@ -71,6 +70,9 @@
     position:relative}
   .sw-max::after{content:'過剰 ! MAX';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
     font-weight:800;color:#fff;-webkit-text-stroke:1px #000;font-size:1.15rem}
+  .sw-mag{background:radial-gradient(120% 90% at 72% 12%,rgba(201,168,106,.9),transparent 55%),linear-gradient(200deg,#1a1712,#0d0d0e 72%);position:relative}
+  .sw-mag::after{content:'YIPI';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:700;color:#E7E0D2;font-size:2rem;letter-spacing:.06em}
 
   footer{border-top:1px solid var(--line);padding:30px 0 60px;color:var(--faint);font-size:.86rem}
   footer a{color:var(--accent)}
@@ -89,7 +91,7 @@
     <span class="ey">Scratchpad</span>
     <h1>낙서장<span class="en">/ 이피웹의 다른 얼굴</span></h1>
     <p>낮엔 소상공인 홈페이지를 <b>깔끔하고 팔리게</b> 만듭니다. 여긴 그 반대예요 — <b>팔 생각 없이, 만들고 싶은 대로</b> 만든 실험작 모음. 사용성·평균·표준은 여기 없습니다. 컨셉만 확실하면 됐어요.</p>
-    <p class="count" id="count">// 실험작 3 · 계속 늘어날 수도, 안 늘어날 수도</p>
+    <p class="count" id="count">// 실험작 4 · 계속 늘어날 수도, 안 늘어날 수도</p>
   </section>
 
   <div class="tiles">
@@ -119,6 +121,16 @@
         <span class="tno">003</span>
         <div class="tname">과잉<span class="en">Maximalism</span></div>
         <p class="tdesc">미니멀의 정반대. 색·폰트·움직임 전부 과포화. 스크롤할수록 화면이 더 시끄러워집니다. 눈 볼륨 주의.</p>
+        <span class="tgo">들어가기 <span class="ar">→</span></span>
+      </div>
+    </a>
+
+    <a class="tile" href="/editorial.html" style="--tint:#C9A86A" aria-label="실험작 004 매거진 에디토리얼 열기">
+      <div class="swatch sw-mag" aria-hidden="true"></div>
+      <div class="tbody">
+        <span class="tno">004</span>
+        <div class="tname">매거진<span class="en">Editorial</span></div>
+        <p class="tdesc">작은 홈페이지 한 장을 오뜨꾸뛰르처럼 다룬다면. 사진 없이 문장과 여백만으로 짠 중후한 패션지 에디토리얼. On Making.</p>
         <span class="tgo">들어가기 <span class="ar">→</span></span>
       </div>
     </a>
