@@ -57,10 +57,11 @@
 
   function send(ev, detail, value, extra, beacon){
     var d = {
-      k:K, event:ev, page:location.pathname, detail:detail||'', value:(value==null?'':String(value)),
+      k:K, event:ev, page:(location.host+location.pathname), detail:detail||'', value:(value==null?'':String(value)),
       utm_source:qp.get('utm_source')||'', utm_medium:qp.get('utm_medium')||'',
       utm_campaign:qp.get('utm_campaign')||'', utm_content:qp.get('utm_content')||'',
       referrer:document.referrer||'', inapp:inapp, device:device, os:os, browser:browser,
+      // page = host+pathname: 가상 샘플들이 각자 도메인의 '/' 라 host 없으면 서로·홈페이지와 구분 불가
       viewport:(innerWidth+'x'+innerHeight), lang:navigator.language||'', yw_sid:sid,
       scroll_max:(extra&&extra.scroll_max!=null)?String(extra.scroll_max):'',
       secs:(extra&&extra.secs!=null)?String(extra.secs):''
@@ -96,12 +97,21 @@
       send('click_lab', txt || href);
     }else if(/workers\.dev/i.test(href)){                         // 가상 샘플 = 어떤 업종이 먹히나
       send('click_work', txt || href.replace(/^https?:\/\//,'').split('.')[0]);
-    }else if(/^mailto:/i.test(href)){
-      send('click_channel','email');
-    }else if(/instagram\.com|ig\.me/i.test(href)){
-      send('click_channel','instagram');
-    }else if(a.classList && (a.classList.contains('btn-primary')||a.classList.contains('btn-ghost')||a.classList.contains('nav-cta'))){
-      send('click_cta', txt);
+    }else{                                                        // 문의/전환 채널 판정 (href 기준)
+      var ch = '';
+      if(/^tel:/i.test(href))                       ch='phone';         // 전화
+      else if(/^mailto:/i.test(href))               ch='email';
+      else if(/instagram\.com|ig\.me/i.test(href))  ch='instagram';
+      else if(/booking\.naver/i.test(href))         ch='naver_booking'; // 네이버 예약 = 전환 강신호
+      else if(/smartstore\.naver|brand\.naver/i.test(href)) ch='naver_store'; // 스마트스토어 구매
+      else if(/place\.naver|map\.naver|naver\.me/i.test(href)) ch='naver_place'; // 플레이스·길찾기(약신호)
+      else if(/pf\.kakao|open\.kakao|qr\.kakao/i.test(href)) ch='kakao'; // 카톡 문의 = 전환
+      else if(/map\.kakao/i.test(href))             ch='kakao_map';     // 카카오맵 길찾기(약신호)
+      if(ch){
+        send('click_channel', ch);
+      }else if(a.classList && (a.classList.contains('btn-primary')||a.classList.contains('btn-ghost')||a.classList.contains('nav-cta'))){
+        send('click_cta', txt);
+      }
     }
   }, true);
 
