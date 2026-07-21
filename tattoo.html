@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>가린 타투 · GARIN TATTOO — 커스텀 타투 스튜디오</title>
+<meta name="description" content="유행보다 오래갈 그림을 그립니다. 커스텀 도안 · 완전 예약제 · 1회용 니들. 블랙워크·이레즈미·파인라인·커버업. 가린 타투 스튜디오.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0D0D0F">
+<meta property="og:type" content="website">
+<meta property="og:title" content="가린 타투 · GARIN TATTOO">
+<meta property="og:description" content="오래 남을 것만, 새깁니다. 커스텀 도안 · 완전 예약제 타투 스튜디오.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?auto=format&fit=crop&w=1200&q=75">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0D0F'/%3E%3Cpath d='M16 4v24M16 4l-6 5M16 4l6 5' stroke='%23E4432A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='27' r='2.4' fill='%23ECECE8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Gothic+A1:wght@500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    /* 다크 에디토리얼 — 근블랙 지배 + 본 화이트 + 버밀리온 */
+    --bg:#0D0D0F; --bg-2:#151519; --panel:#1A1A1F; --ink:#ECECE8; --muted:#97968F;
+    --accent:#E4432A; --line:#2C2C31; --line-2:#3A3A40;
+    --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    --kr:'Gothic A1',var(--sans);
+    --display:'Anton',var(--sans);
+    --mono:'Space Mono',ui-monospace,monospace;
+    --pad:clamp(20px,5.5vw,80px); --maxw:1320px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;color-scheme:dark}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;
+    word-break:keep-all;overflow-wrap:break-word;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--accent);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  .mono{font-family:var(--mono)}
+  .disp{font-family:var(--display);font-weight:400}
+
+  .ribbon{background:#000;color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-align:center;padding:7px 14px;border-bottom:1px solid var(--line)}
+  .ribbon b{color:var(--accent);font-weight:700}
+  .backlink{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--accent)}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s,box-shadow .3s}
+  header.solid{background:rgba(13,13,15,.86);backdrop-filter:blur(9px) saturate(1.2);-webkit-backdrop-filter:blur(9px) saturate(1.2);box-shadow:0 1px 0 var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px}
+  .mark{display:flex;align-items:baseline;gap:9px;flex-shrink:0}
+  .mark .kw{font-family:var(--kr);font-weight:900;font-size:1.4rem;letter-spacing:-.02em;line-height:1}
+  .mark .lt{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+  .navlinks{display:flex;align-items:center;gap:1.9rem}
+  .navlinks a{font-family:var(--mono);font-size:.8rem;color:var(--ink);position:relative}
+  .navlinks a:not(.pill)::after{content:'';position:absolute;left:0;bottom:-5px;height:2px;width:0;background:var(--accent);transition:width .25s}
+  .navlinks a:not(.pill):hover::after{width:100%}
+  .pill{background:var(--ink);color:var(--bg);padding:9px 18px;font-weight:700;border-radius:2px}
+  .pill:hover{background:var(--accent);color:var(--bg)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .burger span{width:26px;height:2px;background:var(--ink);transition:.3s}
+  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  #mnav{display:none}
+
+  .hero{position:relative;min-height:100svh;display:grid;align-items:end;padding:96px 0 40px;overflow:hidden}
+  .hero-media{position:absolute;inset:0;z-index:0}
+  .hero-media img{width:100%;height:100%;object-fit:cover;object-position:72% 42%}
+  .hero-media::after{content:'';position:absolute;inset:0;
+    background:linear-gradient(90deg,var(--bg) 4%,rgba(13,13,15,.82) 34%,rgba(13,13,15,.28) 64%,rgba(13,13,15,.5) 100%),
+    linear-gradient(0deg,var(--bg) 2%,transparent 42%)}
+  @media(max-width:760px){.hero-media::after{background:linear-gradient(0deg,var(--bg) 8%,rgba(13,13,15,.72) 46%,rgba(13,13,15,.4) 100%)}}
+  .hero-inner{position:relative;z-index:2;width:100%}
+  .hero-rail{position:absolute;left:calc(var(--pad) - 4px);top:120px;z-index:2;font-family:var(--mono);font-size:.72rem;
+    letter-spacing:.3em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg)}
+  @media(max-width:900px){.hero-rail{display:none}}
+  .hero-eyebrow{font-family:var(--mono);font-size:.82rem;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:18px}
+  .hero-big{font-family:var(--display);font-size:clamp(4.6rem,20vw,16rem);line-height:.82;letter-spacing:.005em;text-transform:uppercase}
+  .hero-big .dot{color:var(--accent)}
+  .hero-head{font-family:var(--kr);font-weight:900;font-size:clamp(1.9rem,5.6vw,3.6rem);line-height:1.12;letter-spacing:-.03em;margin-top:6px}
+  .hero-sub{max-width:36ch;color:var(--muted);font-size:clamp(1rem,1.5vw,1.1rem);margin-top:20px;line-height:1.75}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .hero-meta{display:flex;flex-wrap:wrap;margin-top:40px;border-top:1.5px solid var(--ink);max-width:660px}
+  .hero-meta div{flex:1 1 33%;min-width:130px;padding:16px 4px 0}
+  .hero-meta .n{font-family:var(--display);font-size:1.7rem;line-height:1}
+  .hero-meta .t{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:6px}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.82rem;font-weight:700;
+    padding:15px 26px;border-radius:2px;cursor:pointer;border:1.5px solid var(--ink);transition:transform .16s,background .22s,color .22s}
+  .btn:active{transform:scale(.97)}
+  .btn-solid{background:var(--ink);color:var(--bg)}
+  .btn-line{background:transparent;color:var(--ink)}
+  @media(hover:hover){.btn-solid:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}.btn-line:hover{background:var(--ink);color:var(--bg)}}
+  @media(hover:none){.btn:active{background:var(--accent);border-color:var(--accent);color:var(--bg)}}
+
+  .marq{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);overflow:hidden;padding:14px 0}
+  .marq-track{display:flex;white-space:nowrap;width:max-content;animation:scrollx 26s linear infinite}
+  .marq-track span{font-family:var(--display);font-size:clamp(1.4rem,3vw,2.2rem);text-transform:uppercase;padding:0 .5em}
+  .marq-track .sep{color:var(--accent)}
+  @keyframes scrollx{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.marq-track{animation:none}}
+
+  section{padding:clamp(70px,10vw,140px) 0}
+  .eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:38px}
+  .eyebrow::before{content:'';width:34px;height:1.5px;background:var(--accent)}
+
+  .intro{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,60px);align-items:start}
+  @media(min-width:900px){.intro{grid-template-columns:.9fr 1.1fr}}
+  .intro-l{min-width:0}
+  .intro-l .idxno{font-family:var(--display);font-size:clamp(3rem,7vw,5.5rem);color:var(--line-2);line-height:.9}
+  .intro-l .mono{color:var(--muted);font-size:.8rem;letter-spacing:.1em;margin-top:10px}
+  .intro-r{min-width:0}
+  .intro-r h2{font-family:var(--kr);font-weight:800;font-size:clamp(1.6rem,3.6vw,2.7rem);line-height:1.3;letter-spacing:-.02em}
+  .intro-r h2 em{font-style:normal;color:var(--accent)}
+  .intro-r p{color:var(--muted);font-size:1.04rem;line-height:1.85;margin-top:24px;max-width:52ch}
+
+  .index{position:relative}
+  .idx-list{border-top:1.5px solid var(--ink)}
+  .idx-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;padding:26px 4px;border-bottom:1px solid var(--line);position:relative;transition:padding-left .35s,background .35s}
+  .idx-row .idx-no{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--accent);line-height:1;min-width:44px}
+  .idx-main{min-width:0}
+  .idx-main .nm{font-family:var(--kr);font-weight:800;font-size:clamp(1.3rem,2.6vw,2rem);letter-spacing:-.02em;line-height:1.15}
+  .idx-main .ds{color:var(--muted);font-size:.94rem;margin-top:6px;max-width:48ch}
+  .idx-meta{text-align:right;flex-shrink:0}
+  .idx-meta .tm{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+  .idx-img{display:none}
+  @media(hover:hover) and (pointer:fine){
+    .idx-row{cursor:pointer}
+    .idx-row:hover{padding-left:22px;background:var(--panel)}
+  }
+  #idxThumb{position:fixed;top:0;left:0;width:230px;height:290px;object-fit:cover;z-index:40;pointer-events:none;
+    transform:translate(-50%,-50%) scale(.9) rotate(-3deg);opacity:0;transition:opacity .25s,transform .25s;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);border-radius:2px}
+  #idxThumb.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-3deg)}
+  @media(hover:none),(pointer:coarse){
+    #idxThumb{display:none}
+    .idx-row{grid-template-columns:auto 1fr;gap:16px}
+    .idx-img{display:block;grid-column:1/-1;width:100%;height:190px;object-fit:cover;margin-top:16px;border-radius:2px;filter:grayscale(.15)}
+    .idx-meta{grid-column:2;text-align:left}
+  }
+
+  .look-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .look-head .hint{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+  .look-scroll{margin-top:36px;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;scrollbar-width:thin}
+  .look-scroll::-webkit-scrollbar{height:6px}
+  .look-scroll::-webkit-scrollbar-thumb{background:var(--line-2)}
+  .look-card{position:relative;flex:0 0 auto;width:min(78vw,340px);scroll-snap-align:start}
+  .look-card img{width:100%;height:clamp(320px,52vw,440px);object-fit:cover;border-radius:2px;filter:grayscale(.15) contrast(1.05)}
+  .look-card .cap{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;gap:10px}
+  .look-card .cap .st{font-family:var(--kr);font-weight:800;font-size:1.1rem}
+  .look-card .cap .no{font-family:var(--mono);font-size:.74rem;color:var(--accent)}
+
+  .band{position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .band-bg{position:absolute;inset:0;z-index:0;opacity:.42}
+  .band-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.1)}
+  .band-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 22%,rgba(13,13,15,.5) 75%,transparent)}
+  .band .wrap{position:relative;z-index:2}
+  .band .q{font-family:var(--kr);font-weight:800;font-size:clamp(1.7rem,4.4vw,3.3rem);line-height:1.32;letter-spacing:-.02em;max-width:20ch}
+  .band .q em{font-style:normal;color:var(--accent)}
+  .band .by{font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-top:30px}
+  .band .by b{color:var(--ink)}
+
+  .price-list{border-top:1.5px solid var(--ink);margin-top:8px}
+  .price-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:22px 4px;border-bottom:1px solid var(--line)}
+  .price-row .pl{min-width:0}
+  .price-row .pl .pn{font-family:var(--kr);font-weight:800;font-size:1.2rem}
+  .price-row .pl .pd{font-size:.86rem;color:var(--muted);margin-top:3px}
+  .price-row .pp{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.1rem);line-height:1;white-space:nowrap;flex-shrink:0}
+  .price-row .pp small{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-left:4px}
+  .pricenote{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:20px;line-height:1.8}
+  .pricenote b{color:var(--accent);font-weight:700}
+
+  .book{background:var(--bg-2)}
+  .book-grid{display:grid;grid-template-columns:1fr;gap:clamp(34px,5vw,64px)}
+  @media(min-width:900px){.book-grid{grid-template-columns:.85fr 1.15fr}}
+  .book-l{min-width:0}
+  .book-l h2{font-family:var(--kr);font-weight:900;font-size:clamp(2rem,4.5vw,3rem);letter-spacing:-.03em;line-height:1.1}
+  .book-l p{color:var(--muted);margin:18px 0 30px;max-width:38ch;line-height:1.8}
+  .chan{display:flex;flex-direction:column;gap:10px;max-width:420px}
+  .chan a{display:flex;align-items:center;gap:14px;padding:15px 16px;background:var(--panel);border:1.5px solid var(--line-2);transition:.2s}
+  @media(hover:hover){.chan a:hover{border-color:var(--ink);background:#202026}}
+  .chan .ci{width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .chan .ct b{display:block;font-family:var(--kr);font-weight:700;font-size:.98rem}
+  .chan .ct span{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+  .bform{min-width:0}
+  .bform .frow{margin-bottom:26px}
+  .bform label{display:block;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+  .bform input,.bform select,.bform textarea{width:100%;font-family:var(--sans);font-size:16px;color:var(--ink);background:transparent;border:none;border-bottom:1.5px solid var(--line-2);padding:9px 2px;border-radius:0}
+  .bform input::placeholder,.bform textarea::placeholder{color:#67665F}
+  .bform select{color:var(--ink)}
+  .bform option{background:var(--bg-2);color:var(--ink)}
+  .bform input:focus,.bform select:focus,.bform textarea:focus{outline:none;border-bottom-color:var(--accent)}
+  .bform textarea{resize:vertical;min-height:70px}
+  .bform .btn{width:100%;justify-content:center;margin-top:8px}
+  #formStatus{margin-top:16px;font-family:var(--mono);font-size:13px;padding:13px 15px;display:none;border:1.5px solid}
+  #formStatus.ok{display:block;border-color:var(--ink);color:var(--ink)}
+  #formStatus.err{display:block;border-color:var(--accent);color:var(--accent)}
+  .demo-note{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:14px;text-align:center}
+
+  .loc-grid{display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,48px);align-items:start}
+  @media(min-width:820px){.loc-grid{grid-template-columns:1fr 1fr}}
+  .loc-row{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .loc-row .lk{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:84px;flex-shrink:0;padding-top:2px}
+  .loc-row .lv{min-width:0}
+  .loc-map{aspect-ratio:4/3;border:1.5px solid var(--line-2);background:var(--panel);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px;color:var(--muted)}
+  .loc-map .disp{font-size:2.4rem;color:var(--line-2)}
+  .loc-map .mono{font-size:.76rem}
+
+  footer{background:#08080A;padding:70px 0 130px;overflow:hidden;border-top:1px solid var(--line)}
+  @media(min-width:760px){footer{padding-bottom:90px}}
+  .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;padding-bottom:50px;border-bottom:1px solid var(--line)}
+  .foot-col b{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .foot-col a,.foot-col p{display:block;color:var(--muted);font-size:.92rem;padding:3px 0}
+  @media(hover:hover){.foot-col a:hover{color:var(--ink)}}
+  .foot-word{font-family:var(--display);font-size:clamp(4rem,20vw,18rem);line-height:.8;margin-top:40px;color:var(--ink);white-space:nowrap}
+  .foot-word em{font-style:normal;color:var(--accent)}
+  .foot-legal{font-family:var(--mono);font-size:.72rem;color:#5E5D57;margin-top:30px;line-height:1.7}
+
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;padding-bottom:env(safe-area-inset-bottom);border-top:1.5px solid var(--line-2);background:var(--bg)}
+  .mbar a{flex:1;text-align:center;padding:15px 8px;font-family:var(--kr);font-weight:800;font-size:.95rem}
+  .mbar a.k{color:var(--ink)}
+  .mbar a.b{background:var(--ink);color:var(--bg)}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  @media(max-width:860px){
+    .navlinks{display:none}
+    .burger{display:flex}
+    #mnav{display:block;position:fixed;inset:60px 0 auto 0;background:var(--bg);border-bottom:1.5px solid var(--line-2);
+      transform:translateY(-118%);transition:transform .34s cubic-bezier(.4,0,.2,1);z-index:59;padding:12px var(--pad) 24px}
+    #mnav.open{transform:translateY(0)}
+    #mnav a{display:block;padding:13px 2px;font-family:var(--kr);font-weight:700;font-size:1.1rem;border-bottom:1px solid var(--line)}
+    .mbar{display:flex}
+  }
+</style>
+</head>
+<body>
+
+<div class="ribbon">※ 가린 타투는 이피웹 <b>낙서장 005</b>의 가상 예시 샘플입니다 · <a class="backlink" href="/nakseo.html">← 낙서장</a></div>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="mark"><span class="kw">가린</span><span class="lt">Garin Tattoo</span></a>
+    <nav class="navlinks" aria-label="주 메뉴">
+      <a href="#work">스타일</a>
+      <a href="#look">룩북</a>
+      <a href="#price">안내</a>
+      <a href="#book">예약</a>
+      <a href="#book" class="pill">상담 문의</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="mnav" aria-label="모바일 메뉴">
+    <a href="#work">스타일</a><a href="#look">룩북</a><a href="#price">안내</a><a href="#book">예약</a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-media"><img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?auto=format&fit=crop&w=1600&q=78" alt="타투이스트가 팔에 작업하는 모습" fetchpriority="high"></div>
+    <span class="hero-rail">Garin Tattoo — Custom Only</span>
+    <div class="wrap hero-inner">
+      <p class="hero-eyebrow">커스텀 타투 스튜디오 · 완전 예약제</p>
+      <h1 class="hero-big">INK<span class="dot">.</span></h1>
+      <p class="hero-head">오래 남을 것만,<br>새깁니다.</p>
+      <p class="hero-sub">유행보다 오래갈 그림을 그려요. 도안은 상담부터 함께 만들고, 하나의 예약에 한 명만 작업합니다.</p>
+      <div class="hero-cta">
+        <a href="#book" class="btn btn-solid">상담 문의 →</a>
+        <a href="#look" class="btn btn-line">룩북 보기</a>
+      </div>
+      <div class="hero-meta">
+        <div><div class="n">1:1</div><div class="t">한 타임 한 명</div></div>
+        <div><div class="n">100%</div><div class="t">커스텀 도안</div></div>
+        <div><div class="n">1회용</div><div class="t">니들 · 위생</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 마퀴 -->
+  <div class="marq" aria-hidden="true">
+    <div class="marq-track">
+      <span>BY APPOINTMENT<span class="sep"> ✦ </span>CUSTOM ONLY<span class="sep"> ✦ </span>가린 타투<span class="sep"> ✦ </span>SINCE 2019<span class="sep"> ✦ </span></span>
+      <span>BY APPOINTMENT<span class="sep"> ✦ </span>CUSTOM ONLY<span class="sep"> ✦ </span>가린 타투<span class="sep"> ✦ </span>SINCE 2019<span class="sep"> ✦ </span></span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="wrap intro">
+    <div class="intro-l reveal">
+      <div class="idxno">01</div>
+      <p class="mono">STUDIO / 가린에 대하여</p>
+    </div>
+    <div class="intro-r reveal">
+      <h2>몸에 남는 건 되돌리기 어렵습니다. 그래서 <em>서두르지 않아요.</em></h2>
+      <p>가린은 도안을 먼저 그립니다. 원하는 이미지, 위치, 피부 톤, 라인의 힘까지 상담에서 정하고, 시안이 마음에 들 때까지 고쳐요. 작업은 완전 예약제로 한 타임에 한 명만. 1회용 니들과 개별 위생 관리는 기본이고, 시술 후 아프터케어까지 안내합니다. 급하게 새기는 것보다, 오래 두고 볼 그림을 같이 만드는 걸 우선해요.</p>
+    </div>
+  </section>
+
+  <!-- 스타일 INDEX -->
+  <section class="wrap index" id="work">
+    <p class="eyebrow">Works · 스타일</p>
+    <div class="idx-list">
+      <div class="idx-row reveal" data-img="https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=560&q=70">
+        <div class="idx-no">01</div>
+        <div class="idx-main"><div class="nm">블랙워크</div><p class="ds">면과 선의 굵은 흑백. 시간이 지나도 라인이 뭉개지지 않게, 힘 있는 그림으로.</p></div>
+        <div class="idx-meta"><div class="tm">크기별 · 상담</div></div>
+        <img class="idx-img" src="https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=560&q=70" alt="블랙워크 타투" loading="lazy">
+      </div>
+      <div class="idx-row reveal" data-img="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=560&q=70">
+        <div class="idx-no">02</div>
+        <div class="idx-main"><div class="nm">이레즈미 · 컬러</div><p class="ds">전통 문양과 색을 담은 큰 파트 작업. 팔·등처럼 넓은 면을 하나의 그림으로.</p></div>
+        <div class="idx-meta"><div class="tm">파트별 · 상담</div></div>
+        <img class="idx-img" src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=560&q=70" alt="컬러 이레즈미 타투" loading="lazy">
+      </div>
+      <div class="idx-row reveal" data-img="https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=560&q=70">
+        <div class="idx-no">03</div>
+        <div class="idx-main"><div class="nm">파인라인 · 미니멀</div><p class="ds">얇은 선, 작은 그림. 처음 타투를 하거나 조용한 디자인을 원할 때.</p></div>
+        <div class="idx-meta"><div class="tm">소형 · 80,000~</div></div>
+        <img class="idx-img" src="https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=560&q=70" alt="파인라인 미니멀 타투" loading="lazy">
+      </div>
+      <div class="idx-row reveal" data-img="https://images.unsplash.com/photo-1564426622559-5af68da63b96?auto=format&fit=crop&w=560&q=70">
+        <div class="idx-no">04</div>
+        <div class="idx-main"><div class="nm">커버업 · 리터치</div><p class="ds">기존 타투 위에 새 도안, 흐려진 라인 보수. 상태부터 보고 가능 여부를 정직하게 말해요.</p></div>
+        <div class="idx-meta"><div class="tm">상담 후 견적</div></div>
+        <img class="idx-img" src="https://images.unsplash.com/photo-1564426622559-5af68da63b96?auto=format&fit=crop&w=560&q=70" alt="커버업 리터치 작업" loading="lazy">
+      </div>
+    </div>
+  </section>
+  <img id="idxThumb" alt="" aria-hidden="true">
+
+  <!-- LOOKBOOK -->
+  <section class="wrap" id="look">
+    <div class="look-head">
+      <p class="eyebrow" style="margin-bottom:0">Lookbook · 작업물</p>
+      <span class="hint">← 옆으로 밀어보세요 →</span>
+    </div>
+    <div class="look-scroll">
+      <figure class="look-card"><img src="https://images.unsplash.com/photo-1586243287039-23f4c8e2e7ab?auto=format&fit=crop&w=680&q=72" alt="만다라 등 타투" loading="lazy"><figcaption class="cap"><span class="st">만다라</span><span class="no">01</span></figcaption></figure>
+      <figure class="look-card"><img src="https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=680&q=72" alt="블랙워크 플로럴 타투" loading="lazy"><figcaption class="cap"><span class="st">블랙워크</span><span class="no">02</span></figcaption></figure>
+      <figure class="look-card"><img src="https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=680&q=72" alt="파인라인 타투" loading="lazy"><figcaption class="cap"><span class="st">파인라인</span><span class="no">03</span></figcaption></figure>
+      <figure class="look-card"><img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=680&q=72" alt="컬러 이레즈미 타투" loading="lazy"><figcaption class="cap"><span class="st">이레즈미</span><span class="no">04</span></figcaption></figure>
+      <figure class="look-card"><img src="https://images.unsplash.com/photo-1604374376934-2df6fad6519b?auto=format&fit=crop&w=680&q=72" alt="풀 슬리브 타투" loading="lazy"><figcaption class="cap"><span class="st">풀 슬리브</span><span class="no">05</span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- DARK 밴드 -->
+  <section class="band">
+    <div class="band-bg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1583213261205-63258746ed4c?auto=format&fit=crop&w=1400&q=70" alt=""></div>
+    <div class="wrap">
+      <p class="q">지우는 것보다 <em>새기기 전 상담</em>에<br>더 오래 씁니다.</p>
+      <p class="by">도안이 마음에 들 때까지 시안을 고쳐요. 급하게 새기지 않습니다. — <b>가린</b></p>
+    </div>
+  </section>
+
+  <!-- 가격 · 안내 -->
+  <section class="wrap" id="price">
+    <p class="eyebrow">Price · 안내</p>
+    <div class="price-list">
+      <div class="price-row reveal"><div class="pl"><div class="pn">레터링 · 미니멀</div><div class="pd">한 단어 / 작은 심볼</div></div><div class="pp">60,000<small>원~</small></div></div>
+      <div class="price-row reveal"><div class="pl"><div class="pn">파인라인 소형</div><div class="pd">10cm 내외 라인 도안</div></div><div class="pp">80,000<small>원~</small></div></div>
+      <div class="price-row reveal"><div class="pl"><div class="pn">블랙워크 · 컬러</div><div class="pd">크기·디테일에 따라</div></div><div class="pp">상담<small>후 견적</small></div></div>
+      <div class="price-row reveal"><div class="pl"><div class="pn">커버업 · 리터치</div><div class="pd">기존 타투 상태 확인 후</div></div><div class="pp">상담<small>후 견적</small></div></div>
+    </div>
+    <p class="pricenote">도안 확정 후 최종 견적 · 예약금 30,000원(시술비에서 차감) · <b>만 19세 이상 · 신분증 확인</b> · 임신 중·특정 질환은 시술이 어려울 수 있어요.</p>
+  </section>
+
+  <!-- 예약 -->
+  <section class="book" id="book">
+    <div class="wrap book-grid">
+      <div class="book-l reveal">
+        <h2>상담 · 예약 문의</h2>
+        <p>완전 예약제예요. 원하는 도안 이미지·위치·대략의 크기를 함께 보내주시면 상담이 빨라요. 아직 확실하지 않아도 괜찮아요.</p>
+        <div class="chan">
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="인스타그램 DM (새 창으로 열림)">
+            <span class="ci" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" stroke="#ECECE8" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="#ECECE8" stroke-width="1.8"/><circle cx="17" cy="7" r="1.1" fill="#ECECE8"/></svg></span>
+            <span class="ct"><b>인스타그램 DM</b><span>도안·작업물 보고 문의 · 가장 빠름</span></span>
+          </a>
+          <a href="https://pf.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 채널 (새 창으로 열림)">
+            <span class="ci" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 5.5c-3.6 0-6.5 2.3-6.5 5.1 0 1.8 1.2 3.4 3 4.3l-.7 2.6 2.9-1.7c.4.05.9.08 1.3.08 3.6 0 6.5-2.3 6.5-5.3S15.6 5.5 12 5.5z" fill="#ECECE8"/></svg></span>
+            <span class="ct"><b>카카오톡 채널</b><span>채널 추가 후 메시지</span></span>
+          </a>
+          <a href="tel:0000000000" aria-label="전화 문의">
+            <span class="ci" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M6.6 10.8a12 12 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 013 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8z" fill="#ECECE8"/></svg></span>
+            <span class="ct"><b>전화 문의</b><span>작업 중엔 못 받을 수 있어요</span></span>
+          </a>
+        </div>
+      </div>
+      <form class="bform reveal" id="bookForm" novalidate>
+        <div class="frow"><label for="f-name">성함</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="김가린"></div>
+        <div class="frow"><label for="f-phone">연락처</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="numeric" placeholder="010-0000-0000"></div>
+        <div class="frow"><label for="f-menu">원하는 스타일</label>
+          <select id="f-menu" name="menu">
+            <option value="">아직 못 정했어요 — 상담부터</option>
+            <option>블랙워크</option><option>이레즈미 · 컬러</option><option>파인라인 · 미니멀</option><option>커버업 · 리터치</option>
+          </select>
+        </div>
+        <div class="frow"><label for="f-msg">도안 설명 (선택)</label><textarea id="f-msg" name="message" placeholder="원하는 이미지, 위치, 대략의 크기, 희망 날짜를 적어주세요. 레퍼런스가 있으면 DM으로 함께 보내주셔도 좋아요."></textarea></div>
+        <button type="submit" class="btn btn-solid">문의 남기기 →</button>
+        <p id="formStatus" role="status" aria-live="polite"></p>
+        <p class="demo-note">※ 샘플이라 실제 전송은 되지 않아요. 실제 매장에선 인스타 DM·카톡으로 연결됩니다.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- 오시는 길 -->
+  <section class="wrap" id="location">
+    <p class="eyebrow">Location · 오시는 길</p>
+    <div class="loc-grid">
+      <div class="loc-info reveal">
+        <div class="loc-row"><span class="lk">주소</span><span class="lv">○○시 ○○구 ○○로 00, 0층 (○○동)</span></div>
+        <div class="loc-row"><span class="lk">시간</span><span class="lv">화–일 13:00–21:00 · 월 휴무<br>완전 예약제로 운영</span></div>
+        <div class="loc-row"><span class="lk">주차</span><span class="lv">건물 앞 골목 · 인근 공영주차장</span></div>
+        <div class="loc-row"><span class="lk">문의</span><span class="lv">인스타그램 DM · 카카오톡 채널</span></div>
+      </div>
+      <div class="loc-map reveal"><span class="disp">MAP</span><span class="mono">실제 매장에선 네이버·카카오 지도가 들어가요</span></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-col">
+        <b>가린 타투 · GARIN</b>
+        <p style="max-width:30ch">유행보다 오래갈 그림을 그립니다. 커스텀 도안 · 완전 예약제 타투 스튜디오.</p>
+      </div>
+      <div class="foot-col">
+        <b>Works</b>
+        <a href="#work">스타일</a><a href="#look">룩북</a><a href="#price">안내</a>
+      </div>
+      <div class="foot-col">
+        <b>Contact</b>
+        <a href="https://instagram.com/" target="_blank" rel="noopener">인스타그램 DM</a>
+        <a href="https://pf.kakao.com/" target="_blank" rel="noopener">카카오톡 채널</a>
+        <a href="tel:0000000000">전화 문의</a>
+      </div>
+    </div>
+    <div class="foot-word">가린<em>.</em></div>
+    <p class="foot-legal">© 2026 가린 타투 (GARIN TATTOO). 이피웹 낙서장 005 · 가상 예시 샘플이며 실제 매장 정보가 아닙니다.</p>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="빠른 문의">
+  <a href="https://instagram.com/" target="_blank" rel="noopener" class="k">인스타 DM</a>
+  <a href="#book" class="b">상담 문의</a>
+</nav>
+
+<script>
+(function(){
+  var hdr=document.getElementById('hdr');
+  var onScroll=function(){ hdr.classList.toggle('solid', scrollY>10); };
+  onScroll(); addEventListener('scroll',onScroll,{passive:true});
+
+  var burger=document.getElementById('burger'), mnav=document.getElementById('mnav');
+  burger.addEventListener('click',function(){
+    var open=mnav.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    burger.setAttribute('aria-label',open?'메뉴 닫기':'메뉴 열기');
+  });
+  mnav.addEventListener('click',function(e){ if(e.target.closest('a')){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');} });
+
+  var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(fine){
+    var thumb=document.getElementById('idxThumb'), index=document.querySelector('.index');
+    document.querySelectorAll('.idx-row').forEach(function(r){
+      r.addEventListener('mouseenter',function(){ thumb.src=r.getAttribute('data-img'); thumb.classList.add('on'); });
+      r.addEventListener('mouseleave',function(){ thumb.classList.remove('on'); });
+    });
+    index.addEventListener('mousemove',function(e){ thumb.style.left=e.clientX+'px'; thumb.style.top=e.clientY+'px'; });
+  }
+
+  var els=[].slice.call(document.querySelectorAll('.reveal'));
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce||!('IntersectionObserver'in window)){ els.forEach(function(el){el.classList.add('in')}); }
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(el){io.observe(el)});
+    setTimeout(function(){els.forEach(function(el){el.classList.add('in')})},1800);
+  }
+
+  var form=document.getElementById('bookForm'), st=document.getElementById('formStatus');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=form.name.value.trim(), p=form.phone.value.trim();
+    if(!n||!p){ st.className='err'; st.textContent='성함과 연락처를 입력해 주세요.'; return; }
+    st.className='ok'; st.textContent='문의가 접수됐어요! (샘플이라 실제 전송은 되지 않아요)';
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>
