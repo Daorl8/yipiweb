@@ -22,8 +22,8 @@
 <style>
   :root{
     /* 화이트 + 쿨로즈 핑크 (소프트) */
-    --paper:#FDFBFC; --blush:#FBEFF3; --blush-2:#F6E4EC; --ink:#2A2230; --plum:#3A2A38;
-    --rose:#E24C7E; --rose-dk:#C13567; --rose-btn:#C13567; --rose-btn-h:#A82D58; --muted:#736770; --line:#F0E1E9; --line-2:#E7D3DE;
+    --paper:#FEFCFD; --blush:#FCF5F8; --blush-2:#F6E9F0; --ink:#2E2530; --plum:#3E2C39;
+    --rose:#EFA9C6; --rose-dk:#AD4E72; --rose-btn:#F3B4D0; --rose-btn-h:#EC9DC1; --muted:#736770; --line:#F3E4EC; --line-2:#EAD6E1;
     --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
     --serif:'Fraunces','Gowun Batang',Georgia,serif;
     --kr:'Gowun Batang','Nanum Myeongjo','Apple SD Gothic Neo',serif;
@@ -35,7 +35,7 @@
     word-break:keep-all;overflow-wrap:break-word;overflow-x:hidden;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
-  ::selection{background:var(--rose);color:#fff}
+  ::selection{background:var(--rose-dk);color:#fff}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
   .serif{font-family:var(--serif)}
   .center{text-align:center}
@@ -53,7 +53,7 @@
   .navlinks{display:flex;align-items:center;gap:2rem}
   .navlinks a{font-size:.95rem;color:var(--ink);opacity:.85;transition:opacity .2s}
   .navlinks a:hover{opacity:1}
-  .cta{background:var(--rose-btn);color:#fff;padding:11px 22px;border-radius:100px;font-size:.92rem;font-weight:600;opacity:1}
+  .cta{background:var(--rose-btn);color:var(--ink);padding:11px 22px;border-radius:100px;font-size:.92rem;font-weight:700;opacity:1}
   .cta:hover{background:var(--rose-btn-h)}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
   .burger span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
@@ -65,7 +65,7 @@
   .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:100px;font-family:var(--sans);
     font-size:15px;font-weight:600;cursor:pointer;border:1.5px solid transparent;transition:transform .18s,background .22s,color .2s,border-color .2s}
   .btn:active{transform:scale(.97)}
-  .btn-rose{background:var(--rose-btn);color:#fff}
+  .btn-rose{background:var(--rose-btn);color:var(--ink)}
   .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
   @media(hover:hover){.btn-rose:hover{background:var(--rose-btn-h)}.btn-ghost:hover{border-color:var(--rose);color:var(--rose-dk)}}
   @media(hover:none){.btn:hover{transform:none}}
@@ -73,9 +73,9 @@
   /* HERO — 중앙 대칭 + 아치 이미지 */
   .hero{padding:clamp(120px,17vw,180px) 0 clamp(50px,7vw,90px);text-align:center;position:relative;overflow:hidden}
   .hero::before{content:'';position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:min(120vw,900px);height:520px;
-    background:radial-gradient(60% 60% at 50% 40%,var(--blush),transparent 70%);z-index:-1}
-  .kicker{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--rose-dk);letter-spacing:.01em}
-  .hero h1{font-family:var(--kr);font-weight:700;font-size:clamp(2.5rem,7vw,4.6rem);line-height:1.16;letter-spacing:-.02em;margin:16px 0 0}
+    background:radial-gradient(58% 55% at 50% 38%,#FCE8F0,transparent 72%);z-index:-1}
+  .kicker{font-family:var(--kr);font-style:normal;font-size:1rem;color:var(--rose-dk);letter-spacing:.03em}
+  .hero h1{font-family:var(--kr);font-weight:400;font-size:clamp(2.3rem,6vw,4rem);line-height:1.22;letter-spacing:-.015em;margin:18px 0 0}
   .hero .lead{max-width:32ch;margin:24px auto 0;color:var(--muted);font-size:clamp(1rem,1.8vw,1.15rem);line-height:1.85}
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
   .hero-arch{margin:clamp(46px,7vw,80px) auto 0;width:min(90%,560px)}
@@ -88,7 +88,7 @@
   .hero-stats span{font-size:.82rem;color:var(--muted)}
 
   /* 곡선 구분 섹션 (철학) */
-  .creed{background:var(--blush);position:relative;margin-top:clamp(60px,9vw,120px);padding:clamp(70px,10vw,120px) 0}
+  .creed{background:linear-gradient(165deg,#FFF7FB,var(--blush));position:relative;margin-top:clamp(60px,9vw,120px);padding:clamp(70px,10vw,120px) 0}
   .creed::before{content:'';position:absolute;top:-1px;left:0;right:0;height:60px;background:var(--paper);
     border-radius:0 0 50% 50%/0 0 100% 100%;transform:scaleX(1.5)}
   .creed .wrap{position:relative;text-align:center}
@@ -103,17 +103,17 @@
   .sec-h p{color:var(--muted);max-width:44ch;margin:14px auto 0}
 
   /* 시술 — 지그재그 (아치 사진 + 텍스트 교차) */
-  .svc{display:flex;flex-direction:column;gap:clamp(48px,8vw,110px)}
+  .svc{display:flex;flex-direction:column;gap:clamp(40px,5vw,74px)}
   .svc-row{display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,60px);align-items:center}
   @media(min-width:840px){
     .svc-row{grid-template-columns:1fr 1fr}
     .svc-row:nth-child(even) .svc-media{order:2}
   }
   .svc-media{min-width:0}
-  .svc-media .arch{aspect-ratio:4/5;border-radius:230px 230px 20px 20px/200px 200px 20px 20px;box-shadow:0 24px 50px -28px rgba(120,40,70,.3)}
+  .svc-media .arch{aspect-ratio:1/1;border-radius:150px 150px 18px 18px/135px 135px 18px 18px;box-shadow:0 22px 46px -30px rgba(150,90,120,.32)}
   .svc-media img{width:100%;height:100%;object-fit:cover;transition:transform .9s ease}
   @media(hover:hover){.svc-row:hover .svc-media img{transform:scale(1.05)}}
-  .svc-body{min-width:0}
+  .svc-body{min-width:0;max-width:27rem;justify-self:center}
   .svc-body .no{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--rose)}
   .svc-body h3{font-family:var(--kr);font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);margin:4px 0 6px;letter-spacing:-.01em}
   .svc-body .meta{font-size:.9rem;color:var(--rose-dk);font-weight:600;margin-bottom:16px}
@@ -122,7 +122,7 @@
   .svc-body .price small{font-family:var(--sans);font-size:.8rem;color:var(--muted);margin-left:4px}
 
   /* 눈매 갤러리 — 아치 타일 그리드 */
-  .look{background:var(--blush);border-radius:clamp(30px,5vw,60px);padding:clamp(46px,7vw,90px) 0;margin:0 auto;max-width:calc(var(--maxw) + 2*var(--pad))}
+  .look{background:linear-gradient(160deg,#FFF7FB,var(--blush));border-radius:clamp(30px,5vw,60px);padding:clamp(46px,7vw,90px) 0;margin:0 auto;max-width:calc(var(--maxw) + 2*var(--pad))}
   .look-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.5vw,28px)}
   @media(min-width:760px){.look-grid{grid-template-columns:repeat(4,1fr)}}
   .look-card{min-width:0}
@@ -141,7 +141,7 @@
   .pricenote{text-align:center;font-size:.85rem;color:var(--muted);margin-top:20px;line-height:1.7}
 
   /* 예약 */
-  .book{background:var(--blush)}
+  .book{background:linear-gradient(160deg,#FFF7FB,var(--blush))}
   .book-card{max-width:920px;margin:0 auto;background:var(--paper);border-radius:30px;overflow:hidden;
     display:grid;grid-template-columns:1fr;box-shadow:0 30px 70px -40px rgba(120,40,70,.3)}
   @media(min-width:820px){.book-card{grid-template-columns:.92fr 1.08fr}}
@@ -185,7 +185,7 @@
   @media(hover:hover){footer .flinks a:hover{color:#fff}}
   footer .legal{font-size:.76rem;color:#AD9FA8;border-top:1px solid rgba(230,220,228,.16);padding-top:22px;max-width:600px;margin:0 auto;line-height:1.7}
 
-  .ribbon{background:var(--rose);color:#fff;text-align:center;font-size:13px;padding:8px 14px;font-weight:600}
+  .ribbon{background:var(--blush);color:var(--rose-dk);text-align:center;font-size:13px;padding:8px 14px;font-weight:600}
 
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
   .reveal.in{opacity:1;transform:none}
