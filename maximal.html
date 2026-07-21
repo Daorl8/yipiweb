@@ -15,8 +15,10 @@
 <style>
   :root{
     /* 큐레이션 리치 팔레트: 마젠타 도미넌트 + 퍼플/틸 쿨 밸런스 + 오렌지/애시드 스파크 + 크림/잉크 그라운딩 */
-    --ink:#1B0E16; --cream:#FFF3E0; --cream-2:#FDE9CE;
-    --magenta:#FF2E7E; --tangerine:#FF7A00; --grape:#7B2FF7; --teal:#00BFA6; --acid:#E9FF37;
+    /* 70s 팔레트 시험: 번트오렌지 도미넌트 + 하베스트골드/머스터드 + 아보카도 올리브 + 70s 틸 + 다크초콜릿·베이지 그라운딩.
+       (변수명은 유지, 값만 70s 로. 롤백 시 magenta 팔레트로 복귀) */
+    --ink:#2E2013; --cream:#F4E8CE; --cream-2:#E9D6B0;
+    --magenta:#C1521C; --tangerine:#D98E1E; --grape:#6D7A2C; --teal:#34A093; --acid:#F2B705;
     --serif:'Fraunces',Georgia,serif;
     --slab:'Anton','Black Han Sans',sans-serif;
     /* 스크립트 = 한글 마커 브러시(Dokdo). Yellowtail(영문전용)은 한글이 시스템 궁서로 폴백되던 버그 → 교체 */
@@ -31,8 +33,8 @@
     word-break:keep-all;position:relative;
     /* 레이어드 배경: 미세 도트 + 대각 스트라이프 틴트 (구성됨, 무작위 아님) */
     background-image:
-      radial-gradient(circle at 10px 10px, rgba(123,47,247,.06) 1.5px, transparent 2px),
-      repeating-linear-gradient(135deg, rgba(255,46,126,.03) 0 14px, transparent 14px 28px);
+      radial-gradient(circle at 10px 10px, rgba(109,122,44,.08) 1.5px, transparent 2px),
+      repeating-linear-gradient(135deg, rgba(193,82,28,.05) 0 14px, transparent 14px 28px);
     background-size:26px 26px, auto}
   /* 종이 그레인 */
   body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.045;mix-blend-mode:multiply;
