@@ -11,9 +11,9 @@
 <meta property="og:title" content="눈결 NUNGYEOL — 속눈썹 전문 스튜디오">
 <meta property="og:description" content="눈매는 사람마다 다르니까. 완전 예약제 속눈썹 전문 스튜디오.">
 <meta property="og:url" content="https://yipiweb.lgt3232.workers.dev/lash.html">
-<meta property="og:image" content="https://images.unsplash.com/photo-1542833807-ad5af0977050?auto=format&fit=crop&w=1200&q=75">
+<meta property="og:image" content="https://yipiweb.lgt3232.workers.dev/photo-1542833807-ad5af0977050.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1542833807-ad5af0977050?auto=format&fit=crop&w=1200&q=75">
+<meta name="twitter:image" content="https://yipiweb.lgt3232.workers.dev/photo-1542833807-ad5af0977050.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%23FBEFF3'/%3E%3Cpath d='M5 19c4-7 18-7 22 0' fill='none' stroke='%23E24C7E' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M9 16l-1.3-3.4M14.5 14.8l-.5-3.8M20 14.8l.5-3.8M25 16l1.3-3.4' stroke='%23C13567' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,6 +131,20 @@
   .look-card .cap{text-align:center;margin-top:14px;font-family:var(--kr);font-weight:700;font-size:1rem}
   .look-card .cap span{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:.8rem;color:var(--rose-dk)}
 
+  /* Before / After 피크 */
+  .ba{background:linear-gradient(160deg,#FFF6FA,var(--blush-2));border-radius:clamp(30px,5vw,60px);margin:0 auto;max-width:calc(var(--maxw) + 2*var(--pad));padding:clamp(50px,7vw,96px) 0}
+  .ba-grid{display:grid;grid-template-columns:1fr;gap:22px;align-items:center;max-width:860px;margin:0 auto}
+  @media(min-width:720px){.ba-grid{grid-template-columns:1fr auto 1fr;gap:clamp(16px,3vw,34px)}}
+  .ba-item{min-width:0}
+  .ba-item .frame{aspect-ratio:4/5;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 46px -26px rgba(150,90,120,.34)}
+  .ba-item .frame img{width:100%;height:100%;object-fit:cover}
+  .ba-item .tag{position:absolute;top:14px;left:14px;font-size:.72rem;font-weight:800;letter-spacing:.1em;padding:6px 13px;border-radius:100px;background:var(--paper);color:var(--rose-dk);border:1px solid var(--line-2)}
+  .ba-item.after .tag{background:var(--rose-btn);color:var(--ink);border-color:transparent}
+  .ba-item figcaption{text-align:center;margin-top:15px;font-family:var(--kr);font-weight:700;font-size:1.02rem}
+  .ba-arrow{font-family:var(--serif);font-size:2rem;color:var(--rose-dk);text-align:center;line-height:1}
+  @media(max-width:719px){.ba-arrow{transform:rotate(90deg)}}
+  .ba-note{text-align:center;font-size:.82rem;color:var(--muted);margin-top:28px}
+
   /* 가격 */
   .price-wrap{max-width:640px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:clamp(26px,4vw,44px);box-shadow:0 24px 60px -40px rgba(120,40,70,.25)}
   .price-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 4px;border-bottom:1px solid var(--line)}
@@ -236,7 +250,7 @@
         <a href="#svc" class="btn btn-ghost">시술 둘러보기</a>
       </div>
       <div class="hero-arch reveal">
-        <div class="arch"><img src="https://images.unsplash.com/photo-1542833807-ad5af0977050?auto=format&fit=crop&w=1200&q=78" alt="또렷하게 컬링된 속눈썹과 눈매" fetchpriority="high"></div>
+        <div class="arch"><img src="photo-1542833807-ad5af0977050.jpg" alt="또렷하게 컬링된 속눈썹과 눈매" fetchpriority="high"></div>
       </div>
       <div class="hero-stats">
         <div><b>1:1</b><span>한 타임 한 분</span></div>
@@ -256,7 +270,7 @@
       </div>
       <div class="svc">
         <article class="svc-row reveal">
-          <div class="svc-media"><div class="arch"><img src="https://images.unsplash.com/photo-1641030863063-695801a62a39?auto=format&fit=crop&w=760&q=72" alt="래쉬펌 눈매" loading="lazy"></div></div>
+          <div class="svc-media"><div class="arch"><img src="photo-1641030863063-695801a62a39.jpg" alt="래쉬펌 눈매" loading="lazy"></div></div>
           <div class="svc-body">
             <div class="no">01</div>
             <h3>래쉬펌</h3>
@@ -266,7 +280,7 @@
           </div>
         </article>
         <article class="svc-row reveal">
-          <div class="svc-media"><div class="arch"><img src="https://images.unsplash.com/photo-1761475011451-8ba8cb188699?auto=format&fit=crop&w=760&q=72" alt="클래식 래쉬 눈매" loading="lazy"></div></div>
+          <div class="svc-media"><div class="arch"><img src="photo-1761475011451-8ba8cb188699.jpg" alt="클래식 래쉬 눈매" loading="lazy"></div></div>
           <div class="svc-body">
             <div class="no">02</div>
             <h3>클래식 래쉬</h3>
@@ -276,7 +290,7 @@
           </div>
         </article>
         <article class="svc-row reveal">
-          <div class="svc-media"><div class="arch"><img src="https://images.unsplash.com/photo-1715195060250-b321e5cd5171?auto=format&fit=crop&w=760&q=72" alt="볼륨 래쉬 눈매" loading="lazy"></div></div>
+          <div class="svc-media"><div class="arch"><img src="photo-1715195060250-b321e5cd5171.jpg" alt="볼륨 래쉬 눈매" loading="lazy"></div></div>
           <div class="svc-body">
             <div class="no">03</div>
             <h3>볼륨 래쉬</h3>
@@ -286,7 +300,7 @@
           </div>
         </article>
         <article class="svc-row reveal">
-          <div class="svc-media"><div class="arch"><img src="https://images.unsplash.com/photo-1645243731444-bdc5e1dc3479?auto=format&fit=crop&w=760&q=72" alt="리터치 시술 과정" loading="lazy"></div></div>
+          <div class="svc-media"><div class="arch"><img src="photo-1645243731444-bdc5e1dc3479.jpg" alt="리터치 시술 과정" loading="lazy"></div></div>
           <div class="svc-body">
             <div class="no">04</div>
             <h3>리터치 · 제거</h3>
@@ -295,6 +309,31 @@
             <div class="price">30,000원<small>부터</small></div>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before / After 피크 -->
+  <section id="ba">
+    <div class="ba">
+      <div class="wrap">
+        <div class="sec-h reveal">
+          <p class="eyk">Before / After</p>
+          <h2>민낯의 눈이, 또렷해져요</h2>
+          <p>같은 눈도 시술 후엔 인상이 이렇게 달라져요.</p>
+        </div>
+        <div class="ba-grid reveal">
+          <figure class="ba-item before">
+            <div class="frame"><span class="tag">BEFORE</span><img src="photo-1641030863063-695801a62a39.jpg" alt="시술 전 자연 눈매" loading="lazy"></div>
+            <figcaption>시술 전, 자연 그대로의 눈</figcaption>
+          </figure>
+          <div class="ba-arrow" aria-hidden="true">→</div>
+          <figure class="ba-item after">
+            <div class="frame"><span class="tag">AFTER</span><img src="photo-1715195060250-b321e5cd5171.jpg" alt="시술 후 또렷한 눈매" loading="lazy"></div>
+            <figcaption>컬과 길이를 올려 또렷해진 눈</figcaption>
+          </figure>
+        </div>
+        <p class="ba-note">※ 샘플 예시 사진이에요. 실제 매장에선 원장님의 실제 비포·애프터 컷으로 교체됩니다.</p>
       </div>
     </div>
   </section>
@@ -309,10 +348,10 @@
           <p>같은 시술도 눈매에 따라 다르게 완성돼요.</p>
         </div>
         <div class="look-grid">
-          <figure class="look-card reveal"><div class="arch"><img src="https://images.unsplash.com/photo-1641030863063-695801a62a39?auto=format&fit=crop&w=520&q=72" alt="내추럴 컬 눈매" loading="lazy"></div><figcaption class="cap">내추럴 컬<span>Natural</span></figcaption></figure>
-          <figure class="look-card reveal"><div class="arch"><img src="https://images.unsplash.com/photo-1542833807-ad5af0977050?auto=format&fit=crop&w=520&q=72" alt="데일리 오픈 눈매" loading="lazy"></div><figcaption class="cap">데일리 오픈<span>Daily</span></figcaption></figure>
-          <figure class="look-card reveal"><div class="arch"><img src="https://images.unsplash.com/photo-1761475011451-8ba8cb188699?auto=format&fit=crop&w=520&q=72" alt="글래머 라인 눈매" loading="lazy"></div><figcaption class="cap">글래머 라인<span>Glam</span></figcaption></figure>
-          <figure class="look-card reveal"><div class="arch"><img src="https://images.unsplash.com/photo-1715195060250-b321e5cd5171?auto=format&fit=crop&w=520&q=72" alt="드라마틱 볼륨 눈매" loading="lazy"></div><figcaption class="cap">드라마틱 볼륨<span>Volume</span></figcaption></figure>
+          <figure class="look-card reveal"><div class="arch"><img src="photo-1641030863063-695801a62a39.jpg" alt="내추럴 컬 눈매" loading="lazy"></div><figcaption class="cap">내추럴 컬<span>Natural</span></figcaption></figure>
+          <figure class="look-card reveal"><div class="arch"><img src="photo-1542833807-ad5af0977050.jpg" alt="데일리 오픈 눈매" loading="lazy"></div><figcaption class="cap">데일리 오픈<span>Daily</span></figcaption></figure>
+          <figure class="look-card reveal"><div class="arch"><img src="photo-1761475011451-8ba8cb188699.jpg" alt="글래머 라인 눈매" loading="lazy"></div><figcaption class="cap">글래머 라인<span>Glam</span></figcaption></figure>
+          <figure class="look-card reveal"><div class="arch"><img src="photo-1715195060250-b321e5cd5171.jpg" alt="드라마틱 볼륨 눈매" loading="lazy"></div><figcaption class="cap">드라마틱 볼륨<span>Volume</span></figcaption></figure>
         </div>
       </div>
     </div>
