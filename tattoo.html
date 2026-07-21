@@ -74,7 +74,22 @@
   @media(max-width:900px){.hero-rail{display:none}}
   .hero-eyebrow{font-family:var(--sans);font-weight:700;font-size:.92rem;letter-spacing:.03em;color:var(--accent);margin-bottom:18px}
   .hero-big{font-family:var(--display);font-size:clamp(4.6rem,20vw,16rem);line-height:.82;letter-spacing:.005em;text-transform:uppercase}
-  .hero-big .dot{color:var(--accent)}
+  /* 스텐실 → 필 : 주홍 아웃라인으로 떴다가 안이 채워짐(타투 도안 전사→채우기) */
+  .hero-big .l{display:inline-block;color:var(--lf,var(--ink));animation:stencilFill .85s cubic-bezier(.5,0,.2,1) both}
+  .hero-big .l3{--lf:var(--accent)}
+  .hero-big .l1{animation-delay:.12s}
+  .hero-big .l2{animation-delay:.32s}
+  .hero-big .l3{animation-delay:.52s}
+  @keyframes stencilFill{
+    0%,50%{-webkit-text-stroke:clamp(1.5px,.42vw,3.2px) var(--accent);color:transparent}
+    100%{-webkit-text-stroke:0 var(--accent);color:var(--lf,var(--ink))}
+  }
+  @keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .hero-eyebrow{animation:riseIn .7s ease both .05s}
+  .hero-head{animation:riseIn .8s ease both .5s}
+  .hero-sub{animation:riseIn .8s ease both .68s}
+  .hero-cta{animation:riseIn .8s ease both .82s}
+  .hero-meta{animation:riseIn .8s ease both .94s}
   .hero-head{font-family:var(--kr);font-weight:900;font-size:clamp(1.9rem,5.6vw,3.6rem);line-height:1.12;letter-spacing:-.03em;margin-top:clamp(22px,4vw,46px)}
   .hero-sub{max-width:36ch;color:var(--muted);font-size:clamp(1rem,1.5vw,1.1rem);margin-top:20px;line-height:1.75}
   .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
@@ -262,7 +277,7 @@
     <span class="hero-rail">Garin Tattoo — Custom Only</span>
     <div class="wrap hero-inner">
       <p class="hero-eyebrow">커스텀 타투 스튜디오 · 완전 예약제</p>
-      <h1 class="hero-big">INK<span class="dot">.</span></h1>
+      <h1 class="hero-big"><span class="l l1">I</span><span class="l l2">N</span><span class="l l3">K</span></h1>
       <p class="hero-head">오래 남을 것만,<br>새깁니다.</p>
       <p class="hero-sub">유행보다 오래갈 그림을 그려요. 도안은 상담부터 함께 만들고, 하나의 예약에 한 명만 작업합니다.</p>
       <div class="hero-cta">
@@ -436,7 +451,7 @@
         <a href="tel:0000000000">전화 문의</a>
       </div>
     </div>
-    <div class="foot-word">GARIN<em>.</em></div>
+    <div class="foot-word"><em>G</em>ARIN</div>
     <p class="foot-legal">© 2026 GARIN TATTOO. 이피웹 낙서장 005 · 가상 예시 샘플이며 실제 매장 정보가 아닙니다.</p>
   </div>
 </footer>
