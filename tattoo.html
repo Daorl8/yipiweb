@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>가린 타투 · GARIN TATTOO — 커스텀 타투 스튜디오</title>
-<meta name="description" content="유행보다 오래갈 그림을 그립니다. 커스텀 도안 · 완전 예약제 · 1회용 니들. 블랙워크·이레즈미·파인라인·커버업. 가린 타투 스튜디오.">
+<title>GARIN TATTOO — 커스텀 타투 스튜디오</title>
+<meta name="description" content="유행보다 오래갈 그림을 그립니다. 커스텀 도안 · 완전 예약제 · 1회용 니들. 블랙워크·이레즈미·파인라인·커버업. GARIN TATTOO 스튜디오.">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0D0D0F">
 <meta property="og:type" content="website">
-<meta property="og:title" content="가린 타투 · GARIN TATTOO">
+<meta property="og:title" content="GARIN TATTOO">
 <meta property="og:description" content="오래 남을 것만, 새깁니다. 커스텀 도안 · 완전 예약제 타투 스튜디오.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?auto=format&fit=crop&w=1200&q=75">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0D0F'/%3E%3Cpath d='M16 4v24M16 4l-6 5M16 4l6 5' stroke='%23E4432A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='27' r='2.4' fill='%23ECECE8'/%3E%3C/svg%3E">
@@ -72,10 +72,10 @@
   .hero-rail{position:absolute;left:calc(var(--pad) - 4px);top:120px;z-index:2;font-family:var(--mono);font-size:.72rem;
     letter-spacing:.3em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg)}
   @media(max-width:900px){.hero-rail{display:none}}
-  .hero-eyebrow{font-family:var(--mono);font-size:.82rem;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:18px}
+  .hero-eyebrow{font-family:var(--sans);font-weight:700;font-size:.92rem;letter-spacing:.03em;color:var(--accent);margin-bottom:18px}
   .hero-big{font-family:var(--display);font-size:clamp(4.6rem,20vw,16rem);line-height:.82;letter-spacing:.005em;text-transform:uppercase}
   .hero-big .dot{color:var(--accent)}
-  .hero-head{font-family:var(--kr);font-weight:900;font-size:clamp(1.9rem,5.6vw,3.6rem);line-height:1.12;letter-spacing:-.03em;margin-top:6px}
+  .hero-head{font-family:var(--kr);font-weight:900;font-size:clamp(1.9rem,5.6vw,3.6rem);line-height:1.12;letter-spacing:-.03em;margin-top:clamp(22px,4vw,46px)}
   .hero-sub{max-width:36ch;color:var(--muted);font-size:clamp(1rem,1.5vw,1.1rem);margin-top:20px;line-height:1.75}
   .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
   .hero-meta{display:flex;flex-wrap:wrap;margin-top:40px;border-top:1.5px solid var(--ink);max-width:660px}
@@ -91,12 +91,12 @@
   @media(hover:hover){.btn-solid:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}.btn-line:hover{background:var(--ink);color:var(--bg)}}
   @media(hover:none){.btn:active{background:var(--accent);border-color:var(--accent);color:var(--bg)}}
 
-  .marq{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);overflow:hidden;padding:14px 0}
+  .marq{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);overflow:hidden;padding:14px 0;margin:clamp(46px,7vw,92px) 0}
   .marq-track{display:flex;white-space:nowrap;width:max-content;animation:scrollx 26s linear infinite}
   .marq-track span{font-family:var(--display);font-size:clamp(1.4rem,3vw,2.2rem);text-transform:uppercase;padding:0 .5em}
   .marq-track .sep{color:var(--accent)}
   @keyframes scrollx{to{transform:translateX(-50%)}}
-  @media (prefers-reduced-motion:reduce){.marq-track{animation:none}}
+  /* 마퀴는 동작 줄이기에서도 강제로 회전(디자인 의도) */
 
   section{padding:clamp(70px,10vw,140px) 0}
   .eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:38px}
@@ -200,9 +200,8 @@
   .loc-row{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
   .loc-row .lk{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:84px;flex-shrink:0;padding-top:2px}
   .loc-row .lv{min-width:0}
-  .loc-map{aspect-ratio:4/3;border:1.5px solid var(--line-2);background:var(--panel);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px;color:var(--muted)}
-  .loc-map .disp{font-size:2.4rem;color:var(--line-2)}
-  .loc-map .mono{font-size:.76rem}
+  .loc-map{aspect-ratio:4/3;border:1.5px solid var(--line-2);overflow:hidden;background:var(--panel)}
+  .loc-map iframe{width:100%;height:100%;border:0;display:block;filter:invert(.9) hue-rotate(180deg) grayscale(.22) contrast(.92)}
 
   footer{background:#08080A;padding:70px 0 130px;overflow:hidden;border-top:1px solid var(--line)}
   @media(min-width:760px){footer{padding-bottom:90px}}
@@ -237,11 +236,11 @@
 </head>
 <body>
 
-<div class="ribbon">※ 가린 타투는 이피웹 <b>낙서장 005</b>의 가상 예시 샘플입니다 · <a class="backlink" href="/nakseo.html">← 낙서장</a></div>
+<div class="ribbon">※ GARIN TATTOO는 이피웹 <b>낙서장 005</b>의 가상 예시 샘플입니다 · <a class="backlink" href="/nakseo.html">← 낙서장</a></div>
 
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top" class="mark"><span class="kw">가린</span><span class="lt">Garin Tattoo</span></a>
+    <a href="#top" class="mark"><span class="kw">GARIN</span><span class="lt">Tattoo Studio</span></a>
     <nav class="navlinks" aria-label="주 메뉴">
       <a href="#work">스타일</a>
       <a href="#look">룩북</a>
@@ -281,8 +280,8 @@
   <!-- 마퀴 -->
   <div class="marq" aria-hidden="true">
     <div class="marq-track">
-      <span>BY APPOINTMENT<span class="sep"> ✦ </span>CUSTOM ONLY<span class="sep"> ✦ </span>가린 타투<span class="sep"> ✦ </span>SINCE 2019<span class="sep"> ✦ </span></span>
-      <span>BY APPOINTMENT<span class="sep"> ✦ </span>CUSTOM ONLY<span class="sep"> ✦ </span>가린 타투<span class="sep"> ✦ </span>SINCE 2019<span class="sep"> ✦ </span></span>
+      <span>BY APPOINTMENT<span class="sep"> ✦ </span>CUSTOM ONLY<span class="sep"> ✦ </span>GARIN TATTOO<span class="sep"> ✦ </span>SINCE 2019<span class="sep"> ✦ </span></span>
+      <span>BY APPOINTMENT<span class="sep"> ✦ </span>CUSTOM ONLY<span class="sep"> ✦ </span>GARIN TATTOO<span class="sep"> ✦ </span>SINCE 2019<span class="sep"> ✦ </span></span>
     </div>
   </div>
 
@@ -290,17 +289,17 @@
   <section class="wrap intro">
     <div class="intro-l reveal">
       <div class="idxno">01</div>
-      <p class="mono">STUDIO / 가린에 대하여</p>
+      <p class="mono">STUDIO / ABOUT GARIN</p>
     </div>
     <div class="intro-r reveal">
       <h2>몸에 남는 건 되돌리기 어렵습니다. 그래서 <em>서두르지 않아요.</em></h2>
-      <p>가린은 도안을 먼저 그립니다. 원하는 이미지, 위치, 피부 톤, 라인의 힘까지 상담에서 정하고, 시안이 마음에 들 때까지 고쳐요. 작업은 완전 예약제로 한 타임에 한 명만. 1회용 니들과 개별 위생 관리는 기본이고, 시술 후 아프터케어까지 안내합니다. 급하게 새기는 것보다, 오래 두고 볼 그림을 같이 만드는 걸 우선해요.</p>
+      <p>GARIN은 도안을 먼저 그립니다. 원하는 이미지, 위치, 피부 톤, 라인의 힘까지 상담에서 정하고, 시안이 마음에 들 때까지 고쳐요. 작업은 완전 예약제로 한 타임에 한 명만. 1회용 니들과 개별 위생 관리는 기본이고, 시술 후 아프터케어까지 안내합니다. 급하게 새기는 것보다, 오래 두고 볼 그림을 같이 만드는 걸 우선해요.</p>
     </div>
   </section>
 
   <!-- 스타일 INDEX -->
   <section class="wrap index" id="work">
-    <p class="eyebrow">Works · 스타일</p>
+    <p class="eyebrow">Works</p>
     <div class="idx-list">
       <div class="idx-row reveal" data-img="https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=560&q=70">
         <div class="idx-no">01</div>
@@ -333,7 +332,7 @@
   <!-- LOOKBOOK -->
   <section class="wrap" id="look">
     <div class="look-head">
-      <p class="eyebrow" style="margin-bottom:0">Lookbook · 작업물</p>
+      <p class="eyebrow" style="margin-bottom:0">Lookbook</p>
       <span class="hint">← 옆으로 밀어보세요 →</span>
     </div>
     <div class="look-scroll">
@@ -350,13 +349,13 @@
     <div class="band-bg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1583213261205-63258746ed4c?auto=format&fit=crop&w=1400&q=70" alt=""></div>
     <div class="wrap">
       <p class="q">지우는 것보다 <em>새기기 전 상담</em>에<br>더 오래 씁니다.</p>
-      <p class="by">도안이 마음에 들 때까지 시안을 고쳐요. 급하게 새기지 않습니다. — <b>가린</b></p>
+      <p class="by">도안이 마음에 들 때까지 시안을 고쳐요. 급하게 새기지 않습니다. — <b>GARIN</b></p>
     </div>
   </section>
 
   <!-- 가격 · 안내 -->
   <section class="wrap" id="price">
-    <p class="eyebrow">Price · 안내</p>
+    <p class="eyebrow">Price &amp; Info</p>
     <div class="price-list">
       <div class="price-row reveal"><div class="pl"><div class="pn">레터링 · 미니멀</div><div class="pd">한 단어 / 작은 심볼</div></div><div class="pp">60,000<small>원~</small></div></div>
       <div class="price-row reveal"><div class="pl"><div class="pn">파인라인 소형</div><div class="pd">10cm 내외 라인 도안</div></div><div class="pp">80,000<small>원~</small></div></div>
@@ -370,7 +369,7 @@
   <section class="book" id="book">
     <div class="wrap book-grid">
       <div class="book-l reveal">
-        <h2>상담 · 예약 문의</h2>
+        <h2>Booking</h2>
         <p>완전 예약제예요. 원하는 도안 이미지·위치·대략의 크기를 함께 보내주시면 상담이 빨라요. 아직 확실하지 않아도 괜찮아요.</p>
         <div class="chan">
           <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="인스타그램 DM (새 창으로 열림)">
@@ -406,7 +405,7 @@
 
   <!-- 오시는 길 -->
   <section class="wrap" id="location">
-    <p class="eyebrow">Location · 오시는 길</p>
+    <p class="eyebrow">Location</p>
     <div class="loc-grid">
       <div class="loc-info reveal">
         <div class="loc-row"><span class="lk">주소</span><span class="lv">○○시 ○○구 ○○로 00, 0층 (○○동)</span></div>
@@ -414,7 +413,7 @@
         <div class="loc-row"><span class="lk">주차</span><span class="lv">건물 앞 골목 · 인근 공영주차장</span></div>
         <div class="loc-row"><span class="lk">문의</span><span class="lv">인스타그램 DM · 카카오톡 채널</span></div>
       </div>
-      <div class="loc-map reveal"><span class="disp">MAP</span><span class="mono">실제 매장에선 네이버·카카오 지도가 들어가요</span></div>
+      <div class="loc-map reveal"><iframe src="https://www.google.com/maps?q=서울 성수동&z=15&output=embed" title="GARIN 약도 (샘플 위치)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
     </div>
   </section>
 </main>
@@ -423,7 +422,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-col">
-        <b>가린 타투 · GARIN</b>
+        <b>GARIN TATTOO</b>
         <p style="max-width:30ch">유행보다 오래갈 그림을 그립니다. 커스텀 도안 · 완전 예약제 타투 스튜디오.</p>
       </div>
       <div class="foot-col">
@@ -437,8 +436,8 @@
         <a href="tel:0000000000">전화 문의</a>
       </div>
     </div>
-    <div class="foot-word">가린<em>.</em></div>
-    <p class="foot-legal">© 2026 가린 타투 (GARIN TATTOO). 이피웹 낙서장 005 · 가상 예시 샘플이며 실제 매장 정보가 아닙니다.</p>
+    <div class="foot-word">GARIN<em>.</em></div>
+    <p class="foot-legal">© 2026 GARIN TATTOO. 이피웹 낙서장 005 · 가상 예시 샘플이며 실제 매장 정보가 아닙니다.</p>
   </div>
 </footer>
 
