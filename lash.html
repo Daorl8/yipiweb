@@ -161,6 +161,50 @@
   footer .fmark .c{fill:none;stroke:var(--rose);stroke-width:2.2;stroke-linecap:round}
   footer .fmark .t{fill:none;stroke:#F6C9DC;stroke-width:1.5;stroke-linecap:round}
 
+  /* 히어로 오퍼 칩 */
+  .hero-offer{display:inline-flex;align-items:center;gap:7px;margin-top:22px;background:var(--blush);color:var(--rose-dk);font-size:.86rem;font-weight:700;padding:9px 17px;border-radius:100px;border:1px solid var(--line-2)}
+
+  /* About 원장 소개 */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,54px);align-items:center}
+  @media(min-width:820px){.about-grid{grid-template-columns:.82fr 1.18fr}}
+  .about-photo{min-width:0}
+  .about-photo .arch{aspect-ratio:4/5;border-radius:200px 200px 20px 20px/175px 175px 20px 20px;box-shadow:0 22px 46px -28px rgba(150,90,120,.32)}
+  .about-photo img{width:100%;height:100%;object-fit:cover}
+  .about-body{min-width:0}
+  .about-body .eyk{font-family:var(--serif);font-style:italic;color:var(--rose-dk);font-size:1.05rem}
+  .about-body h2{font-family:var(--kr);font-weight:700;font-size:clamp(1.6rem,3.6vw,2.4rem);letter-spacing:-.02em;margin:8px 0 0;line-height:1.32}
+  .about-body p{color:var(--muted);line-height:1.9;margin-top:20px;max-width:46ch}
+  .about-body .sign{margin-top:20px;font-family:var(--serif);font-style:italic;color:var(--ink);font-size:1.05rem;max-width:none}
+  .about-body .sign b{font-family:var(--kr);font-style:normal;font-weight:700}
+  .about-cred{display:flex;gap:clamp(20px,3vw,34px);flex-wrap:wrap;margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+  .about-cred b{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--ink)}
+  .about-cred span{font-size:.82rem;color:var(--muted)}
+
+  /* 서비스 추천 라인 */
+  .svc-body .fit{margin-top:14px;font-size:.9rem;color:var(--rose-dk);font-weight:600}
+  .svc-body .fit::before{content:'이런 분께 · ';color:var(--muted);font-weight:400}
+
+  /* 후기 */
+  .rev-grid{display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:720px){.rev-grid{grid-template-columns:repeat(3,1fr)}}
+  .rev{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px 24px;box-shadow:0 16px 40px -32px rgba(150,90,120,.3)}
+  .rev .stars{color:var(--rose-dk);font-size:.98rem;letter-spacing:2px}
+  .rev>p{margin:13px 0 18px;color:var(--ink);line-height:1.75;font-size:.98rem}
+  .rev .who{display:flex;align-items:center;gap:11px}
+  .rev .av{width:38px;height:38px;border-radius:50%;background:var(--blush);color:var(--rose-dk);display:flex;align-items:center;justify-content:center;font-family:var(--kr);font-weight:700;flex-shrink:0}
+  .rev .who b{font-family:var(--kr);font-weight:700;font-size:.92rem;display:block}
+  .rev .who span{font-size:.78rem;color:var(--muted)}
+  .rev-note{text-align:center;font-size:.82rem;color:var(--muted);margin-top:26px}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto}
+  .faq details{border-bottom:1px solid var(--line-2)}
+  .faq summary{list-style:none;cursor:pointer;padding:19px 4px;font-family:var(--kr);font-weight:700;font-size:1.05rem;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';color:var(--rose-dk);font-size:1.5rem;font-weight:400;line-height:1;transition:transform .25s;flex-shrink:0}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details p{padding:0 4px 20px;color:var(--muted);line-height:1.85;max-width:62ch}
+
   /* 가격 */
   .price-wrap{max-width:640px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:clamp(26px,4vw,44px);box-shadow:0 24px 60px -40px rgba(120,40,70,.25)}
   .price-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 4px;border-bottom:1px solid var(--line)}
@@ -265,6 +309,7 @@
         <a href="#book" class="btn btn-rose">예약 문의하기</a>
         <a href="#svc" class="btn btn-ghost">시술 둘러보기</a>
       </div>
+      <div class="hero-offer reveal">🎀 첫 방문 이벤트 · 첫 시술 20% 할인 진행 중</div>
       <div class="hero-arch reveal">
         <div class="arch"><img src="photo-1542833807-ad5af0977050.jpg" alt="또렷하게 컬링된 속눈썹과 눈매" fetchpriority="high"></div>
       </div>
@@ -272,6 +317,24 @@
         <div><b>1:1</b><span>한 타임 한 분</span></div>
         <div><b>4</b><span>시그니처 래쉬</span></div>
         <div><b>30분~</b><span>시술 시간</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 원장 소개 -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo reveal"><div class="arch"><img src="photo-1645243731444-bdc5e1dc3479.jpg" alt="눈결 속눈썹 시술 디테일" loading="lazy"></div></div>
+      <div class="about-body reveal">
+        <p class="eyk">About</p>
+        <h2>속눈썹 하나만,<br>오래 해왔어요.</h2>
+        <p>화려하게 많이 붙이는 것보다, 그 사람 눈에 자연스럽게 어울리는 걸 더 좋아해요. 눈 모양·눈꺼풀 라인·자연 속눈썹의 힘을 먼저 보고 시작하고, 앉자마자 시술로 들어가지 않고 원하는 느낌부터 여쭤봐요. 한 타임에 한 분만 받는 이유이기도 하고요.</p>
+        <p class="sign">— <b>눈결 원장</b> 드림</p>
+        <div class="about-cred">
+          <div><b>8년+</b><span>속눈썹 전문 경력</span></div>
+          <div><b>1:1</b><span>한 타임 한 분</span></div>
+          <div><b>1회용</b><span>위생 도구</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -292,6 +355,7 @@
             <h3>래쉬펌</h3>
             <div class="meta">눈매 · 40분 · 5–6주 주기</div>
             <p>본인 속눈썹을 컬만 올려 또렷하게. 마스카라·뷰러 없이도 아침이 편해지는 가장 자연스러운 방법이에요.</p>
+            <p class="fit">화장은 최소로, 자연스러운 또렷함을 원하는 분</p>
             <div class="price">40,000원<small>부터</small></div>
           </div>
         </article>
@@ -302,6 +366,7 @@
             <h3>클래식 래쉬</h3>
             <div class="meta">눈매 · 70분 · 3–4주 주기</div>
             <p>자연 속눈썹 한 올에 한 가닥씩. 티 안 나게 개수와 길이만 늘려, 매일 화장한 듯 단정한 눈매로.</p>
+            <p class="fit">매일 아이라인·마스카라가 번거로운 분</p>
             <div class="price">55,000원<small>부터</small></div>
           </div>
         </article>
@@ -312,6 +377,7 @@
             <h3>볼륨 래쉬</h3>
             <div class="meta">눈매 · 90분 · 3–4주 주기</div>
             <p>가벼운 인모를 부채꼴로 얹어 풍성하게. 숱이 적은 눈이나 또렷한 눈매를 원할 때 어울려요.</p>
+            <p class="fit">숱이 적거나, 화려하고 또렷한 눈매를 원하는 분</p>
             <div class="price">70,000원<small>부터</small></div>
           </div>
         </article>
@@ -322,6 +388,7 @@
             <h3>리터치 · 제거</h3>
             <div class="meta">눈매 · 40분~ · 상담 후</div>
             <p>기존 연장 위 보수 리터치, 타샵·자샵 안전 제거까지. 눈과 자연모 상태부터 확인하고 진행해요.</p>
+            <p class="fit">다른 곳 연장을 정리하거나 유지하고 싶은 분</p>
             <div class="price">30,000원<small>부터</small></div>
           </div>
         </article>
@@ -382,6 +449,52 @@
     </div>
   </section>
 
+  <!-- 후기 -->
+  <section id="review">
+    <div class="wrap">
+      <div class="sec-h reveal">
+        <p class="eyk">Reviews</p>
+        <h2>다녀간 분들의 이야기</h2>
+        <p>실제 후기는 매장 인스타그램·네이버에서 더 보실 수 있어요.</p>
+      </div>
+      <div class="rev-grid">
+        <div class="rev reveal">
+          <div class="stars" aria-label="별점 5점">★★★★★</div>
+          <p>뷰러를 안 써도 눈이 또렷해져서 아침이 진짜 편해졌어요. 자연스러운데 티는 나는 느낌이 딱 좋아요.</p>
+          <div class="who"><span class="av" aria-hidden="true">김</span><div><b>김○○ 님</b><span>래쉬펌 · 재방문</span></div></div>
+        </div>
+        <div class="rev reveal">
+          <div class="stars" aria-label="별점 5점">★★★★★</div>
+          <p>눈매 보고 컬을 정해주셔서 하나도 어색하지 않았어요. 오래 붙어 있고 관리법도 자세히 알려주세요.</p>
+          <div class="who"><span class="av" aria-hidden="true">이</span><div><b>이○○ 님</b><span>클래식 래쉬</span></div></div>
+        </div>
+        <div class="rev reveal">
+          <div class="stars" aria-label="별점 5점">★★★★★</div>
+          <p>과하지 않게 딱 원하는 느낌으로 해주셨어요. 한 분만 받으셔서 조용하고 편하게 시술받았어요.</p>
+          <div class="who"><span class="av" aria-hidden="true">박</span><div><b>박○○ 님</b><span>볼륨 래쉬</span></div></div>
+        </div>
+      </div>
+      <p class="rev-note">※ 샘플 예시 후기예요. 실제 매장에선 네이버·인스타 실후기로 교체됩니다.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-h reveal">
+        <p class="eyk">FAQ</p>
+        <h2>자주 묻는 질문</h2>
+      </div>
+      <div class="faq reveal">
+        <details><summary>얼마나 유지되나요?</summary><p>래쉬펌은 보통 5–6주, 연장은 3–4주 정도예요. 눈매·모질·생활 습관에 따라 조금씩 달라져요. 2–3주쯤 리터치하면 더 오래 예쁘게 유지돼요.</p></details>
+        <details><summary>시술 중에 아프거나 눈이 따갑지 않나요?</summary><p>눈을 감은 상태로 진행해서 통증은 거의 없어요. 눈이 예민하거나 렌즈·눈 질환이 있으면 시술 전에 꼭 말씀해 주세요.</p></details>
+        <details><summary>시술 후 관리는 어떻게 하나요?</summary><p>시술 당일 4–5시간은 물·사우나·찜질을 피하고, 세안 후엔 결 방향대로 살살 말려주세요. 기름기 있는 클렌저·뷰러는 지속력을 떨어뜨려요. 자세한 관리법은 시술 후 안내해 드려요.</p></details>
+        <details><summary>예약은 어떻게 하나요?</summary><p>완전 예약제예요. 네이버 예약 또는 카카오톡 채널로 원하는 날짜·시간을 남겨주시면 확인 후 안내드려요. 첫 방문은 상담을 포함해 시간을 조금 넉넉히 잡아요.</p></details>
+        <details><summary>다른 곳에서 한 연장도 리터치·제거되나요?</summary><p>가능해요. 다만 자연모와 기존 시술 상태를 먼저 확인한 뒤, 진행 여부와 방법을 정직하게 말씀드려요.</p></details>
+      </div>
+    </div>
+  </section>
+
   <!-- 가격 -->
   <section id="price">
     <div class="wrap">
@@ -408,7 +521,12 @@
         <div class="book-l">
           <h2>예약 문의</h2>
           <p>완전 예약제예요. 방문 전 꼭 연락 주세요. 원하는 느낌이 뚜렷하지 않아도 괜찮아요 — 눈매 보고 같이 정해요.</p>
+          <p class="hero-offer" style="margin:0 0 24px">🎀 첫 방문 첫 시술 20% 이벤트 진행 중</p>
           <div class="chan">
+            <a href="https://booking.naver.com/" target="_blank" rel="noopener" aria-label="네이버 예약 (새 창)">
+              <span class="ci" style="background:#03C75A;color:#fff;font-family:var(--kr);font-weight:800;font-size:1.05rem" aria-hidden="true">N</span>
+              <span class="ct"><b>네이버 예약</b><span>날짜·시간 선택하고 바로 예약</span></span>
+            </a>
             <a href="https://pf.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 채널 (새 창)">
               <span class="ci kko" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 5.5c-3.6 0-6.5 2.3-6.5 5.1 0 1.8 1.2 3.4 3 4.3l-.7 2.6 2.9-1.7c.4.05.9.08 1.3.08 3.6 0 6.5-2.3 6.5-5.3S15.6 5.5 12 5.5z" fill="#3C1E1E"/></svg></span>
               <span class="ct"><b>카카오톡 채널</b><span>가장 빠른 문의</span></span>
