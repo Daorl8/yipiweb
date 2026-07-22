@@ -17,7 +17,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%23FBEFF3'/%3E%3Cpath d='M5 19c4-7 18-7 22 0' fill='none' stroke='%23E24C7E' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M9 16l-1.3-3.4M14.5 14.8l-.5-3.8M20 14.8l.5-3.8M25 16l1.3-3.4' stroke='%23C13567' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Gowun+Batang:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
   :root{
@@ -27,6 +27,7 @@
     --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
     --serif:'Fraunces','Gowun Batang',Georgia,serif;
     --kr:'Gowun Batang','Nanum Myeongjo','Apple SD Gothic Neo',serif;
+    --kr-disp:'Song Myung',var(--kr);
     --maxw:1120px; --pad:clamp(20px,5vw,64px);
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -75,7 +76,7 @@
   .hero::before{content:'';position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:min(120vw,900px);height:520px;
     background:radial-gradient(58% 55% at 50% 38%,#FCE8F0,transparent 72%);z-index:-1}
   .kicker{font-family:var(--kr);font-style:normal;font-size:1rem;color:var(--rose-dk);letter-spacing:.03em}
-  .hero h1{font-family:var(--kr);font-weight:400;font-size:clamp(2.3rem,6vw,4rem);line-height:1.22;letter-spacing:-.015em;margin:18px 0 0}
+  .hero h1{font-family:var(--kr-disp);font-weight:400;font-size:clamp(2.4rem,6.2vw,4.2rem);line-height:1.24;letter-spacing:-.01em;margin:18px 0 0}
   .hero .lead{max-width:32ch;margin:24px auto 0;color:var(--muted);font-size:clamp(1rem,1.8vw,1.15rem);line-height:1.85}
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
   .hero-arch{margin:clamp(46px,7vw,80px) auto 0;width:min(90%,560px)}
@@ -99,7 +100,7 @@
   section{padding:clamp(70px,10vw,120px) 0}
   .sec-h{text-align:center;margin-bottom:clamp(46px,6vw,72px)}
   .sec-h .eyk{font-family:var(--serif);font-style:italic;color:var(--rose-dk);font-size:1.05rem}
-  .sec-h h2{font-family:var(--kr);font-weight:700;font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-.02em;margin-top:8px}
+  .sec-h h2{font-family:var(--kr-disp);font-weight:400;font-size:clamp(1.9rem,4.2vw,2.9rem);letter-spacing:-.01em;margin-top:8px}
   .sec-h p{color:var(--muted);max-width:44ch;margin:14px auto 0}
 
   /* 시술 — 지그재그 (아치 사진 + 텍스트 교차) */
@@ -115,7 +116,7 @@
   @media(hover:hover){.svc-row:hover .svc-media img{transform:scale(1.05)}}
   .svc-body{min-width:0;max-width:27rem;justify-self:center}
   .svc-body .no{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--rose)}
-  .svc-body h3{font-family:var(--kr);font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);margin:4px 0 6px;letter-spacing:-.01em}
+  .svc-body h3{font-family:var(--kr-disp);font-weight:400;font-size:clamp(1.6rem,3.1vw,2.2rem);margin:4px 0 6px;letter-spacing:-.01em}
   .svc-body .meta{font-size:.9rem;color:var(--rose-dk);font-weight:600;margin-bottom:16px}
   .svc-body p{color:var(--muted);line-height:1.85;max-width:40ch}
   .svc-body .price{margin-top:18px;font-family:var(--serif);font-size:1.3rem;color:var(--ink)}
@@ -151,7 +152,7 @@
   .peak::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,32,44,.34),rgba(42,32,44,.56))}
   .peak .inner{position:relative;z-index:2;color:#fff;padding:56px var(--pad)}
   .peak .pk-ey{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:#F6C9DC;margin-bottom:16px}
-  .peak .pk-big{font-family:var(--kr);font-weight:400;font-size:clamp(2.2rem,6.4vw,4.4rem);line-height:1.3;letter-spacing:-.01em;color:#fff}
+  .peak .pk-big{font-family:var(--kr-disp);font-weight:400;font-size:clamp(2.3rem,6.6vw,4.6rem);line-height:1.32;letter-spacing:-.005em;color:#fff}
 
   /* 브랜드 마크 (래쉬 컬 시그니처) */
   .brand .mark{width:30px;height:18px;flex-shrink:0}
@@ -172,7 +173,7 @@
   .about-photo img{width:100%;height:100%;object-fit:cover}
   .about-body{min-width:0}
   .about-body .eyk{font-family:var(--serif);font-style:italic;color:var(--rose-dk);font-size:1.05rem}
-  .about-body h2{font-family:var(--kr);font-weight:700;font-size:clamp(1.6rem,3.6vw,2.4rem);letter-spacing:-.02em;margin:8px 0 0;line-height:1.32}
+  .about-body h2{font-family:var(--kr-disp);font-weight:400;font-size:clamp(1.7rem,3.8vw,2.6rem);letter-spacing:-.01em;margin:8px 0 0;line-height:1.34}
   .about-body p{color:var(--muted);line-height:1.9;margin-top:20px;max-width:46ch}
   .about-body .sign{margin-top:20px;font-family:var(--serif);font-style:italic;color:var(--ink);font-size:1.05rem;max-width:none}
   .about-body .sign b{font-family:var(--kr);font-style:normal;font-weight:700}
@@ -220,7 +221,7 @@
     display:grid;grid-template-columns:1fr;box-shadow:0 30px 70px -40px rgba(120,40,70,.3)}
   @media(min-width:820px){.book-card{grid-template-columns:.92fr 1.08fr}}
   .book-l{padding:clamp(30px,4vw,48px);background:linear-gradient(160deg,var(--blush),var(--blush-2));min-width:0}
-  .book-l h2{font-family:var(--kr);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.3rem);letter-spacing:-.02em}
+  .book-l h2{font-family:var(--kr-disp);font-weight:400;font-size:clamp(1.8rem,3.6vw,2.5rem);letter-spacing:-.01em}
   .book-l p{color:var(--muted);margin:16px 0 26px;line-height:1.8}
   .chan{display:flex;flex-direction:column;gap:10px}
   .chan a{display:flex;align-items:center;gap:13px;padding:13px 15px;background:var(--paper);border-radius:16px;border:1px solid var(--line);transition:.2s}
