@@ -59,11 +59,14 @@
   .moon{position:absolute;top:11%;left:50%;transform:translateX(-50%);width:min(70vw,400px);height:min(70vw,400px);border-radius:50%;z-index:-1;
     background:radial-gradient(circle at 42% 40%, #efe6d4 0 40%, #d9cbb0 55%, #b9a888 72%, transparent 74%);
     box-shadow:0 0 90px 30px rgba(232,162,74,.20), 0 0 160px 60px rgba(166,114,224,.14);opacity:.92}
+  .moon{opacity:.82}
   .moon::after{content:'';position:absolute;inset:0;border-radius:50%;
     background:radial-gradient(circle at 66% 62%, rgba(120,100,80,.32) 0 6%,transparent 7%),radial-gradient(circle at 40% 70%, rgba(120,100,80,.26) 0 4%,transparent 5%),radial-gradient(circle at 55% 40%, rgba(120,100,80,.2) 0 5%,transparent 6%)}
+  .hero-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(46% 34% at 50% 42%, rgba(12,10,20,.78), rgba(12,10,20,.42) 52%, transparent 76%)}
   .bridge{position:absolute;bottom:0;left:0;right:0;width:100%;height:170px;z-index:-1;opacity:.9}
   .hero .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.32em;color:var(--amber);text-transform:uppercase;margin-bottom:20px}
-  .hero .title{font-family:var(--myeong);font-weight:800;font-size:clamp(4.2rem,19vw,12rem);line-height:.9;letter-spacing:.08em;color:var(--ink);text-shadow:0 0 40px rgba(232,162,74,.3)}
+  .hero .title{font-family:var(--myeong);font-weight:800;font-size:clamp(4.2rem,19vw,12rem);line-height:.9;letter-spacing:.08em;color:#fff;text-shadow:0 3px 26px rgba(0,0,0,.62),0 0 44px rgba(12,10,20,.5),0 0 60px rgba(232,162,74,.2)}
   .hero .title .rd{color:var(--amber-2)}
   .hero .ko{font-family:var(--myeong);font-weight:700;font-size:clamp(1.4rem,4vw,2rem);letter-spacing:.6em;margin:16px 0 0;color:var(--ink);padding-left:.6em}
   .hero .tag{margin-top:30px;color:var(--muted);font-size:clamp(1.02rem,2vw,1.2rem);font-family:var(--myeong);line-height:1.9}
@@ -110,6 +113,8 @@
   .card .back .m{font-family:var(--myeong);font-weight:800;font-size:1.8rem;color:var(--amber-2)}
   .card .back .s{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--muted)}
   .card:focus-visible{outline:2px solid var(--purple);outline-offset:4px;border-radius:4px}
+  .card.dim{opacity:.34;filter:grayscale(.4);pointer-events:none}
+  .card.picked{cursor:default}
   #unse-out{max-width:520px;margin:34px auto 0;min-height:70px;text-align:center;background:var(--panel);border:1px solid var(--line-2);border-radius:6px;padding:22px 24px;
     font-family:var(--myeong);font-size:1.12rem;line-height:1.7;color:var(--ink);opacity:.55;transition:opacity .3s}
   #unse-out.on{opacity:1;border-color:var(--purple-d)}
@@ -173,6 +178,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="moon" aria-hidden="true"></div>
+    <div class="hero-veil" aria-hidden="true"></div>
     <svg class="bridge" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0 168 Q600 40 1200 168" fill="none" stroke="#3B3050" stroke-width="3"/>
       <path d="M0 168 Q600 66 1200 168" fill="none" stroke="#2C2438" stroke-width="2"/>
@@ -193,7 +199,7 @@
       <p class="sec-mark rv">유래 · 답교란</p>
       <p class="big rv">정월대보름 밤,<br>온 마을이 나와 <span class="a">다리를 밟으면</span><br>일 년 내내 다릿병이 없고,</p>
       <p class="big rv">낯선 <span class="r">남녀</span>가 다리 위에서<br>슬며시 <span class="p">인연</span>을 맺었다.</p>
-      <p class="note rv">답교(踏橋)는 '다리밟기'라는 뜻. 조선 시대엔 대보름 밤 다리를 오가며 서로를 스치던, 은근한 만남의 장이었어요. 답교는 그 밤을 오늘로 불러온 인연 모임입니다.</p>
+      <p class="note rv">답교(踏橋)는 '다리밟기'라는 뜻으로, 조선 시대엔 대보름 밤 다리를 오가며 서로를 스치던, 은근한 만남의 장이었어요. 답교는 그 밤을 오늘로 불러온 인연 모임입니다.</p>
       <span class="seal rv" aria-hidden="true">
         <svg width="66" height="66" viewBox="0 0 66 66"><rect x="3" y="3" width="60" height="60" rx="4" fill="none" stroke="#D2453A" stroke-width="2.5"/><text x="33" y="30" font-family="Nanum Myeongjo, serif" font-weight="800" font-size="21" fill="#D2453A" text-anchor="middle">踏橋</text><text x="33" y="52" font-family="Nanum Myeongjo, serif" font-weight="800" font-size="21" fill="#D2453A" text-anchor="middle">緣</text></svg>
       </span>
@@ -204,7 +210,7 @@
   <section>
     <div class="wrap">
       <p class="sec-mark rv">열두 띠 · 당신의 인연</p>
-      <h2 class="sec-h rv">띠마다 다른 <span class="rd">연애의 결</span></h2>
+      <h2 class="sec-h rv">마음의 <span class="rd">결</span></h2>
       <p class="sec-sub rv">당신의 띠는 어떤 사람을 부를까요. 다리 위에서 만날 인연의 실마리.</p>
       <div class="tti-grid">
         <div class="tti rv"><div class="top"><span class="cn">子</span><span class="an">쥐띠</span></div><div class="ds">눈치 빠르고 다정해요. 첫인상보다 볼수록 스며드는 사람.</div><div class="gh">잘 맞는 띠 · <b>용 · 원숭이</b></div></div>
@@ -228,7 +234,7 @@
     <div class="wrap" style="text-align:center">
       <p class="sec-mark rv">오늘의 인연 운세</p>
       <h2 class="sec-h rv">부적 한 장을 <span class="rd">뒤집어</span> 보세요</h2>
-      <p class="sec-sub rv">다리를 건너며 한 장을 고르면, 오늘 밤 인연의 점괘가 나옵니다.</p>
+      <p class="sec-sub rv">한 장을 고르면, 오늘 밤 만날 인연의 점괘를 보세요.</p>
       <div class="cards">
         <button class="card rv" type="button" aria-label="부적 1 뒤집기"><div class="in"><div class="face front"><svg viewBox="0 0 96 150"><path d="M48 22 v106 M32 40 h32 M28 62 h40 M34 84 l14 14 14-14 M40 112 h16" stroke="#9E2A20" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="48" cy="34" r="6" fill="none" stroke="#9E2A20" stroke-width="3"/></svg></div><div class="face back"><span class="m">緣</span><span class="s">FORTUNE</span></div></div></button>
         <button class="card rv" type="button" aria-label="부적 2 뒤집기"><div class="in"><div class="face front"><svg viewBox="0 0 96 150"><path d="M48 20 v112 M30 46 q18 -14 36 0 M30 70 q18 14 36 0 M36 96 h24 M42 118 l6 -8 6 8" stroke="#9E2A20" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div><div class="face back"><span class="m">緣</span><span class="s">FORTUNE</span></div></div></button>
@@ -271,11 +277,11 @@
   <section>
     <div class="wrap" style="text-align:center">
       <p class="sec-mark rv">만남의 밤</p>
-      <h2 class="sec-h rv">달이 가장 둥근 밤에</h2>
+      <h2 class="sec-h rv">안내</h2>
       <div class="night-rows rv" style="text-align:left">
-        <div><span class="k">언제</span><span class="v">정월대보름 · 보름달이 뜬 밤</span></div>
-        <div><span class="k">어디서</span><span class="v">옛 성곽 아래, 돌다리 위</span></div>
-        <div><span class="k">누구와</span><span class="v">낯선 열두 사람 · 띠마다 한 자리</span></div>
+        <div><span class="k">언제</span><span class="v">금, 토 및 공휴일 전날 밤</span></div>
+        <div><span class="k">어디서</span><span class="v">서울시 종로구 쌈지길</span></div>
+        <div><span class="k">누구와</span><span class="v">선착순 12명 (남 6명, 여 6명)</span></div>
         <div><span class="k">준비물</span><span class="v">비워둔 마음 하나, 건널 용기 한 줌</span></div>
       </div>
     </div>
@@ -305,14 +311,16 @@
     "이번 보름의 인연은, 의외로 같은 띠일지도 몰라요."
   ];
   var out=document.getElementById('unse-out');
-  document.querySelectorAll('.card').forEach(function(c){
+  var cards=document.querySelectorAll('.card'), picked=false;
+  cards.forEach(function(c){
     c.addEventListener('click',function(){
-      c.classList.toggle('flip');
-      if(c.classList.contains('flip')){
-        var f=FORTUNES[Math.floor(Math.random()*FORTUNES.length)];
-        out.classList.add('on');
-        out.innerHTML='<span class="lab">오늘의 점괘</span>'+f;
-      }
+      if(picked) return;
+      picked=true;
+      c.classList.add('flip','picked');
+      var f=FORTUNES[Math.floor(Math.random()*FORTUNES.length)];
+      out.classList.add('on');
+      out.innerHTML='<span class="lab">오늘의 점괘</span>'+f;
+      cards.forEach(function(o){ if(o!==c){ o.classList.add('dim'); o.setAttribute('tabindex','-1'); } });
     });
   });
 
