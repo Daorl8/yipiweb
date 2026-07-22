@@ -46,6 +46,19 @@
     background-image:linear-gradient(var(--ink) 1px,transparent 1px),linear-gradient(90deg,var(--ink) 1px,transparent 1px);background-size:44px 44px}
   .obang{height:5px;background:linear-gradient(90deg,var(--red) 0 20%,var(--cheong) 20% 40%,var(--gold) 40% 60%,var(--baek) 60% 80%,var(--purple) 80% 100%);opacity:.85}
 
+  /* 은은한 달빛 오버레이 */
+  .moonlight{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;
+    background:radial-gradient(58% 42% at 50% 6%, rgba(236,224,196,.13), transparent 62%),radial-gradient(40% 30% at 82% 22%, rgba(166,114,224,.07), transparent 60%);
+    animation:moonpulse 9s ease-in-out infinite}
+  @keyframes moonpulse{0%,100%{opacity:.68}50%{opacity:1}}
+  /* 반딧불이 */
+  .fireflies{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+  .ff{position:absolute;width:4px;height:4px;border-radius:50%;
+    background:radial-gradient(circle,rgba(244,224,158,.95),rgba(232,162,74,.5) 45%,transparent 70%);
+    animation:ffdrift var(--dur,18s) ease-in-out infinite alternate, ffglow var(--g,3.2s) ease-in-out infinite}
+  @keyframes ffdrift{from{transform:translate(var(--x1,0),var(--y1,0))}to{transform:translate(var(--x2,40px),var(--y2,-70px))}}
+  @keyframes ffglow{0%,100%{opacity:.1;box-shadow:0 0 3px 1px rgba(244,224,158,.28)}50%{opacity:.95;box-shadow:0 0 9px 3px rgba(244,224,158,.6)}}
+
   header{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s,box-shadow .3s}
   header.scr{background:rgba(12,10,20,.82);backdrop-filter:blur(9px);box-shadow:0 1px 0 var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:62px;gap:14px}
@@ -159,6 +172,8 @@
 </head>
 <body>
 <div class="munsal" aria-hidden="true"></div>
+<div class="moonlight" aria-hidden="true"></div>
+<div class="fireflies" id="fireflies" aria-hidden="true"></div>
 
 <div style="position:relative;z-index:2">
   <div class="obang" aria-hidden="true"></div>
@@ -302,6 +317,22 @@
 (function(){
   var hdr=document.getElementById('hdr');
   addEventListener('scroll',function(){ hdr.classList.toggle('scr', scrollY>10); },{passive:true});
+
+  // 반딧불이 생성(1회) — 이후 전부 CSS 애니메이션이라 rAF 루프 없음
+  var host=document.getElementById('fireflies');
+  if(host){ var N=window.innerWidth<640?10:16;
+    for(var i=0;i<N;i++){ var f=document.createElement('div'); f.className='ff';
+      f.style.left=(Math.random()*100).toFixed(2)+'%'; f.style.top=(Math.random()*100).toFixed(2)+'%';
+      f.style.setProperty('--x1',(Math.random()*24-12).toFixed(0)+'px');
+      f.style.setProperty('--y1',(Math.random()*24-12).toFixed(0)+'px');
+      f.style.setProperty('--x2',(Math.random()*90-45).toFixed(0)+'px');
+      f.style.setProperty('--y2',(-30-Math.random()*80).toFixed(0)+'px');
+      f.style.setProperty('--dur',(15+Math.random()*11).toFixed(1)+'s');
+      f.style.setProperty('--g',(2.4+Math.random()*2.6).toFixed(1)+'s');
+      f.style.animationDelay=(-Math.random()*10).toFixed(1)+'s, '+(-Math.random()*4).toFixed(1)+'s';
+      host.appendChild(f);
+    }
+  }
 
   var FORTUNES=[
     "오늘 밤, 왼편에서 다가오는 인연을 눈여겨보세요.",
