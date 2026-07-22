@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>신월당 · 神月堂 — 밤에만 문을 여는 신당</title>
+<meta name="description" content="신월당 神月堂. 달빛 아래 신을 모시고 잔을 올리는 밤의 신당. 이피웹 낙서장의 주술적 한국 실험작.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0C0A14">
+<meta property="og:title" content="신월당 · 神月堂 — 밤에만 문을 여는 신당">
+<meta property="og:description" content="달빛 아래 잔을 올리는 밤의 신당 · 이피웹 낙서장 실험작.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230C0A14'/%3E%3Ccircle cx='16' cy='15' r='8' fill='none' stroke='%23E8A24A' stroke-width='1.6'/%3E%3Cpath d='M16 7a8 8 0 000 16 4 4 0 010-8 4 4 0 000-8z' fill='%23A06CD8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Song+Myung&family=Space+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --night:#0C0A14; --night-2:#141020; --panel:#191426; --panel-2:#211A31;
+    --ink:#ECE4D6; --muted:#A99BB0; --faint:#6B5F76;
+    --amber:#E8A24A; --amber-2:#F2C57C; --purple:#A672E0; --purple-d:#6E45A8;
+    --red:#D2453A; --red-d:#9E2A20; --cheong:#33A6A6; --gold:#D9B25A; --baek:#F2ECE0;
+    --line:#2C2438; --line-2:#3B3050;
+    --myeong:'Nanum Myeongjo','Gowun Batang',serif;
+    --song:'Song Myung',var(--myeong);
+    --sans:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    --mono:'Space Mono',ui-monospace,monospace;
+    --pad:clamp(20px,5.5vw,72px); --maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;color-scheme:dark;scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--night);color:var(--ink);line-height:1.7;font-size:16px;
+    word-break:keep-all;overflow-wrap:break-word;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(60% 40% at 50% -6%, rgba(166,114,224,.18), transparent 60%),
+      radial-gradient(50% 30% at 88% 12%, rgba(232,162,74,.10), transparent 60%),
+      radial-gradient(46% 30% at 6% 82%, rgba(51,166,166,.08), transparent 60%);
+    background-attachment:fixed}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--red);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  .my{font-family:var(--myeong)}
+  .hanja{font-family:var(--song)}
+
+  /* 문살(창호) 격자 은은한 오버레이 */
+  .munsal{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;
+    background-image:linear-gradient(var(--ink) 1px,transparent 1px),linear-gradient(90deg,var(--ink) 1px,transparent 1px);
+    background-size:44px 44px}
+
+  /* 색동(오방색) 띠 */
+  .obang{height:5px;background:linear-gradient(90deg,var(--red) 0 20%,var(--cheong) 20% 40%,var(--gold) 40% 60%,var(--baek) 60% 80%,var(--purple) 80% 100%);opacity:.85}
+
+  /* 금줄 + 매단 한지 부적 */
+  .geumjul{position:relative;height:34px}
+  .geumjul::before{content:'';position:absolute;top:6px;left:0;right:0;height:3px;border-radius:3px;
+    background:repeating-linear-gradient(90deg,var(--gold) 0 7px,#8a6f2e 7px 12px)}
+  .geumjul span{position:absolute;top:8px;width:14px;height:22px;border-radius:2px 2px 4px 4px;transform-origin:top center;
+    animation:sway 4s ease-in-out infinite}
+  .geumjul span:nth-child(odd){background:linear-gradient(#e7ddca,#cdbf9f)}
+  .geumjul span:nth-child(even){background:linear-gradient(var(--red),var(--red-d))}
+  @keyframes sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s,box-shadow .3s}
+  header.scr{background:rgba(12,10,20,.82);backdrop-filter:blur(9px);box-shadow:0 1px 0 var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px;gap:14px}
+  .brand{display:flex;align-items:baseline;gap:9px}
+  .brand .h{font-family:var(--song);font-size:1.5rem;color:var(--amber-2);letter-spacing:.06em}
+  .brand .k{font-family:var(--myeong);font-weight:700;font-size:1.05rem;color:var(--ink)}
+  .nav .back{font-family:var(--mono);font-size:.72rem;color:var(--muted);border:1px solid var(--line-2);padding:7px 12px;transition:.2s}
+  .nav .back:hover{color:var(--ink);border-color:var(--purple)}
+
+  /* HERO */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:96px 0 60px;overflow:hidden;z-index:1}
+  .moon{position:absolute;top:12%;left:50%;transform:translateX(-50%);width:min(72vw,420px);height:min(72vw,420px);border-radius:50%;z-index:-1;
+    background:radial-gradient(circle at 42% 40%, #efe6d4 0 40%, #d9cbb0 55%, #b9a888 72%, transparent 74%);
+    box-shadow:0 0 90px 30px rgba(232,162,74,.22), 0 0 160px 60px rgba(166,114,224,.16);opacity:.9;
+    animation:breathe 7s ease-in-out infinite}
+  @keyframes breathe{0%,100%{filter:brightness(1)}50%{filter:brightness(1.08)}}
+  .moon::after{content:'';position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle at 66% 62%, rgba(120,100,80,.35) 0 6%,transparent 7%),radial-gradient(circle at 40% 70%, rgba(120,100,80,.28) 0 4%,transparent 5%),radial-gradient(circle at 55% 40%, rgba(120,100,80,.22) 0 5%,transparent 6%)}
+  .hero .samtaegeuk{width:74px;height:74px;margin-bottom:22px;animation:spin 26s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.34em;color:var(--amber);text-transform:uppercase;margin-bottom:20px}
+  .hero .title{font-family:var(--song);font-size:clamp(4rem,18vw,11rem);line-height:.9;letter-spacing:.06em;color:var(--ink);
+    text-shadow:0 0 40px rgba(166,114,224,.35)}
+  .hero .title .rd{color:var(--amber-2)}
+  .hero .ko{font-family:var(--myeong);font-weight:700;font-size:clamp(1.4rem,4vw,2.1rem);letter-spacing:.5em;margin:14px 0 0;color:var(--ink);padding-left:.5em}
+  .hero .tag{margin-top:30px;color:var(--muted);font-size:clamp(1rem,2vw,1.15rem);font-family:var(--myeong)}
+  .hero .tag b{color:var(--amber-2);font-weight:400}
+  .hero .cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--faint)}
+
+  /* 삼태극 색 */
+  .st-r{fill:var(--red)} .st-b{fill:var(--cheong)} .st-y{fill:var(--gold)}
+
+  section{position:relative;z-index:1;padding:clamp(72px,11vw,150px) 0}
+  .sec-mark{font-family:var(--mono);font-size:.76rem;letter-spacing:.24em;color:var(--purple);text-transform:uppercase;display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:20px}
+  .sec-mark::before,.sec-mark::after{content:'';width:30px;height:1px;background:var(--line-2)}
+  .sec-h{font-family:var(--song);font-size:clamp(2rem,5vw,3.4rem);text-align:center;letter-spacing:.04em;color:var(--ink)}
+  .sec-h .rd{color:var(--amber-2)}
+
+  /* 서사 */
+  .lore{text-align:center}
+  .lore p{max-width:36ch;margin:26px auto 0;font-family:var(--myeong);font-size:clamp(1.1rem,2.4vw,1.5rem);line-height:2.1;color:var(--ink)}
+  .lore p .r{color:var(--red);font-weight:700} .lore p .p{color:var(--purple)} .lore p .a{color:var(--amber-2)}
+  .lore .seal{display:inline-block;margin-top:40px}
+
+  /* 십이지 잔 */
+  .jiji-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:clamp(40px,6vw,64px)}
+  @media(min-width:640px){.jiji-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:980px){.jiji-grid{grid-template-columns:repeat(4,1fr)}}
+  .jiji{position:relative;background:linear-gradient(180deg,var(--panel),var(--night-2));border:1px solid var(--line);border-radius:4px;
+    padding:24px 20px 22px;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
+  .jiji::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--red),var(--gold),var(--purple))}
+  @media(hover:hover){.jiji:hover{transform:translateY(-4px);border-color:var(--purple-d);box-shadow:0 20px 50px -30px rgba(166,114,224,.6)}}
+  .jiji .cn{font-family:var(--song);font-size:2.6rem;line-height:1;color:var(--amber-2)}
+  .jiji .an{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--faint);margin-top:6px}
+  .jiji .nm{font-family:var(--myeong);font-weight:700;font-size:1.15rem;margin-top:14px;color:var(--ink)}
+  .jiji .ds{font-size:.86rem;color:var(--muted);margin-top:6px;line-height:1.6}
+
+  /* 부적 밴드 */
+  .buband{background:var(--night-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(50px,8vw,90px) 0;text-align:center}
+  .bujeoks{display:flex;gap:clamp(16px,3vw,34px);justify-content:center;flex-wrap:wrap}
+  .bujeok{width:96px;height:150px;background:linear-gradient(180deg,#e9dcae,#dcc98a);border-radius:3px;position:relative;
+    box-shadow:0 14px 34px -18px rgba(0,0,0,.7);transform:rotate(var(--rot,0deg));flex-shrink:0}
+  .bujeok::before{content:'';position:absolute;inset:7px;border:1.5px solid rgba(158,42,32,.5);border-radius:2px}
+  .bujeok svg{position:absolute;inset:0;width:100%;height:100%}
+  .buband .cap{margin-top:34px;font-family:var(--myeong);color:var(--muted);font-size:1.05rem}
+
+  /* 공간 */
+  .space-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,56px);align-items:center}
+  @media(min-width:860px){.space-grid{grid-template-columns:1fr 1fr}}
+  .space-art{position:relative;aspect-ratio:1/1;border:1px solid var(--line);border-radius:6px;overflow:hidden;
+    background:radial-gradient(70% 60% at 50% 40%, rgba(166,114,224,.24), transparent 70%),linear-gradient(180deg,var(--panel-2),var(--night))}
+  .space-art .koi{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:64%;animation:swim 9s ease-in-out infinite}
+  @keyframes swim{0%,100%{transform:translate(-52%,-50%) rotate(-4deg)}50%{transform:translate(-48%,-50%) rotate(4deg)}}
+  .space-art .cnd{position:absolute;bottom:16%;width:8px;height:34px;border-radius:3px;background:linear-gradient(#efe4cf,#cbb68a)}
+  .space-art .cnd::before{content:'';position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:9px;height:16px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+    background:radial-gradient(circle at 50% 70%,var(--amber-2),var(--amber) 60%,transparent 72%);animation:flick 1.4s ease-in-out infinite}
+  @keyframes flick{0%,100%{transform:translateX(-50%) scale(1);opacity:.95}50%{transform:translateX(-52%) scale(1.08);opacity:1}}
+  .space-art .c1{left:20%} .space-art .c2{right:20%}
+  .space-body h3{font-family:var(--song);font-size:clamp(1.6rem,3.4vw,2.4rem);color:var(--ink);letter-spacing:.03em}
+  .space-body p{color:var(--muted);font-family:var(--myeong);line-height:2;margin-top:20px;max-width:44ch;font-size:1.05rem}
+  .space-body .rows{margin-top:26px;border-top:1px solid var(--line)}
+  .space-body .rows div{display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .space-body .rows .k{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--purple);width:88px;flex-shrink:0;padding-top:3px}
+  .space-body .rows .v{color:var(--ink);font-family:var(--myeong)}
+
+  footer{position:relative;z-index:1;background:#08060E;border-top:1px solid var(--line);padding:clamp(56px,8vw,90px) 0 46px;text-align:center;overflow:hidden}
+  footer .fmoon{position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle,rgba(166,114,224,.16),transparent 66%);pointer-events:none}
+  footer .fw{font-family:var(--song);font-size:clamp(3rem,13vw,8rem);color:var(--ink);letter-spacing:.1em;position:relative}
+  footer .fw .rd{color:var(--amber-2)}
+  footer .fko{font-family:var(--myeong);color:var(--muted);margin-top:8px;font-size:1.05rem}
+  footer .legal{font-family:var(--mono);font-size:.72rem;color:var(--faint);margin-top:34px;line-height:1.8}
+  footer .legal a{color:var(--purple)}
+
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+  .rv.in{opacity:1;transform:none}
+  :focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+
+  @media(max-width:560px){.jiji-grid{gap:10px}.bujeok{width:78px;height:122px}}
+</style>
+</head>
+<body>
+<div class="munsal" aria-hidden="true"></div>
+
+<div style="position:relative;z-index:2">
+  <div class="obang" aria-hidden="true"></div>
+  <div style="background:#08060E;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:#9a8fa6;padding:7px 14px">
+    ※ 神月堂은 이피웹 <b style="color:#E8A24A">낙서장</b>의 가상 실험작입니다 · 실제 매장이 아니에요
+  </div>
+</div>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand"><span class="h">神月堂</span><span class="k">신월당</span></a>
+    <a class="back" href="/nakseo.html">← 낙서장</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="moon" aria-hidden="true"></div>
+    <svg class="samtaegeuk" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="47" fill="none" stroke="#E8A24A" stroke-width="2" opacity=".7"/>
+      <path class="st-r" d="M50 50 A25 25 0 0 1 50 4 A23 23 0 0 0 50 50Z" transform="rotate(0 50 50)"/>
+      <path class="st-b" d="M50 50 A25 25 0 0 1 50 4 A23 23 0 0 0 50 50Z" transform="rotate(120 50 50)"/>
+      <path class="st-y" d="M50 50 A25 25 0 0 1 50 4 A23 23 0 0 0 50 50Z" transform="rotate(240 50 50)"/>
+    </svg>
+    <p class="eyebrow">Sinwoldang · Since 戊子</p>
+    <h1 class="title hanja">神<span class="rd">月</span>堂</h1>
+    <p class="ko">신 월 당</p>
+    <p class="tag my">달빛 아래, <b>신을 모시고 잔을 올린다.</b><br>밤에만 문을 여는 신당.</p>
+    <span class="cue">▾ 문을 밀고 들어오시오</span>
+  </section>
+
+  <!-- 서사 -->
+  <section class="lore">
+    <div class="wrap">
+      <p class="sec-mark rv">緣起 · 신당의 유래</p>
+      <p class="rv">신당동 골목 끝,<br>낡은 <span class="r">무당집</span> 문을 밀면<br>달빛이 고인 <span class="p">술청</span>이 나온다.</p>
+      <p class="rv">열두 신령이 각자의 잔을 지키고,<br><span class="a">촛불</span>과 <span class="p">잉어</span>가 밤을 헤엄친다.</p>
+      <span class="seal rv" aria-hidden="true">
+        <svg width="66" height="66" viewBox="0 0 66 66"><rect x="3" y="3" width="60" height="60" rx="4" fill="none" stroke="#D2453A" stroke-width="2.5"/><text x="33" y="30" font-family="Song Myung, serif" font-size="22" fill="#D2453A" text-anchor="middle">神月</text><text x="33" y="52" font-family="Song Myung, serif" font-size="22" fill="#D2453A" text-anchor="middle">之印</text></svg>
+      </span>
+    </div>
+  </section>
+
+  <!-- 십이지 잔 -->
+  <section>
+    <div class="wrap">
+      <p class="sec-mark rv">十二支 · 열두 잔</p>
+      <h2 class="sec-h rv">신령이 지키는 <span class="rd">열두 잔</span></h2>
+      <div class="jiji-grid">
+        <div class="jiji rv"><div class="cn hanja">子</div><div class="an">RAT · 쥐</div><div class="nm">자정의 밀주</div><div class="ds">첫 신령이 여는 잔. 흑미와 정향.</div></div>
+        <div class="jiji rv"><div class="cn hanja">丑</div><div class="an">OX · 소</div><div class="nm">우직한 탁주</div><div class="ds">묵직한 막걸리에 볶은 곡물.</div></div>
+        <div class="jiji rv"><div class="cn hanja">寅</div><div class="an">TIGER · 범</div><div class="nm">범의 숨결</div><div class="ds">불붙인 계피, 매캐한 훈연.</div></div>
+        <div class="jiji rv"><div class="cn hanja">卯</div><div class="an">RABBIT · 토끼</div><div class="nm">달토끼 방아</div><div class="ds">쑥과 꿀, 달빛처럼 뽀얀.</div></div>
+        <div class="jiji rv"><div class="cn hanja">辰</div><div class="an">DRAGON · 용</div><div class="nm">여의주</div><div class="ds">청주 위에 떠오르는 금박.</div></div>
+        <div class="jiji rv"><div class="cn hanja">巳</div><div class="an">SNAKE · 뱀</div><div class="nm">허물벗이</div><div class="ds">푸른 허브와 서늘한 뒷맛.</div></div>
+        <div class="jiji rv"><div class="cn hanja">午</div><div class="an">HORSE · 말</div><div class="nm">달리는 홍주</div><div class="ds">복분자, 붉고 빠르게.</div></div>
+        <div class="jiji rv"><div class="cn hanja">未</div><div class="an">GOAT · 양</div><div class="nm">순한 젖술</div><div class="ds">쌀누룩과 부드러운 거품.</div></div>
+        <div class="jiji rv"><div class="cn hanja">申</div><div class="an">MONKEY · 잔나비</div><div class="nm">장난꾸러기</div><div class="ds">과실과 산미, 변덕스러운.</div></div>
+        <div class="jiji rv"><div class="cn hanja">酉</div><div class="an">ROOSTER · 닭</div><div class="nm">새벽을 부르는</div><div class="ds">유자와 청량한 탄산.</div></div>
+        <div class="jiji rv"><div class="cn hanja">戌</div><div class="an">DOG · 개</div><div class="nm">문지기의 술</div><div class="ds">진하고 든든한 곡주.</div></div>
+        <div class="jiji rv"><div class="cn hanja">亥</div><div class="an">PIG · 돼지</div><div class="nm">그믐의 포식</div><div class="ds">달큰한 흑설탕, 마지막 잔.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 부적 밴드 -->
+  <section class="buband">
+    <p class="sec-mark rv">符籍 · 잔을 지키는 부적</p>
+    <div class="bujeoks">
+      <div class="bujeok rv" style="--rot:-6deg" aria-hidden="true"><svg viewBox="0 0 96 150"><path d="M48 22 v106 M32 40 h32 M28 62 h40 M34 84 l14 14 14-14 M40 112 h16" stroke="#9E2A20" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="48" cy="34" r="6" fill="none" stroke="#9E2A20" stroke-width="3"/></svg></div>
+      <div class="bujeok rv" style="--rot:3deg" aria-hidden="true"><svg viewBox="0 0 96 150"><path d="M48 20 v112 M30 46 q18 -14 36 0 M30 70 q18 14 36 0 M36 96 h24 M42 118 l6 -8 6 8" stroke="#9E2A20" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="bujeok rv" style="--rot:-2deg" aria-hidden="true"><svg viewBox="0 0 96 150"><path d="M48 22 v108 M28 44 h40 M48 44 l-14 22 h28 l-14 -22 M34 92 h28 M40 116 h16" stroke="#9E2A20" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="48" cy="130" r="5" fill="#9E2A20"/></svg></div>
+      <div class="bujeok rv" style="--rot:7deg" aria-hidden="true"><svg viewBox="0 0 96 150"><path d="M48 20 v110 M32 42 h32 M32 42 v18 M64 42 v18 M36 78 q12 16 24 0 M42 110 l6 10 6 -10" stroke="#9E2A20" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+    </div>
+    <p class="cap rv">한 잔을 비우면, 한 소원을 적어 매답니다.</p>
+  </section>
+
+  <!-- 공간 -->
+  <section>
+    <div class="wrap space-grid">
+      <div class="space-art rv" aria-hidden="true">
+        <svg class="koi" viewBox="0 0 200 120"><path d="M30 60 C60 20 130 20 160 60 C130 100 60 100 30 60Z" fill="none" stroke="#A672E0" stroke-width="2.5" opacity=".8"/><path d="M160 60 l28 -20 v40 Z" fill="#A672E0" opacity=".55"/><circle cx="70" cy="54" r="4" fill="#E8A24A"/><path d="M55 60 q20 -16 44 0 M55 60 q20 16 44 0" stroke="#D2453A" stroke-width="2" fill="none" opacity=".7"/></svg>
+        <span class="cnd c1"></span><span class="cnd c2"></span>
+      </div>
+      <div class="space-body">
+        <p class="sec-mark rv" style="justify-content:flex-start">空間 · 술청</p>
+        <h3 class="rv">보라빛 어항과<br>촛불이 흔들리는 밤</h3>
+        <p class="rv">천장엔 금줄이 드리우고, 벽마다 열두 신령이 새겨져 있다. 어항 속 잉어는 보랏빛을 받으며 밤새 헤엄치고, 잔이 비워질수록 촛불은 낮게 흔들린다. 정갈함 대신, 오래된 무당집의 눅진한 신비를 남겨두었다.</p>
+        <div class="rows rv">
+          <div><span class="k">HOURS</span><span class="v">해가 진 뒤 · 술시(戌時)부터</span></div>
+          <div><span class="k">SEAT</span><span class="v">열두 자리 · 신령마다 하나씩</span></div>
+          <div><span class="k">ENTER</span><span class="v">고양이 석상을 밀고 들어오시오</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="fmoon" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="obang" style="max-width:240px;margin:0 auto 30px;border-radius:4px" aria-hidden="true"></div>
+    <div class="fw hanja">神<span class="rd">月</span>堂</div>
+    <p class="fko my">달빛 아래, 잔을 올리는 밤의 신당</p>
+    <p class="legal">© 神月堂 · 이피웹(YIPI WEB) 낙서장 가상 실험작 — 실제 매장 정보가 아닙니다.<br>돌아가기 → <a href="/nakseo.html">낙서장</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var hdr=document.getElementById('hdr');
+  addEventListener('scroll',function(){ hdr.classList.toggle('scr', scrollY>10); },{passive:true});
+  // 금줄 한지 위치 생성
+  document.querySelectorAll('.geumjul').forEach(function(g){
+    for(var i=0;i<Math.ceil(innerWidth/40);i++){var s=document.createElement('span');s.style.left=(i*40+14)+'px';s.style.animationDelay=(i*0.2)+'s';g.appendChild(s);}
+  });
+  // reveal (동작 줄이기에서도 폴백으로 표시)
+  var els=[].slice.call(document.querySelectorAll('.rv'));
+  if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});}
+  else{var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')})},2000);}
+})();
+</script>
+</body>
+</html>
