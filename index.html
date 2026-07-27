@@ -177,6 +177,7 @@
   .case .case-ey h2{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;letter-spacing:-.034em;line-height:1.1;color:var(--ink)}
   .case .case-ey .tail{margin-left:auto;font-family:var(--disp);font-weight:300;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;color:var(--ink-faint);align-self:center}
   .casecard{display:grid;grid-template-columns:1.05fr 1fr;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .casecard+.casecard{margin-top:clamp(20px,3.2vw,34px)}
   .casecard .cc-img{position:relative;overflow:hidden;min-height:240px}
   .casecard .cc-img img{width:100%;height:100%;object-fit:cover;transform:translateZ(0) scale(1.001);
     will-change:transform;transition:transform 1.05s cubic-bezier(.22,.61,.36,1)}
@@ -446,7 +447,7 @@
         <h2>실제 제작 사례</h2>
         <span class="tail">Real Case</span>
       </div>
-      <article class="casecard rv">
+      <article class="casecard rv" data-case="summerhill">
         <a class="cc-img" href="https://www.summerhilldessert.workers.dev" target="_blank" rel="noopener" aria-label="썸머힐디저트 실제 사이트 새 창으로 열기">
           <img src="case-summerhill.webp" alt="썸머힐디저트 링크 허브 사이트 미리보기" width="1200" height="800" loading="lazy">
         </a>
@@ -456,6 +457,20 @@
           <p class="cc-what">블로그·인스타·카톡·예약이 여기저기 흩어져 있던 걸, <b>브랜드 그대로의 링크 허브</b> 한 장으로 정리해 드렸어요. 사장님 계정으로 인계까지 완료된 <b>실제 운영 중인 사이트</b>예요.</p>
           <div class="cc-actions">
             <a class="btn btn-primary" href="https://www.summerhilldessert.workers.dev" target="_blank" rel="noopener">실제 사이트 보기 <span class="arrow">→</span></a>
+            <span class="cc-note">누르면 실제 운영 사이트로 이동해요</span>
+          </div>
+        </div>
+      </article>
+      <article class="casecard rv" data-case="nailurban">
+        <a class="cc-img" href="https://www.nailurban.workers.dev" target="_blank" rel="noopener" aria-label="네일어반 실제 사이트 새 창으로 열기">
+          <img src="case-nailurban.webp" alt="네일어반 프라이빗 네일샵 사이트 미리보기" width="1200" height="800" loading="lazy">
+        </a>
+        <div class="cc-body">
+          <span class="cc-cat">프라이빗 네일 · 수원 인계동</span>
+          <h3 class="cc-name">네일어반<span class="en">Nail Urban</span></h3>
+          <p class="cc-what">인스타·카톡으로 흩어져 있던 예약 문의를, <b>브랜드 무드 그대로의 한 페이지</b>로 모아 드렸어요. 시술·갤러리·오시는 길까지 담아 <b>사장님 계정으로 인계 완료된 실제 운영 사이트</b>예요.</p>
+          <div class="cc-actions">
+            <a class="btn btn-primary" href="https://www.nailurban.workers.dev" target="_blank" rel="noopener">실제 사이트 보기 <span class="arrow">→</span></a>
             <span class="cc-note">누르면 실제 운영 사이트로 이동해요</span>
           </div>
         </div>

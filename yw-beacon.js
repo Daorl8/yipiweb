@@ -2,9 +2,10 @@
  * yw-beacon.js — 이피웹 인사이트 비콘 (단일 소스)
  * 정본 설계 = 문서/인사이트_수집_설계.md §5 + §10
  * ─────────────────────────────────────────────────────────────
- * 6개 페이지 공용: index.html + nakseo.html + art/y2k/maximal/premiere.html
- *   각 페이지는 </body> 앞에 <script src="/yw-beacon.js"></script> 한 줄만 넣는다.
- *   ⚠️ 로직은 여기 한 곳뿐. 고칠 때 이 파일만 고치고 재배포하면 6개 다 반영.
+ * 홈페이지 6페이지: index + nakseo + art/y2k/maximal/premiere. 상대경로 <script src="/yw-beacon.js">.
+ * 가상 샘플(stay·flower·cafe·object …): 절대 URL <script src="https://yipiweb.lgt3232.workers.dev/yw-beacon.js">
+ *   로 이 파일 하나를 참조(진짜 단일 소스). ⚠️ 실고객 사이트엔 절대 넣지 않음(개인정보·소유).
+ *   ⚠️ 로직은 여기 한 곳뿐. 고칠 때 이 파일만 고치고 재배포하면 전부 반영.
  *      (2026-07-16 교훈: 중복본은 유지보수 지옥 + '어느 게 진짜냐' 오판을 부른다)
  *
  * 경로: 브라우저 ──(CORS fetch)──> CF Worker(yw-collect) ──> Apps Script /exec ──> 시트
@@ -17,8 +18,8 @@
  *   click_case  = 실고객 사례 클릭 (#case 안) — 신뢰 강신호
  *   click_lab   = 낙서장 실험작 타일 클릭 (.tile)
  *   click_work  = 가상 샘플 클릭 (workers.dev, #case 아님)
- *   click_channel(instagram/email) · click_cta · form_submit · popup_shown/close
- *   page 컬럼(location.pathname)으로 어느 페이지인지 구분(/ · /nakseo.html · /art.html …)
+ *   click_channel(instagram/email/phone/kakao/kakao_map/naver_booking/naver_store/naver_place) · click_cta · form_submit · popup_shown/close
+ *   page 컬럼 = location.host+pathname (샘플들이 각자 도메인의 '/' 라 host 로 구분)
  * ───────────────────────────────────────────────────────────── */
 (function(){
   var EP = 'https://daorl8-yw-collect.lgt3232.workers.dev/';
@@ -92,7 +93,8 @@
     var href = a.getAttribute('href')||'';
     var txt  = (((a.textContent||'').trim()) || a.getAttribute('aria-label') || '').slice(0,60);
     if(a.closest('#case')){                                       // 실고객 사례 = 신뢰 강신호
-      send('click_case', txt || href);
+      var _cc=a.closest('.casecard'); var _nm=_cc&&_cc.getAttribute('data-case');
+      send('click_case', _nm || txt || href);
     }else if(a.classList && a.classList.contains('tile')){        // 낙서장 실험작 타일
       send('click_lab', txt || href);
     }else if(/workers\.dev/i.test(href)){                         // 가상 샘플 = 어떤 업종이 먹히나
