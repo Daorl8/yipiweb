@@ -244,17 +244,6 @@
   .cta h2 .em{font-family:var(--serif);font-style:italic;font-weight:500;padding:0 .06em}
   .cta p{margin:22px auto 0;max-width:46ch;color:var(--ink-2);font-size:1.06rem}
   .cta .hero-actions{justify-content:center;margin-top:30px}
-  .event{
-    position:relative;overflow:hidden;margin:clamp(30px,5vw,42px) auto 0;max-width:600px;
-    border-radius:18px;padding:clamp(24px,4vw,32px) clamp(26px,4vw,36px);text-align:center;
-    background:linear-gradient(135deg,#22436d 0%,#152b47 100%);color:#fff;
-    box-shadow:0 18px 46px rgba(16,32,52,.30)
-  }
-  .event::before{content:'';position:absolute;width:230px;height:230px;right:-70px;top:-90px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%);pointer-events:none}
-  .event .gift{font-family:var(--serif);font-style:italic;font-weight:500;color:#AFC3E2;margin-right:.12em}
-  .event .event-main{position:relative;font-size:clamp(1.02rem,2.1vw,1.24rem);font-weight:700;letter-spacing:-.015em;line-height:1.55;color:#fff}
-  .event .event-main b{color:#fff;font-weight:800;box-shadow:inset 0 -2px 0 rgba(175,195,226,.55)}
-  .event .event-cond{position:relative;margin-top:11px;font-size:.85rem;color:#A7B6CD;line-height:1.55}
   .cta-mail{margin-top:16px;font-size:.9rem;color:var(--ink-soft)}
   .mailcopy{background:none;border:0;cursor:pointer;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px;font-size:.9rem;font-family:inherit;padding:0}
   .mailcopy:hover{color:var(--accent-2)}
@@ -605,10 +594,6 @@
       </form>
 
       <p class="cta-alt rv">또는 편한 채널로 — <a href="https://ig.me/m/your.page_yp" target="_blank" rel="noopener">인스타 DM</a> · <button type="button" class="mailcopy" data-mail="lgt31311@gmail.com">lgt31311@gmail.com 복사</button></p>
-      <div class="event rv">
-        <p class="event-main"><span class="gift">Gift.</span> 지금 <b>선착순 3팀</b>, 베이직 홈페이지를 <b>무료</b>로 만들어 드려요.</p>
-        <p class="event-cond">완성본을 먼저 보고 결정하세요 · 조건: 완성 후 후기 + 사례 노출 동의</p>
-      </div>
     </div>
   </section>
 </main>
@@ -639,21 +624,6 @@
     © 2026 이피웹 (YIPI WEB). 제작한 홈페이지의 소유권은 사장님께 귀속됩니다. · 문의: 인스타그램 DM · lgt31311@gmail.com
   </div>
 </footer>
-
-<!-- Event popup (first visit) -->
-<div class="modal" id="evtModal" role="dialog" aria-modal="true" aria-labelledby="evtTitle" hidden>
-  <div class="modal-card">
-    <button class="modal-close" type="button" aria-label="팝업 닫기" data-close>✕</button>
-    <p class="modal-kicker">Launch Event</p>
-    <h2 id="evtTitle">선착순 <span class="em">3팀</span>,<br>홈페이지 무료 제작</h2>
-    <p class="modal-desc">지금 신청하시는 <b>선착순 3팀</b>께 베이직 홈페이지를 <b>무료</b>로 만들어 드려요. 완성본을 먼저 보고 결정하시면 됩니다.<span class="modal-sub">(조건: 완성 후 후기 + 사례 노출 동의)</span></p>
-    <div class="modal-actions">
-      <a href="https://ig.me/m/your.page_yp" target="_blank" rel="noopener" class="btn btn-primary">인스타<br>DM 신청 <span class="arrow">→</span></a>
-      <a href="mailto:lgt31311@gmail.com?subject=이피웹%20무료%20제작%20이벤트%20신청" class="btn btn-ghost">이메일<br>신청</a>
-    </div>
-    <button class="modal-dismiss" type="button" data-dismiss-today>오늘 하루 안 보기</button>
-  </div>
-</div>
 
 <!-- Success popup (after form submit) -->
 <div class="modal" id="okModal" role="dialog" aria-modal="true" aria-labelledby="okTitle" hidden>
@@ -851,21 +821,6 @@
     });
   }
 
-  // event popup (first visit; "오늘 하루 안 보기" via localStorage)
-  var m=document.getElementById('evtModal');
-  if(m){
-    var KEY='yp_evt_hide';
-    var today=function(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();};
-    var hide=null;try{hide=localStorage.getItem(KEY);}catch(e){}
-    var close=function(){closeModal(m);};
-    var open=function(){openModal(m,'.modal-close');};
-    if(hide!==today()){setTimeout(open,800);}
-    m.addEventListener('click',function(e){
-      if(e.target===m||e.target.closest('[data-close]')){close();return;}
-      if(e.target.closest('[data-dismiss-today]')){try{localStorage.setItem(KEY,today());}catch(e){}close();}
-    });
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close();});
-  }
 })();
 </script>
 
