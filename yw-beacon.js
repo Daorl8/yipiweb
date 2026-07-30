@@ -181,9 +181,9 @@
   // ── 브릿지 배지: 가상 샘플 → 이피웹 홈 (구경꾼→리드 전환용, 비콘 있는 곳만 = 실고객 자동 제외) ──
   function showBridge(){
     var host = location.host, path = location.pathname;
-    // yipiweb 도메인: 홈(/)·낙서장 제외, 정식 샘플(tattoo·lash)만 표시
-    // ⚠️ CF가 /tattoo.html → /tattoo 로 확장자 제거 리라이트 → .html 옵셔널·trailing slash 대비
-    if(/yipiweb\.lgt3232\.workers\.dev$/i.test(host)) return /^\/(tattoo|lash)(\.html)?\/?$/i.test(path);
+    // yipiweb 도메인: 홈(index)만 제외, 나머지 전부 표시(샘플 tattoo·lash + 낙서장 art·y2k·maximal·premiere·sinwoldang·dapgyo·nakseo)
+    // ⚠️ CF가 /art.html → /art 로 확장자 제거 리라이트 → 경로 무관하게 "홈 아니면 표시"로 판정
+    if(/yipiweb\.lgt3232\.workers\.dev$/i.test(host)) return !/^\/(index(\.html)?)?$/i.test(path);
     // 그 외 *.workers.dev = 별도 도메인 가상 샘플 → 표시
     if(/\.workers\.dev$/i.test(host)) return true;
     return false; // 그 외(실고객 커스텀 도메인 등)엔 안 뜸 — 애초에 비콘도 없음
