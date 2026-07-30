@@ -92,6 +92,9 @@
     if(!a) return;
     var href = a.getAttribute('href')||'';
     var txt  = (((a.textContent||'').trim()) || a.getAttribute('aria-label') || '').slice(0,60);
+    if(a.closest('#yw-bridge')){                                  // 샘플→이피웹 브릿지 배지 (click_work로 안 새게 먼저 분기)
+      send('click_bridge', 'to_home'); return;
+    }
     if(a.closest('#case')){                                       // 실고객 사례 = 신뢰 강신호
       var _cc=a.closest('.casecard'); var _nm=_cc&&_cc.getAttribute('data-case');
       send('click_case', _nm || txt || href);
@@ -172,4 +175,54 @@
     }catch(e){}
   }
   if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', initDom); } else { initDom(); }
+
+  // ── 브릿지 배지: 가상 샘플 → 이피웹 홈 (구경꾼→리드 전환용, 비콘 있는 곳만 = 실고객 자동 제외) ──
+  function showBridge(){
+    var host = location.host, path = location.pathname;
+    // yipiweb 도메인: 홈(/)·낙서장 제외, 정식 샘플(tattoo·lash)만 표시
+    if(/yipiweb\.lgt3232\.workers\.dev$/i.test(host)) return /^\/(tattoo|lash)\.html$/i.test(path);
+    // 그 외 *.workers.dev = 별도 도메인 가상 샘플 → 표시
+    if(/\.workers\.dev$/i.test(host)) return true;
+    return false; // 그 외(실고객 커스텀 도메인 등)엔 안 뜸 — 애초에 비콘도 없음
+  }
+  function mountBridge(){
+    try{
+      if(!showBridge() || document.getElementById('yw-bridge') || !document.body) return;
+      var css = document.createElement('style');
+      css.textContent =
+        '#yw-bridge{position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:2147483000;'
+        +'display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:100px;'
+        +'background:rgba(22,22,26,.9);color:#fff;text-decoration:none;max-width:80vw;'
+        +'font:600 12.5px/1 -apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;letter-spacing:-.01em;'
+        +'box-shadow:0 6px 22px rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.14);'
+        +'-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .15s}'
+        +'#yw-bridge:hover{transform:translateY(-2px)}'
+        +'#yw-bridge b{opacity:.62;font-weight:400}#yw-bridge i{font-style:normal;white-space:nowrap}#yw-bridge s{text-decoration:none;font-weight:700;margin-left:2px}'
+        +'@media(max-width:640px){#yw-bridge{right:12px;bottom:calc(78px + env(safe-area-inset-bottom,0px));padding:8px 13px;font-size:12px}}';
+      document.head.appendChild(css);
+      var a = document.createElement('a');
+      a.id = 'yw-bridge';
+      a.href = 'https://yipiweb.lgt3232.workers.dev/?utm_source=sample_bridge&utm_medium=badge';
+      a.target = '_blank'; a.rel = 'noopener';
+      a.setAttribute('aria-label','이피웹 제작 샘플 — 내 가게도 만들기');
+      a.innerHTML = '<b>이피웹 제작 샘플</b><i>· 내 가게도<s>→</s></i>';
+      document.body.appendChild(a);
+      // 모바일: 하단 전체폭 고정바(예약바 등) 있으면 그 위로 올림 (늦게 뜨는 바 대비 지연 재계산)
+      function lift(){
+        try{
+          if(innerWidth>640) return;
+          var mx = 0;
+          var nodes = document.body.getElementsByTagName('*');
+          for(var i=0;i<nodes.length;i++){ var el=nodes[i]; if(el.id==='yw-bridge') continue;
+            var s=getComputedStyle(el); if(s.position!=='fixed'||s.display==='none') continue;
+            var r=el.getBoundingClientRect();
+            if(r.bottom>=innerHeight-2 && r.height>28 && r.height<170 && r.width>innerWidth*0.7) mx=Math.max(mx,r.height);
+          }
+          if(mx>0) a.style.bottom='calc('+(mx+12)+'px + env(safe-area-inset-bottom,0px))';
+        }catch(e){}
+      }
+      lift(); setTimeout(lift, 900);
+    }catch(e){}
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', mountBridge); } else { mountBridge(); }
 })();
