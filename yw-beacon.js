@@ -26,12 +26,13 @@
   var K  = 'yw_a8f3k1qz';
   if(!EP || !K) return;
 
-  // 1) 자기 방문 제외 (?admin=1 로 한 번 접속 → 이후 미수집, ?admin=0 해제)
+  // 1) 자기 방문 제외 (?admin=1 → 이후 수집 안 함). ⚠️브릿지 배지는 admin에게도 보임(다올 확인용), 계측만 스킵.
+  var _admin = false;
   try{
     var q0 = new URLSearchParams(location.search);
     if(q0.get('admin')==='1') localStorage.setItem('yw_admin','1');
     if(q0.get('admin')==='0') localStorage.removeItem('yw_admin');
-    if(localStorage.getItem('yw_admin')==='1') return;
+    if(localStorage.getItem('yw_admin')==='1') _admin = true;
   }catch(e){}
 
   // 2) 봇 제외
@@ -57,6 +58,7 @@
   var scrollMax = 0, t0 = Date.now(), sent = {}, exited = false;
 
   function send(ev, detail, value, extra, beacon){
+    if(_admin) return;   // 관리자(다올) 방문은 수집 제외 (배지는 뜨되 클릭 계측 안 함)
     var d = {
       k:K, event:ev, page:(location.host+location.pathname), detail:detail||'', value:(value==null?'':String(value)),
       utm_source:qp.get('utm_source')||'', utm_medium:qp.get('utm_medium')||'',
@@ -190,14 +192,13 @@
       if(!showBridge() || document.getElementById('yw-bridge') || !document.body) return;
       var css = document.createElement('style');
       css.textContent =
-        '#yw-bridge{position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:2147483000;'
-        +'display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:100px;'
-        +'background:rgba(22,22,26,.9);color:#fff;text-decoration:none;max-width:80vw;'
+        '#yw-bridge{position:fixed !important;right:16px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:2147483000;'
+        +'display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:100px;'
+        +'background:#17181C;color:#fff;text-decoration:none;max-width:80vw;'
         +'font:600 12.5px/1 -apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;letter-spacing:-.01em;'
-        +'box-shadow:0 6px 22px rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.14);'
-        +'-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .15s}'
+        +'box-shadow:0 4px 18px rgba(0,0,0,.5), 0 0 0 1.5px rgba(255,255,255,.5);transition:transform .15s}'
         +'#yw-bridge:hover{transform:translateY(-2px)}'
-        +'#yw-bridge b{opacity:.62;font-weight:400}#yw-bridge i{font-style:normal;white-space:nowrap}#yw-bridge s{text-decoration:none;font-weight:700;margin-left:2px}'
+        +'#yw-bridge b{opacity:.72;font-weight:400}#yw-bridge i{font-style:normal;white-space:nowrap}#yw-bridge s{text-decoration:none;font-weight:800;margin-left:3px;color:#E8C57A}'
         +'@media(max-width:640px){#yw-bridge{right:12px;bottom:calc(78px + env(safe-area-inset-bottom,0px));padding:8px 13px;font-size:12px}}';
       document.head.appendChild(css);
       var a = document.createElement('a');
