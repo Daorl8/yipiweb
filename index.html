@@ -252,6 +252,7 @@
   .cfield{display:grid;gap:7px}
   .cfield label{font-size:.82rem;font-weight:600;color:var(--ink);letter-spacing:-.01em}
   .cfield .req{color:var(--accent)}
+  .cfield .opt{color:var(--ink-faint);font-weight:400;font-size:.9em}
   .cform input[type=text],.cform input[type=email],.cform textarea{
     width:100%;font-family:inherit;font-size:1rem;color:var(--ink);background:var(--paper);
     border:1px solid var(--line-2);border-radius:4px;padding:12px 14px;transition:border-color .2s ease
@@ -596,8 +597,8 @@
           <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="reply@example.com">
         </div>
         <div class="cfield">
-          <label for="cf-msg">문의 내용 <span class="req">*</span></label>
-          <textarea id="cf-msg" name="message" rows="4" required placeholder="어떤 가게인지, 원하시는 느낌이나 참고 사이트 등 편하게 적어주세요."></textarea>
+          <label for="cf-msg">문의 내용 <span class="opt">(선택)</span></label>
+          <textarea id="cf-msg" name="message" rows="4" placeholder="무료 시안만 받고 싶으면 비워두셔도 돼요. 가게 인스타·원하는 느낌 등 있으면 편하게 적어주세요."></textarea>
         </div>
         <label class="cagree">
           <input type="checkbox" id="cf-agree" name="agree" value="1" required>
@@ -826,7 +827,7 @@
       e.preventDefault();
       if(sending)return;
       var email=(cform.email.value||'').trim(),msg=(cform.message.value||'').trim();
-      if(!email||!msg){cstatus.textContent='이메일과 문의 내용을 입력해 주세요.';cstatus.className='cform-status err';return;}
+      if(!email){cstatus.textContent='연락받을 이메일을 입력해 주세요.';cstatus.className='cform-status err';return;}
       if(!cform.agree.checked){cstatus.textContent='개인정보 수집·이용 동의가 필요합니다.';cstatus.className='cform-status err';return;}
       sending=true;csub.disabled=true;cstatus.textContent='';cstatus.className='cform-status';startSpin();
       fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(cform))})
