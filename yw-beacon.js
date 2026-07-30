@@ -182,7 +182,8 @@
   function showBridge(){
     var host = location.host, path = location.pathname;
     // yipiweb 도메인: 홈(/)·낙서장 제외, 정식 샘플(tattoo·lash)만 표시
-    if(/yipiweb\.lgt3232\.workers\.dev$/i.test(host)) return /^\/(tattoo|lash)\.html$/i.test(path);
+    // ⚠️ CF가 /tattoo.html → /tattoo 로 확장자 제거 리라이트 → .html 옵셔널·trailing slash 대비
+    if(/yipiweb\.lgt3232\.workers\.dev$/i.test(host)) return /^\/(tattoo|lash)(\.html)?\/?$/i.test(path);
     // 그 외 *.workers.dev = 별도 도메인 가상 샘플 → 표시
     if(/\.workers\.dev$/i.test(host)) return true;
     return false; // 그 외(실고객 커스텀 도메인 등)엔 안 뜸 — 애초에 비콘도 없음
@@ -199,7 +200,8 @@
         +'box-shadow:0 4px 18px rgba(0,0,0,.5), 0 0 0 1.5px rgba(255,255,255,.5);transition:transform .15s}'
         +'#yw-bridge:hover{transform:translateY(-2px)}'
         +'#yw-bridge b{opacity:.72;font-weight:400}#yw-bridge i{font-style:normal;white-space:nowrap}#yw-bridge s{text-decoration:none;font-weight:800;margin-left:3px;color:#E8C57A}'
-        +'@media(max-width:640px){#yw-bridge{right:12px;bottom:calc(78px + env(safe-area-inset-bottom,0px));padding:8px 13px;font-size:12px}}';
+        +'#yw-bridge.ywb-left{left:16px;right:auto}'   // 우하단 고정버튼과 겹치는 샘플은 좌측으로
+        +'@media(max-width:640px){#yw-bridge{right:12px;bottom:calc(78px + env(safe-area-inset-bottom,0px));padding:8px 13px;font-size:12px}#yw-bridge.ywb-left{left:12px;right:auto}}';
       document.head.appendChild(css);
       var a = document.createElement('a');
       a.id = 'yw-bridge';
@@ -207,6 +209,8 @@
       a.target = '_blank'; a.rel = 'noopener';
       a.setAttribute('aria-label','이피웹 제작 샘플 — 내 가게도 만들기');
       a.innerHTML = '<b>이피웹 제작 샘플</b><i>· 내 가게도<s>→</s></i>';
+      // 우하단 고정 CTA(예약·문의)와 겹치는 샘플은 배지를 좌하단으로
+      if(/(nail-atelier|pilates|academy)-sample\.lgt3232\.workers\.dev$/i.test(location.host)) a.classList.add('ywb-left');
       document.body.appendChild(a);
       // 모바일: 하단 전체폭 고정바(예약바 등) 있으면 그 위로 올림 (늦게 뜨는 바 대비 지연 재계산)
       function lift(){
