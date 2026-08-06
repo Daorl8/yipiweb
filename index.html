@@ -381,6 +381,10 @@
     #demoViewer.mobile .dv-stage{padding:0}
     #demoViewer.mobile .dv-frame{width:100%;border:0;border-radius:0;box-shadow:none}
   }
+  #demoViewer .dv-cta{flex:0 0 auto;display:flex;justify-content:center;padding:10px 12px;border-top:1px solid var(--line,#e7e2d8);background:#fff}
+  #demoViewer .dv-cta a{display:inline-flex;align-items:center;gap:8px;background:var(--navy,#1e2a44);color:#fff;text-decoration:none;font-weight:700;font-size:13.5px;letter-spacing:-.01em;padding:12px 22px;border-radius:100px;line-height:1.3;transition:filter .15s}
+  #demoViewer .dv-cta a:hover{filter:brightness(1.1)}
+  @media (max-width:600px){#demoViewer .dv-cta a{width:100%;justify-content:center}}
   @media (prefers-reduced-motion:reduce){#demoViewer .dv-frame{transition:none}}
 </style>
 <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
@@ -885,6 +889,7 @@
       <button type="button" class="dv-act dv-close" data-dv-close aria-label="닫기">✕</button>
     </div>
     <div class="dv-stage"><iframe class="dv-frame" title="샘플 데모 미리보기" loading="lazy"></iframe></div>
+    <div class="dv-cta"><a href="https://ig.me/m/your.page_yp" target="_blank" rel="noopener">💬 내 가게도 이렇게 만들기 · 인스타 DM →</a></div>
   </div>
 </div>
 <script>

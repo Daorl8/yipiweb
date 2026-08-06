@@ -1,5 +1,11 @@
 # CHANGELOG — yipiweb
 
+## 2026-08-06 (4) — 데모뷰어 DM CTA (병목 진단 기반)
+- **진단(비콘 gviz 읽기, 3주치)**: 홈 실세션 23 중 #contact **도달 1(4%)** vs #work 12(52%)·#case 9(39%). click_cta 2건=**둘 다 "작업물 보기"**(폼/메인 CTA 클릭 0). → "폼이 벽" 가설 **반증**. 진짜 병목=아무도 문의 섹션까지 스크롤 안 함(폼 아님).
+- **처방**: 묻힌 #contact 폼(96% 미도달) 손대봐야 무효 → **사람들이 실제 있는 데모뷰어에 DM CTA**. `#demoViewer` 하단 `.dv-cta` 바 신설: 인스타 DM 버튼(`ig.me/m/your.page_yp`), 뷰어 열렸을 때만 노출. 샘플 iframe 안 홈복귀 배지(yw-bridge)는 **그대로 유지**(다올 지시).
+- **계측**: 버튼 클릭 → 비콘 `click_channel=instagram` 자동(현재 0이라 바로 신호). ⚠️ n작아(실세션 23) 효과의 통계적 측정은 불가 — 저위험 정비로 간주, 진짜 레버는 DM·유료.
+- index.html만 변경(CSS `.dv-cta` + 모달 마크업 1줄). #contact 폼은 미변경.
+
 ## 2026-08-06 (3) — 데모뷰어 열람 계측(demo_open)
 - 데모뷰어 열람이 시트에 깨끗이 잡히도록 **`demo_open` 이벤트 신설**(yw-beacon.js). 기존엔 카드가 workers.dev 링크라 `click_work`(=새탭 이탈)로만 잡혀 "인페이지 열람"과 의미가 섞였음.
 - 비콘 클릭 위임에 wcard 분기 추가(bridge 다음): `a.wcard` && `!data-no-demo` → `send('demo_open', 샘플명)` 후 return(→ click_work 중복 발화 차단). data-no-demo 카드는 그대로 click_work.
