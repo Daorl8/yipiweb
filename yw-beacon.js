@@ -17,7 +17,8 @@
  *   page_view · section_view(section[id] 자동) · exit(scroll_max·secs)
  *   click_case  = 실고객 사례 클릭 (#case 안) — 신뢰 강신호
  *   click_lab   = 낙서장 실험작 타일 클릭 (.tile)
- *   click_work  = 가상 샘플 클릭 (workers.dev, #case 아님)
+ *   demo_open   = 인페이지 데모뷰어 열람 (a.wcard 클릭 → 모달 iframe, 2026-08-06). 이탈 아님·체류 신호. data-no-demo 카드는 제외(→click_work)
+ *   click_work  = 가상 샘플 클릭 (workers.dev, #case 아님 · 새탭 이탈형; data-no-demo 카드만 해당)
  *   click_channel(instagram/email/phone/kakao/kakao_map/naver_booking/naver_store/naver_place) · click_cta · form_submit · popup_shown/close
  *   page 컬럼 = location.host+pathname (샘플들이 각자 도메인의 '/' 라 host 로 구분)
  * ───────────────────────────────────────────────────────────── */
@@ -96,6 +97,13 @@
     var txt  = (((a.textContent||'').trim()) || a.getAttribute('aria-label') || '').slice(0,60);
     if(a.closest('#yw-bridge')){                                  // 샘플→이피웹 브릿지 배지 (click_work로 안 새게 먼저 분기)
       send('click_bridge', 'to_home'); return;
+    }
+    var _wc = a.closest && a.closest('a.wcard');                  // 인페이지 데모뷰어 열람 (2026-08-06). data-no-demo면 새탭→아래 click_work로
+    if(_wc && !_wc.hasAttribute('data-no-demo')){
+      var _g=_wc.querySelector('.gname');
+      var _nm=_g?((_g.childNodes[0]&&_g.childNodes[0].textContent.trim())||_g.textContent.trim()):'';
+      send('demo_open', _nm || (_wc.getAttribute('href')||'').replace(/^https?:\/\//,'').split('.')[0]);
+      return;                                                     // click_work 중복 발화 방지(뷰어는 이탈 아님)
     }
     if(a.closest('#case')){                                       // 실고객 사례 = 신뢰 강신호
       var _cc=a.closest('.casecard'); var _nm=_cc&&_cc.getAttribute('data-case');

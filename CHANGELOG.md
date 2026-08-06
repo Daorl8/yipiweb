@@ -1,5 +1,11 @@
 # CHANGELOG — yipiweb
 
+## 2026-08-06 (3) — 데모뷰어 열람 계측(demo_open)
+- 데모뷰어 열람이 시트에 깨끗이 잡히도록 **`demo_open` 이벤트 신설**(yw-beacon.js). 기존엔 카드가 workers.dev 링크라 `click_work`(=새탭 이탈)로만 잡혀 "인페이지 열람"과 의미가 섞였음.
+- 비콘 클릭 위임에 wcard 분기 추가(bridge 다음): `a.wcard` && `!data-no-demo` → `send('demo_open', 샘플명)` 후 return(→ click_work 중복 발화 차단). data-no-demo 카드는 그대로 click_work.
+- 샘플명 추출 = `.gname` 첫 텍스트노드(뷰어 로직과 동일). Apps Script 무수정(event 컬럼이 값만 받음). `node -c` 통과.
+- 배포 대상=yw-beacon.js(단일 소스라 홈+전 샘플 자동 반영). ⚠️ 데스크톱/모바일 토글·닫기까지 잡진 않음(열람 신호만, 필요 시 후속).
+
 ## 2026-08-06 (2) — 데모뷰어 전 샘플 확대
 - 파일럿(네일 아뜰리에) 라이브 검증·다올 승인 → **#work 17종 전체**에 인페이지 데모뷰어 적용.
 - 방식 개선: 카드마다 data-demo 다는 대신 **위임 클릭을 `a.wcard` 전체 대상**으로 바꾸고, URL=`href`·이름=`.gname` 첫 텍스트노드·업종=`.gcat`에서 **자동 추출**(data-demo/name/cat 있으면 override). 16개 카드 개별 편집 불필요·실수 0.

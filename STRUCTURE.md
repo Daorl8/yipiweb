@@ -12,7 +12,7 @@ GitHub(백업·이력) = Daorl8/yipiweb → CF 자동배포.
 
 ## 인사이트 계측 (단일 소스)
 - `yw-beacon.js` — **비콘 정본(단일 소스).** 홈페이지 6페이지는 상대경로 `/yw-beacon.js`, **가상 샘플**(stay·flower·cafe·object, 2026-07-20 파일럿)은 절대 URL `https://yipiweb.lgt3232.workers.dev/yw-beacon.js` 로 이 파일을 참조. `page=host+pathname` 로 사이트 구분. ⚠️ 실고객 사이트엔 넣지 않음. 정본 설계 = `문서/인사이트_수집_설계.md` §2·§5·§10.
-  - 이벤트: page_view · section_view(`section[id]` 자동) · click_case(#case) · click_lab(.tile) · click_work(workers.dev) · click_channel · click_cta · form_submit · popup_shown/close · exit(scroll_max·secs)
+  - 이벤트: page_view · section_view(`section[id]` 자동) · click_case(#case) · click_lab(.tile) · **demo_open(a.wcard 데모뷰어 열람, 2026-08-06)** · click_work(workers.dev, data-no-demo 카드만) · click_channel · click_cta · form_submit · popup_shown/close · exit(scroll_max·secs)
   - 경로: 브라우저 →(CORS fetch)→ CF Worker(daorl8-yw-collect) →(302)→ Apps Script /exec → 시트. 세션 키 = `yw_sid`(‘sid’는 구글이 400 차단).
   - admin=1 → localStorage로 자기 방문 제외. 봇 UA 제외. sid=sessionStorage(탭 단위·쿠키 없음).
 - `analytics-appsscript.gs` — Apps Script 웹앱 소스(시트 기록). `yw_sid`→`sid` 컬럼 매핑.
