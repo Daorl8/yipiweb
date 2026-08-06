@@ -355,6 +355,33 @@
     .nav-links a.nav-cta{border:0;text-align:center;justify-content:center;display:flex;margin-top:14px;padding:15px;border-radius:100px}
     .menu-btn{display:flex}
   }
+  /* ── 데모뷰어 모달 (2026-08-06 파일럿 · 네일 아뜰리에) ── */
+  html.dv-open,body.dv-open{overflow:hidden}
+  #demoViewer{position:fixed;inset:0;z-index:1000;display:none}
+  #demoViewer.on{display:block}
+  #demoViewer .dv-back{position:absolute;inset:0;background:rgba(18,20,24,.72);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+  #demoViewer .dv-card{position:absolute;inset:clamp(10px,3vw,34px);background:#fff;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  #demoViewer .dv-bar{flex:0 0 auto;display:flex;align-items:center;gap:9px;padding:10px 12px;border-bottom:1px solid var(--line,#e7e2d8);background:#fff}
+  #demoViewer .dv-title{margin-right:auto;display:flex;align-items:baseline;gap:7px;min-width:0}
+  #demoViewer .dv-name{font-weight:700;font-size:14px;color:var(--ink,#211c17)}
+  #demoViewer .dv-cat{font-weight:400;color:#9a948a;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #demoViewer .dv-seg{display:inline-flex;border:1px solid var(--line,#e7e2d8);border-radius:9px;overflow:hidden}
+  #demoViewer .dv-seg button{appearance:none;border:0;background:#fff;color:#6b655c;font:inherit;font-size:12.5px;padding:7px 12px;cursor:pointer;transition:background-color .15s ease,color .15s ease}
+  #demoViewer .dv-seg button[aria-pressed="true"]{background:var(--navy,#1e2a44);color:#fff}
+  #demoViewer .dv-act{appearance:none;border:1px solid var(--line,#e7e2d8);background:#fff;border-radius:9px;padding:7px 11px;font:inherit;font-size:12.5px;color:#4a453d;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+  #demoViewer .dv-close{width:34px;height:34px;justify-content:center;padding:0;font-size:15px}
+  #demoViewer .dv-stage{flex:1 1 auto;position:relative;background:#f2efe9;overflow:auto;display:flex;justify-content:center}
+  #demoViewer .dv-frame{width:100%;height:100%;border:0;background:#fff;transition:width .28s cubic-bezier(.2,.7,.2,1)}
+  #demoViewer.mobile .dv-stage{padding:18px 0}
+  #demoViewer.mobile .dv-frame{width:390px;max-width:100%;height:100%;border:1px solid var(--line,#e7e2d8);border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,.14)}
+  @media (max-width:600px){
+    #demoViewer .dv-card{inset:0;border-radius:0}
+    #demoViewer .dv-cat{display:none}
+    #demoViewer .dv-newtab .t{display:none}
+    #demoViewer.mobile .dv-stage{padding:0}
+    #demoViewer.mobile .dv-frame{width:100%;border:0;border-radius:0;box-shadow:none}
+  }
+  @media (prefers-reduced-motion:reduce){#demoViewer .dv-frame{transition:none}}
 </style>
 <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
@@ -425,7 +452,7 @@
         <a class="wcard" href="https://interior-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="온집 ONJIP 인테리어 시공 사이트 열기"><div class="thumb"><span class="frameno">07</span><img src="https://interior-sample.lgt3232.workers.dev/photo-1724582586529-62622e50c0b3.jpg" alt="온집 ONJIP 인테리어 시공 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">온집<span class="en">Onjip</span></span><span class="gcat">인테리어 시공</span></div></a>
         <a class="wcard" href="https://object-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="베슬 VESSEL 오브제 편집숍 사이트 열기"><div class="thumb"><span class="frameno">08</span><img src="https://object-sample.lgt3232.workers.dev/photo-1557644978-f61037cfbe49.jpg" alt="베슬 VESSEL 오브제 편집숍 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">베슬<span class="en">Vessel</span></span><span class="gcat">오브제 편집숍</span></div></a>
         <a class="wcard" href="https://gyeol-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="결 GYEOL 프라이빗 헤어살롱 사이트 열기"><div class="thumb"><span class="frameno">09</span><img src="https://gyeol-sample.lgt3232.workers.dev/photo-1781450090585-1a511b7066d9.jpg" alt="결 GYEOL 프라이빗 헤어살롱 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">결<span class="en">Gyeol</span></span><span class="gcat">프라이빗 헤어살롱</span></div></a>
-        <a class="wcard" href="https://nail-atelier-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="네일 아뜰리에 네일샵 사이트 열기"><div class="thumb"><span class="frameno">10</span><img src="https://nail-atelier-sample.lgt3232.workers.dev/photo-1604654894610-df63bc536371.jpg" alt="네일 아뜰리에 네일샵 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">네일 아뜰리에<span class="en">Atelier</span></span><span class="gcat">네일샵</span></div></a>
+        <a class="wcard" data-demo="https://nail-atelier-sample.lgt3232.workers.dev" data-demo-name="네일 아뜰리에" data-demo-cat="네일샵" href="https://nail-atelier-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="네일 아뜰리에 네일샵 데모 미리보기"><div class="thumb"><span class="frameno">10</span><img src="https://nail-atelier-sample.lgt3232.workers.dev/photo-1604654894610-df63bc536371.jpg" alt="네일 아뜰리에 네일샵 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">네일 아뜰리에<span class="en">Atelier</span></span><span class="gcat">네일샵</span></div></a>
         <a class="wcard" href="https://pilates-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="스튜디오 베르뒤르 필라테스 사이트 열기"><div class="thumb"><span class="frameno">11</span><img src="https://pilates-sample.lgt3232.workers.dev/photo-1717500252297-b09508db7ceb.jpg" alt="스튜디오 베르뒤르 필라테스 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">베르뒤르<span class="en">Verdure</span></span><span class="gcat">필라테스</span></div></a>
         <a class="wcard" href="https://yipiweb.lgt3232.workers.dev/tattoo.html" target="_blank" rel="noopener" aria-label="가린 타투 GARIN 커스텀 타투 스튜디오 사이트 열기"><div class="thumb"><span class="frameno">12</span><img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?auto=format&amp;fit=crop&amp;w=680&amp;q=72" alt="가린 타투 GARIN 커스텀 타투 스튜디오 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">가린 타투<span class="en">Garin</span></span><span class="gcat">타투 스튜디오</span></div></a>
         <a class="wcard" href="https://portfolio-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="여백 YEOBAEK 디자인 스튜디오 사이트 열기"><div class="thumb"><span class="frameno">13</span><img src="https://portfolio-sample.lgt3232.workers.dev/photo-1732022427254-daf058e80795.jpg" alt="여백 YEOBAEK 디자인 스튜디오 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">여백<span class="en">Yeobaek</span></span><span class="gcat">디자인 스튜디오</span></div></a>
@@ -845,6 +872,55 @@
 <!-- End Cloudflare Web Analytics -->
 
 <!-- 인사이트 비콘: 단일 소스 /yw-beacon.js (설계 §10 · 6개 페이지 공용, 낙서장 포함) -->
+<div id="demoViewer" role="dialog" aria-modal="true" aria-label="샘플 데모 미리보기" aria-hidden="true">
+  <div class="dv-back" data-dv-close></div>
+  <div class="dv-card">
+    <div class="dv-bar">
+      <span class="dv-title"><b class="dv-name">데모</b><span class="dv-cat"></span></span>
+      <span class="dv-seg" role="group" aria-label="화면 크기 전환">
+        <button type="button" data-dv-view="desktop" aria-pressed="true">🖥 데스크톱</button>
+        <button type="button" data-dv-view="mobile" aria-pressed="false">📱 모바일</button>
+      </span>
+      <a class="dv-act dv-newtab" href="#" target="_blank" rel="noopener">↗ <span class="t">새 탭</span></a>
+      <button type="button" class="dv-act dv-close" data-dv-close aria-label="닫기">✕</button>
+    </div>
+    <div class="dv-stage"><iframe class="dv-frame" title="샘플 데모 미리보기" loading="lazy"></iframe></div>
+  </div>
+</div>
+<script>
+(function(){
+  var v=document.getElementById('demoViewer'); if(!v) return;
+  var frame=v.querySelector('.dv-frame'), nameEl=v.querySelector('.dv-name'),
+      catEl=v.querySelector('.dv-cat'), newtab=v.querySelector('.dv-newtab'),
+      segBtns=v.querySelectorAll('[data-dv-view]'), lastFocus=null;
+  function setView(m){ v.classList.toggle('mobile', m==='mobile');
+    for(var i=0;i<segBtns.length;i++){ segBtns[i].setAttribute('aria-pressed', String(segBtns[i].getAttribute('data-dv-view')===m)); } }
+  function open(url,name,cat){
+    lastFocus=document.activeElement;
+    frame.src=url; nameEl.textContent=name||'데모'; catEl.textContent=cat?('· '+cat):'';
+    newtab.href=url; setView('desktop');
+    v.classList.add('on'); v.setAttribute('aria-hidden','false');
+    document.documentElement.classList.add('dv-open'); document.body.classList.add('dv-open');
+    var c=v.querySelector('.dv-close'); if(c) c.focus();
+  }
+  function close(){
+    v.classList.remove('on'); v.setAttribute('aria-hidden','true');
+    document.documentElement.classList.remove('dv-open'); document.body.classList.remove('dv-open');
+    frame.src='about:blank';
+    if(lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener('click', function(e){
+    var card=e.target.closest && e.target.closest('a.wcard[data-demo]');
+    if(card){ e.preventDefault();
+      open(card.getAttribute('data-demo'), card.getAttribute('data-demo-name'), card.getAttribute('data-demo-cat'));
+      return; }
+    if(e.target.closest && e.target.closest('[data-dv-close]')){ close(); return; }
+    var seg=e.target.closest && e.target.closest('[data-dv-view]');
+    if(seg){ setView(seg.getAttribute('data-dv-view')); }
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && v.classList.contains('on')) close(); });
+})();
+</script>
 <script src="/yw-beacon.js"></script>
 </body>
 </html>

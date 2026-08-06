@@ -1,4 +1,149 @@
+# CHANGELOG — yipiweb
+
+## 2026-08-06 (1) — 인페이지 데모뷰어 파일럿 (네일 아뜰리에)
+- ONBUILD 경쟁사 차용(메모리 onbuild-competitor-teardown). #work 샘플을 새 탭이 아니라 **이피웹 안 모달 iframe**으로 띄우는 뷰어. 목적=방문자를 이피웹에 붙잡아 CTA 노출(샘플→목적지 소비·복귀 브릿지 없음 병목 공략).
+- **파일럿 범위=네일 아뜰리에(#10) 1장만.** 나머지 16장은 기존 새 탭 유지. 판단 후 확대 결정.
+- 선행 검증 통과: `nail-atelier-sample.lgt3232.workers.dev` iframe 프레이밍 차단 없음(X-Frame-Options/CSP frame-ancestors 無, 라이브 렌더 확인).
+- 구현(index.html 3청크): ① `</style>` 앞 데모뷰어 CSS(모달·세그토글·폰프레임) ② 아뜰리에 카드에 `data-demo`/`data-demo-name`/`data-demo-cat` + aria-label "데모 미리보기"(href 폴백 유지=무JS·SEO·새탭) ③ `</body>` 앞 모달 마크업 + 위임 클릭 JS.
+- 기능: `[🖥데스크톱]`(풀폭)/`[📱모바일]`(390px 폰프레임) 토글 · `[↗새 탭]` · `[✕]`/백드롭/ESC 닫기 · body 스크롤락 · reduced-motion 폴백. 데스크톱·모바일 뷰 라이브 주입 검증 완료(스샷).
+- ⚠️ **미배포**: 로컬 index.html에만 반영, GitHub 커밋(→CF 자동배포)은 다올 판단 후. `data-demo` 없는 카드는 영향 0.
+- ⚠️ 후속 후보: 프레임 CSS를 IG 커버 목업과 공용화 / 뷰어 열람 비콘 이벤트(demo_open) 추가 / 프레임 내부 브릿지 배지 중복 억제 / 확대 시 실고객 사이트는 절대 제외.
+- 백업: index.html.bak2_20260727 존재. 무결성 확인(926줄·</html>·요소 1회씩).
+
+# CHANGELOG — yipiweb
+
+## 2026-07-30 (5) — 문의 폼 마찰 완화 (문의내용 선택화)
+- ⚠️근거 정정(2026-07-30, 다올 지적): `click_cta 3`은 detail 실측상 **전부 "작업물 보기"(#work)**였음 — 문의 CTA("무료로 먼저 만들어보기")·폼 클릭은 0. 따라서 "문의 시작 후 폼 이탈"은 오독. 실제는 **문의 진입 자체가 0**(관심은 샘플에 있으나 "나도 만들래"로 안 넘어감).
+- 그럼에도 폼 선택화는 유지 — 근거는 "문의 시작 이탈"이 아니라 **일반적 마찰 예방 + 무료 시안만 원하는 사람 진입장벽↓**. 다음 핵심 지표=click_bridge·문의 CTA 클릭(form_submit보다 상위).
+- **문의 내용 필수 해제**: required 제거(라벨·textarea·JS검증 3곳), 라벨 "(선택)"(.opt 흐린 스타일), placeholder "무료 시안만 받고 싶으면 비워두셔도 돼요". **이메일만 필수** 유지.
+- 채널 결정: DM 직행 전환 제안 철회(다올 지적=홈서 DM은 앱전환 마찰, 폼이 웹내 완결로 저마찰). 채널 개수 논쟁은 문의 0이라 표본 없음→현상유지(인스타DM+이메일). 유일 기준="빨리 응대 가능한 채널만".
+- index.html 1개 커밋. 백업 불필요(작은 diff).
+
+# CHANGELOG — yipiweb
+
+## 2026-07-30 (4) — 브릿지 배지 낙서장까지 확대
+- 다올 요청: 낙서장 실험작에도 브릿지 배지 추가. 기존엔 tattoo·lash만 포함(낙서장 제외)였음.
+- showBridge yipiweb 조건 변경: `.../(tattoo|lash)만` → **홈(index)만 제외, 나머지 전부 표시**. `!/^\/(index(\.html)?)?$/i.test(path)`. → 낙서장(art·y2k·maximal·premiere·sinwoldang·dapgyo·nakseo허브) 전부 배지 O. CF 확장자 리라이트 무관(홈 아니면 표시).
+- 실고객·홈 제외는 그대로. yw-beacon.js 1개 재커밋. node -c 통과.
+
+# CHANGELOG — yipiweb
+
+## 2026-07-30 (3) — 브릿지 배지 버그 2건 수정
+- ① **lash·tattoo 배지 안 뜸 수정**: CF가 `/tattoo.html`→`/tattoo`로 확장자 제거 리라이트 → showBridge 정규식이 `.html` 요구해 매칭 실패였음. `/^\/(tattoo|lash)(\.html)?\/?$/i`로 .html 옵셔널+trailing slash 대비.
+- ② **3개 샘플 배지 좌측 이동**: nail-atelier·pilates·academy는 우하단 고정 예약/문의 버튼과 겹침 → 해당 도메인만 `.ywb-left`(left:16/12px) 클래스로 좌하단 배치(PC·모바일 공통).
+- 나머지 샘플은 그대로 우하단. yw-beacon.js 1개 재커밋. node -c 통과.
+
+# CHANGELOG — yipiweb
+
+## 2026-07-30 (2) — 브릿지 배지 3개 수정 (대비·admin가시성·고정)
+- ① **대비 강화**: 반투명(rgba .9)→**불투명 잉크 #17181C** + 흰 링(box-shadow spread 1.5px rgba(255,255,255,.5)) + 강한 그림자 + **골드 화살표(#E8C57A)**. GOYO 같은 다크 배경서 묻히던 것 해결(어느 배경서도 분리).
+- ② **admin에게도 배지 표시**: 기존 admin=1이면 IIFE 최상단 return이라 다올이 자기 브라우저(전 샘플 admin=1)로는 배지 확인 불가였음. → `_admin` 플래그로 바꿔 **send()만 admin이면 no-op**(수집 제외 유지), 배지는 뜸. 다올 클릭은 계측 안 됨.
+- ③ **스크롤 고정 확실히**: `position:fixed !important`(부모 CSS 덮어쓰기 방지).
+- 백업=(직전)yw-beacon.js.bak2_20260730. node -c 통과. yw-beacon.js 1개 재커밋.
+
+# CHANGELOG — yipiweb
+
+## 2026-07-30 — 브릿지 배지(가상 샘플 → 이피웹 홈)
+- 배경: 비콘 실측(7/16~29) 방문자가 샘플을 hero→예약→위치까지 정독하고 실사례 5클릭인데 **form_submit·click_channel 하드 0** = "구경은 깊게, 문의는 안 함". 장벽=샘플→이피웹 복귀 다리 부재. → 브릿지 CTA(구경꾼→리드 전환).
+- **yw-beacon.js에 플로팅 배지 주입**(단일 소스=전 가상샘플 자동 적용). 우하단 절제된 반투명 pill "이피웹 제작 샘플 · 내 가게도 →" → yipiweb 홈(utm=sample_bridge). target=_blank.
+- 표시 조건: `showBridge()` = *.workers.dev 샘플 도메인 O / **yipiweb 홈(/)·낙서장 제외, tattoo·lash만 포함** / 실고객은 비콘 없어 자동 제외(규칙 준수). admin=1(다올)은 비콘 early-return이라 배지도 안 뜸 → 확인은 시크릿창.
+- 모바일: bottom 78px+safe-area 기본, **하단 전체폭 고정바(예약바) 감지 시 그 위 12px로 리프트**(setTimeout 900ms 재계산=늦게 뜨는 바 대비).
+- 계측: 배지 클릭=`click_bridge`(to_home). 클릭위임 맨 앞에서 분기해 click_work로 안 새게.
+- 배포: yw-beacon.js 1개 커밋 → 전 샘플 자동 반영. 백업=yw-beacon.js.bak2_20260730. node -c 문법 통과.
+
+# CHANGELOG — yipiweb
+
+## 2026-07-27 (3) — 진행절차 04에 CF 가입 안내 공시
+- 진행 방법 스텝 04(납품·소유권 인계)에 **클라우드플레어 무료 계정 생성 안내 추가**. 배경: 인계 시 고객 CF 가입이 최대 관문인데 사전 고지가 없어 "뜬금없이 뭘 가입하라"는 인상 → 미리 이유(소유권) + 무료/이메일인증만임을 명시해 심리적 저항 완화.
+- 문구: "…이때 무료 호스팅(클라우드플레어) 계정을 사장님 이메일로 하나 만들어요 — 사이트가 온전히 사장님 소유가 되기 위한 절차예요. 비용은 없고, 이메일 인증 한 번이면 끝이에요."
+- ⚠️ 다올 후속: 이 안내를 어디에 더 넣을지 검토 예정(DM 템플릿·계약서·크몽 등).
+
+# CHANGELOG — yipiweb
+
+## 2026-07-27 (2) — 실제 사례에 네일어반 추가 + click_case 사례 구분
+- #case 섹션에 **네일어반(Nail Urban, 수원 인계동) 카드 추가** — 완결 2호. 이미지 `case-nailurban.webp`(라이브 히어로 캡처 1200×800 webp, self-host). 링크=www.nailurban.workers.dev.
+- 두 사례를 시트에서 구분: 각 `.casecard`에 `data-case`(summerhill/nailurban) 부여. **yw-beacon.js `click_case` 개선** → `detail = data-case 우선`(전엔 txt||href라 버튼 텍스트 "실제 사이트 보기"가 동일해 구분 불가). 이미지 클릭·버튼 클릭 어느 쪽이든 사례명이 시트 detail에 남음.
+- CSS `.casecard+.casecard{margin-top}` 세로 간격. 카드 2개 세로 스택.
+- 배포 파일 3: index.html · yw-beacon.js · case-nailurban.webp. 백업=index.html.bak2_20260727·yw-beacon.js.bak_20260727.
+- ⚠️ 실고객(네일어반) 사이트 자체엔 비콘 안 붙음(규칙 유지). yipiweb 홈에서 나가는 클릭만 yipiweb 비콘이 집계.
+
+# CHANGELOG — yipiweb
+
+## 2026-07-27 — 무료 3팀 이벤트 종료(제거)
+- 무료 런칭 이벤트(선착순 3팀) 사실상 소진(완결 2: 썸머힐·네일어반 · 스톨 1: 으나수) → 유료 프레임 전환. **홈에서 무료 3팀 관련 요소 3곳 제거:**
+  - 문의 섹션 `.event` 배너("Gift. 선착순 3팀 무료") 삭제.
+  - 첫 방문 팝업 `#evtModal`(Launch Event) 전체 + 팝업 JS(localStorage `yp_evt_hide`) 삭제.
+- **유지**: 상시 서비스인 "무료 시안·수정 2~3회·30일 무료 AS"(세일즈 플로우) + 히어로 CTA "무료로 먼저 만들어 보기". 이건 3팀 이벤트와 무관.
+- 비콘/성공팝업(#okModal)/폼 핸들러 영향 없음. `grep 선착순·3팀·evtModal` = 잔여 0, `</html>` 온전, `yw-beacon.js` 2건 유지. 백업=index.html.bak_20260727.
+- ⚠️ 배포: yipiweb=git-connect(Daorl8/yipiweb) → **GitHub index.html 갱신 커밋해야 라이브 반영**. 바이오는 다올 갱신 완료.
+
 # CHANGELOG — yipiweb (이피웹 전용 사이트)
+
+## 2026-07-20 (7) — 속눈썹펌 샘플(살롱 드 란) 추가: 홈페이지 17번 + 계측
+- **신규 샘플 lash.html** = 살롱 드 란(SALON DE RAN), 래쉬펌/속눈썹펌 니치. 이미지 **self-host**(13장, tattoo의 Unsplash 핫링크와 달리 깔끔). 다올이 다른 대화에서 제작.
+- **홈페이지 index.html `#work` 갤러리 17번 카드** 추가(frame16 포근펫살롱 뒤). 링크 = **절대 URL `yipiweb.lgt3232.workers.dev/lash.html`** → `click_work` 발동. 썸네일=self-host og이미지. "총 16종→17종" 갱신. 무한스크롤 복제 정상(34=17×2).
+- **lash.html 비콘 추가**(yipiweb 도메인 상대경로). page=`.../lash` 추적. yipiweb 도메인이라 다올 admin 제외 대상.
+- **방식:** git clone 라이브 진본 + python 정밀 삽입(카드) + awk(비콘). 무결성 검증(wcard 16→17, </html>·</body> 각 1).
+- **✅ 라이브 검증(시각+DOM):** 17번=살롱 드 란/속눈썹펌, 속눈썹 클로즈업 self-host 이미지 정상 로드(naturalWidth 1500), click_work 분류, lash.html 비콘 로드. 순서·총17종 확인.
+- **다올 몫:** Linktree 정식 샘플 목록에 살롱 드 란 추가.
+
+
+## 2026-07-20 (6) — 홈페이지 #work 갤러리: 라운드→가린타투 교체
+- **index.html `#work` 12번 카드** = 라운드(social-sample) → **가린 타투**(`yipiweb.lgt3232.workers.dev/tattoo.html`, 이미지·이름·카테고리 전부 타투로). 라운드는 홈페이지에서 제거(낙서장 005로 이미 이동). 다올: "홈페이지엔 타투가 정식 샘플, 라운드는 낙서장" 의도 반영.
+- **⚠️ 백엔드 정합성 핵심:** 카드 링크를 **절대 URL `https://yipiweb.lgt3232.workers.dev/tattoo.html`** 로 함 → 비콘이 `workers.dev` 매칭해 **`click_work` 발동**. 만약 상대경로 `/tattoo.html` 로 했으면 case/lab/work/channel/cta 어디에도 안 걸려 **클릭 이벤트가 통째로 유실**될 뻔(중요 함정).
+- **방식:** 큰 한글 HTML이라 Edit 도구(tail 잘림 위험) 대신 **python 정밀 치환** + git clone 라이브 진본 기반. 무결성 검증(wcard 16개 유지, social-sample 잔재 0, </html>·</body> 각 1, 비콘 유지).
+- **✅ 라이브 검증(시각):** 12번 = 가린 타투 GARIN/타투 스튜디오, 타투 작업 사진 정상 렌더, 순서(10·11·12·13·14) 유지, click_work 분류 확인.
+- ⚠️ tattoo.html 이미지는 **Unsplash 핫링크**(자체 호스팅 아님) — 별도 품질 이슈로 남김. 정식 샘플 목록(Linktree)에 타투 추가·라운드 제거는 다올 몫.
+
+
+## 2026-07-20 (5) — 라운드↔타투 스왑 후속: 비콘 정합성 복구
+- **배경:** 다른 대화에서 낙서장 005(타투)↔라운드 스왑 진행 — 타투는 정식 샘플로 승격(낙서장 뱃지 제거, `tattoo.html`), 라운드는 낙서장 005로 편입(nakseo 타일 → social-sample 외부링크). 이 과정에서 **백엔드 계측에 2개 구멍** 발생.
+- **① maximal.html 비콘 회귀 복구:** 다른 대화가 maximal 재디자인(틴트 #00e5ff→#FF2E7E) 하며 비콘을 떨어뜨림 → 라이브에서 계측 안 됨. `git clone`으로 라이브 원본 받아 비콘 재삽입.
+- **② tattoo.html 비콘 신규:** 정식 샘플로 승격됐는데 계측 0 → 비콘 추가. page=`yipiweb.lgt3232.workers.dev/tattoo` 로 추적(yipiweb 도메인 서브페이지지만 분석 땐 샘플로 해석).
+- **방식:** 워크스페이스가 라이브와 어긋났을 위험(maximal 회귀가 증거) → **git clone 으로 라이브 진본 받아** 작업 후 업로드(재현오류0) + 워크스페이스 재동기화.
+- **✅ 검증:** 두 파일 GitHub 커밋→CF 배포→라이브 비콘 로드 확인(tattoo·maximal 둘 다 `/yw-beacon.js` 로드, 제목 정상). page 값 각각 `.../tattoo`·`.../maximal`.
+- **홈페이지 구조:** 스왑 자체는 깨끗(nakseo 005=라운드 새창링크, tattoo 낙서장 잔재 0, index 모노갤러리 불변). 구조 파손 없었고 문제는 계측 누락뿐이었음.
+- ⚠️ 미결: `lash.html`(눈결 속눈썹, 다른 대화 WIP)은 어디서도 링크 안 된 고아 페이지 + 비콘 없음 — 배포 확정되면 그때 비콘. 정식 샘플 목록(Linktree)에 타투 추가·라운드 제거는 다올 몫.
+
+
+## 2026-07-20 (4) — 원격 전용 3종 계측 완료 (총 16종 = 전 가상 샘플 커버)
+- **pilates·nail-atelier·academy**: 로컬 사본이 없던 초기 원격 샘플. **`git clone`(github.com 허용)으로 배포본을 바이트 정확하게 받아** bash로 비콘 삽입 후 업로드 → 재현 오류 0. 워크스페이스에 로컬 사본도 영구 생성(이후 편집 쉬움).
+- **academy도 멀티페이지**(index+courses+teachers+notice+consult + common.css/js) → 5페이지 전부 비콘. pilates·nail-atelier는 단일 index.html.
+- **검증**: 3종 라이브 비콘 로드+제목+이미지/공통CSS 온전(리버트 없음), 이벤트 시트 도달(hit 141→148, rows 78→85).
+- ⚠️ **교훈**: 로컬 사본 없는 레포는 **git clone**이 정답(에디터 편집·클립보드 붙여넣기는 위험). CM6 에디터 직접 스크립팅 불가, `navigator.clipboard.writeText` 무동작 → Ctrl+V가 **엉뚱한 OS클립보드(DM 템플릿)를 붙여넣는 사고** 발생(커밋 전 확인해서 막음).
+- **최종 상태**: 가상 샘플 **16종 전부 계측 배포**(파일럿4 + 배치9 + 원격3). 미배포=lash(LUNE, 레포 없음·로컬엔 비콘 있음). 실고객(nail-urban·summerhill)·폐기(nailfriendly)는 제외.
+
+
+## 2026-07-20 (3) — 가상 샘플 계측 전체 확대(파일럿 4 → 총 13종)
+- **추가 9종 배포·검증:** bar(NOCTURNE)·interior(온집)·portfolio(여백스튜디오)·select(QUINZE)·social(ROUND)·studio(STUDIO NOON)·sogon(소곤소곤)·pogeun-pet(포근펫살롱)·gyeol(결) 각 레포 GitHub 업로드→CF 자동배포. 9종 전부 라이브 비콘 로드+제목 정상(리버트 없음) 확인. 방문 이벤트 시트 도달(hit 125→141, rows 61→78).
+- **gyeol은 멀티페이지 사이트**(index+menu+about+booking + style.css). 4개 페이지 전부에 비콘 삽입→한 커밋 업로드. `page=host+pathname` 로 gyeol 내 페이지 퍼널(홈→예약) 구분. booking.html 예약폼 온전 확인.
+- **제외:** lash(LUNE)=GitHub 레포 미존재(배포 자체가 아직 안 됨, 로컬엔 비콘 삽입됨—배포 시 자동 포함). nailfriendly=폐기 미니시안. 실고객(nail-urban·summerhill)=비콘 금지.
+- **원격 전용 3종(pilates·nail-atelier·academy):** 로컬 사본 없음(초기 원격 샘플). 별도 처리 대기.
+- ⚠️ 검증 방문으로 시트 테스트 행 계속 추가 — 다올 일괄 삭제 예정.
+
+
+## 2026-07-20 (2) — 비콘 확장: 가상 샘플 계측 파일럿(4종) + host 구분 + 채널 세분화
+- **`page = host+pathname`:** 기존 pathname 단독은 가상 샘플들이 전부 자기 도메인 `/` 라 서로·홈페이지와 구분 불가 → host 포함. 홈페이지 page 값도 `yipiweb.lgt3232.workers.dev/…` 로 바뀜(정합성↑).
+- **채널 세분화:** click_channel 이 instagram/email 만 잡던 걸 → `phone`(tel:)·`kakao`(pf/open.kakao)·`kakao_map`·`naver_booking`·`naver_store`·`naver_place` 추가. **샘플의 진짜 전환 신호는 카톡·예약·스토어 클릭.** (홈페이지엔 영향 없음 — 여전히 instagram/email 정상.)
+- **가상 샘플 파일럿 4종:** stay·flower·cafe·object 의 index.html `</body>` 앞에 **절대 URL** `<script src="https://yipiweb.lgt3232.workers.dev/yw-beacon.js"></script>` 삽입 = 같은 파일 하나 참조(진짜 단일 소스). 같은 Worker·같은 시트로 수집(다올 결정). **대표 4종 먼저 → 데이터 형태 확인 후 나머지 확장.**
+- ⚠️ **실고객 사이트엔 절대 비콘 없음**(개인정보·소유 이슈, 다올 확정). 샘플이 고객 전환되면 태그 제거.
+- **배포 순서 주의:** yipiweb(확장된 yw-beacon.js) **먼저** 배포 → 그다음 샘플. 샘플이 먼저 뜨면 잠깐 옛 비콘 로드.
+- **✅ 배포·E2E 검증(2026-07-20):** yipiweb yw-beacon.js GitHub 커밋(raw 신버전 확인)→CF 자동배포→라이브 신버전 서빙 확인(host+pathname·신채널). 샘플 4종 GitHub 업로드→CF 자동배포. 4종 전부 라이브 DOM 에서 비콘 태그(절대 URL)+실제 로드 확인. 방문 시 이벤트 수집 확인(hit_count 114→121, sheet_rows 49→56, +7, 에러 0). **샘플들도 git-connected 자동배포 확정.**
+- ⚠️ **`yw_admin` 은 origin별 localStorage** — yipiweb 에만 걸려 있고 샘플 도메인엔 안 걸림. 다올 본인 방문을 샘플에서도 제외하려면 각 샘플 도메인에 `?admin=1` 한 번씩(설계 §4-⑤).
+- ⚠️ 이 검증으로 시트에 테스트 행(홈+샘플) 다수 추가됨 — 다올이 나중에 일괄 삭제 예정.
+
+
+## 2026-07-20 — 비콘 외부화(단일 소스) + 클릭 3분류 + 낙서장 6페이지 계측
+- **비콘 외부화 `yw-beacon.js`:** index.html 인라인 IIFE(약 146줄)를 `<script src="/yw-beacon.js"></script>` 한 줄로 교체. 6개 페이지(index + nakseo + art/y2k/maximal/premiere) 공용 단일 소스 → 로직 고칠 때 파일 1개만. (2026-07-16 교훈: 중복본은 유지보수 지옥 + '어느 게 진짜냐' 오판.)
+- **클릭 3분류(판정 순서 case→lab→work):**
+  - `click_case` = `#case` 섹션 안 링크 = **실고객 사례**(썸머힐). 신뢰 강신호. `a.closest('#case')` 로 DOM 위치 판정(URL 목록 관리 불필요).
+  - `click_lab` = 낙서장 `.tile` = **실험작**(RAW/Y2K/과잉/시사회).
+  - `click_work` = 그 외 `workers.dev` = **가상 샘플**. ⚠️ 실고객 사이트도 workers.dev라 case를 **먼저** 판정해야 안 섞임.
+- **낙서장 계측:** nakseo.html + art/y2k/maximal/premiere.html 4개 실험작에 비콘 삽입. `page`(pathname)로 페이지 구분, `section[id]` 자동 관찰(페이지마다 목록 안 넘김).
+- **editorial.html 폐기:** 구버전 실험 004(허브 미연결·premiere.html이 대체). 로컬·GitHub 삭제(404 확인).
+- **✅ E2E 검증:** 라이브 오리진에서 테스트 4건 발사(click_case@/·click_lab@/nakseo·page_view@/nakseo·page_view@/art) → `?debug` 카운터 hit_count 95→99(+4), sheet_rows 27→31(+4), last_error 없음. 브라우저→Worker→Apps Script→시트 전 구간 관통. ⚠️ 시트에 이 테스트 4행 남음(무시 가능·다올이 원하면 삭제).
+- ⚠️ **다올 실기기 확인 필요**(admin=1이 내 브라우저 제외하므로): 시크릿/폰으로 실방문 → `?debug=<토큰>&cb=<랜덤>` 으로 카운터 증가 확인.
+
 
 ## 2026-07-19 (3) — 낙서장(SCRATCHPAD) 신설: 실험작 3 + 허브 + 메인 연결
 - **컨셉:** "팔 생각 없이, 만들고 싶은 대로" 만든 실험작 모음 = 이피웹의 다른 얼굴. 샘플(전환 자산)과 분리 — 별도 페이지 라인으로. (다올 결정: 3탭 아님, 메인+낙서장 2탭 / 샘플은 메인 유지.)
