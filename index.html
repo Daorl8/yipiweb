@@ -910,9 +910,14 @@
     if(lastFocus&&lastFocus.focus) lastFocus.focus();
   }
   document.addEventListener('click', function(e){
-    var card=e.target.closest && e.target.closest('a.wcard[data-demo]');
-    if(card){ e.preventDefault();
-      open(card.getAttribute('data-demo'), card.getAttribute('data-demo-name'), card.getAttribute('data-demo-cat'));
+    var card=e.target.closest && e.target.closest('a.wcard');
+    if(card && !card.hasAttribute('data-no-demo')){ e.preventDefault();
+      var url=card.getAttribute('data-demo')||card.getAttribute('href');
+      var nm=card.getAttribute('data-demo-name');
+      var ct=card.getAttribute('data-demo-cat');
+      if(!nm){ var g=card.querySelector('.gname'); nm=g?((g.childNodes[0]&&g.childNodes[0].textContent.trim())||g.textContent.trim()):''; }
+      if(!ct){ var c=card.querySelector('.gcat'); ct=c?c.textContent.trim():''; }
+      open(url,nm,ct);
       return; }
     if(e.target.closest && e.target.closest('[data-dv-close]')){ close(); return; }
     var seg=e.target.closest && e.target.closest('[data-dv-view]');
