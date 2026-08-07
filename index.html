@@ -2,569 +2,936 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>라운드 · ROUND — 취향이 통하는 사람들의 저녁</title>
-<meta name="description" content="비슷한 취향의 어른들이 한자리에. 10분씩 대화를 나누고, 마음이 가는 사람에게만 조용히 다음을 건네는 저녁. 라운드.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>이피웹 · YIPI WEB — 감성 소상공인 홈페이지 제작</title>
+<meta name="description" content="인스타 감성 그대로, 매달 0원인 홈페이지 한 장. 사진만 주시면 3~5일 안에 완성 — 완성본을 먼저 보고 결제하세요. 만든 사이트는 100% 사장님 소유.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23fff' text-anchor='middle' font-style='italic'%3EY%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="ROUND 라운드">
-<meta property="og:title" content="라운드 · ROUND — 취향이 통하는 사람들의 저녁">
-<meta property="og:description" content="비슷한 취향의 어른들이 한자리에. 대화 속에서 자연스럽게 시작되는 설렘.">
-<meta property="og:url" content="https://social-sample.lgt3232.workers.dev/">
-<meta property="og:image" content="https://social-sample.lgt3232.workers.dev/photo-1484659619207-9165d119dafe.jpg">
+<meta property="og:title" content="이피웹 · YIPI WEB — 감성 소상공인 홈페이지 제작">
+<meta property="og:description" content="인스타 감성 그대로, 매달 0원인 홈페이지 한 장. 완성본을 먼저 보고 결제하세요.">
+<meta property="og:image" content="https://yipiweb.lgt3232.workers.dev/og.jpg">
+<meta property="og:url" content="https://yipiweb.lgt3232.workers.dev">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="라운드 · ROUND — 취향이 통하는 사람들의 저녁">
-<meta name="twitter:image" content="https://social-sample.lgt3232.workers.dev/photo-1484659619207-9165d119dafe.jpg">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%23A8425A'/><circle cx='16' cy='16' r='7' fill='none' stroke='%23F8EFE6' stroke-width='2.4'/><circle cx='16' cy='9' r='2.1' fill='%23F8EFE6'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@200;300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-@font-face{font-family:'Pretendard';src:url('pretendard-sub.woff2') format('woff2');font-weight:45 930;font-style:normal;font-display:swap}
-:root{
-  --bg:#17110E; --paper:#231A12; --cream:#1C1510;
-  --ink:#EFE4D4; --muted:#B6A794; --faint:#8A7C6C;
-  --wine:#CE6E7A; --wine-d:#8B3A44; --wine-soft:rgba(206,110,122,.16);
-  --amber:#E4AE70; --amber-soft:rgba(228,174,112,.18);
-  --plum:#BBA1BA; --plum-soft:rgba(187,161,186,.16);
-  --line:rgba(239,228,212,.12); --line2:rgba(239,228,212,.22);
-  --radius:20px; --radius-s:14px;
-  --shadow:0 20px 54px -26px rgba(60,40,38,.30);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:"Pretendard",sans-serif;line-height:1.68;word-break:keep-all;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-.ser{font-family:"Cormorant Garamond",serif}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.kicker{display:inline-block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.18rem;letter-spacing:.01em;color:var(--wine);font-weight:500}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:40px;font-weight:600;font-size:.95rem;cursor:pointer;border:1.5px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s}
-.btn--wine{background:var(--wine);color:#fff;box-shadow:0 12px 26px -12px rgba(168,66,90,.7)}
-.btn--wine:hover{transform:translateY(-2px);box-shadow:0 18px 32px -12px rgba(168,66,90,.7)}
-.btn--ghost{background:transparent;border-color:var(--line2);color:var(--ink)}
-.btn--ghost:hover{border-color:var(--wine);color:var(--wine)}
-.btn--sm{padding:10px 19px;font-size:.86rem}
+  :root{
+    --paper:#FFFFFF;
+    --paper-2:#F6F6F6;
+    --ink:#0A0A0B;
+    --ink-2:#353535;
+    --ink-soft:#6A6A6E;
+    --ink-faint:#7C7C82;
+    --line:#E7E7E7;
+    --line-2:#D9D9D9;
+    --accent:#1F3A5F;
+    --accent-2:#2B5185;
+    --dark:#0E0F12;
+    --dark-line:#26282E;
+    --dark-soft:#B4B5BB;
+    --dark-faint:#83858D;
+    --maxw:1260px;
+    --pad:clamp(20px,5vw,72px);
+    --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    --disp:'Mukta Malar',var(--sans);
+    --serif:'EB Garamond','Noto Serif KR',Georgia,serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;color-scheme:light}
+  body{
+    font-family:var(--sans);background:var(--paper);color:var(--ink-2);
+    line-height:1.68;font-size:16px;letter-spacing:-.006em;
+    word-break:keep-all;overflow-wrap:break-word;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--accent);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+  @media (hover:none){.btn-primary:hover,.btn-ghost:hover{transform:none}}
 
-.reveal{opacity:1;transform:none}
-@media(min-width:881px){
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .45s ease,transform .45s ease}
-  .reveal.in{opacity:1;transform:none}
-}
+  /* ---- shared editorial atoms (studioddang-derived) ---- */
+  .eyebrow{
+    display:inline-block;font-family:var(--disp);font-weight:300;
+    font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .eyebrow::before{content:'[';color:var(--accent);margin-right:1em;font-weight:400}
+  .eyebrow::after{content:']';color:var(--accent);margin-left:1em;font-weight:400}
+  .idx{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--accent);letter-spacing:0;line-height:1}
+  .en{font-family:var(--disp);font-weight:300;letter-spacing:.02em}
 
-/* 상단바 */
-.topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:15px 24px;background:rgba(18,12,10,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
-.topbar.solid{border-color:var(--line);box-shadow:0 6px 24px -18px rgba(120,50,55,.5)}
-.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:1.24rem;letter-spacing:.02em}
-.brand .mark{width:26px;height:26px;border-radius:9px;background:var(--wine);position:relative;flex:none}
-.brand .mark::before{content:"";position:absolute;inset:6px;border-radius:50%;border:2.2px solid #FCF3EC}
-.brand .mark::after{content:"";position:absolute;left:50%;top:3.5px;width:3.6px;height:3.6px;border-radius:50%;background:#FCF3EC;transform:translateX(-50%)}
-.nav{display:flex;align-items:center;gap:28px}
-.nav a{font-size:.92rem;font-weight:500;color:var(--muted);transition:color .2s}
-.nav a:hover{color:var(--ink)}
-.nav a.btn--wine{color:#fff}
-.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
-.burger span{width:24px;height:2px;background:var(--ink);display:block;border-radius:2px}
-.drawer{position:fixed;inset:0;z-index:55;background:rgba(16,11,9,.98);display:none;flex-direction:column;align-items:center;justify-content:center;gap:24px}
-.drawer.open{display:flex}
-.drawer a{font-size:1.5rem;font-weight:600}
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:100;background:var(--paper);
+    border-bottom:1px solid transparent;transition:border-color .3s ease;
+  }
+  header.scrolled{border-bottom-color:var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+  .brand{display:flex;align-items:baseline;gap:.55rem;font-weight:800;font-size:1.06rem;letter-spacing:-.02em;color:var(--ink);flex-shrink:0}
+  .brand .en{font-size:.8rem;letter-spacing:.24em;color:var(--ink-faint);font-weight:300;text-transform:uppercase}
+  .nav-links{display:flex;gap:2.3rem;align-items:center}
+  .nav-links a{font-family:var(--disp);font-size:.82rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);position:relative;padding:5px 0}
+  .nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--ink);transition:width .28s ease}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after{width:100%}
+  .nav-links a.nav-cta{
+    font-family:var(--sans)!important;font-size:.82rem!important;letter-spacing:.01em!important;text-transform:none!important;
+    font-weight:600;color:#fff!important;background:var(--accent);padding:11px 26px;border-radius:100px;transition:background .2s ease;white-space:nowrap
+  }
+  .nav-links a.nav-cta:hover{background:var(--accent-2)}
+  .nav-links a.nav-cta::after{display:none}
+  .menu-btn{display:none;background:none;border:0;cursor:pointer;width:42px;height:42px;flex-direction:column;justify-content:center;gap:5px;align-items:flex-end;flex-shrink:0}
+  .menu-btn span{display:block;height:1.5px;background:var(--ink);transition:.3s;width:26px}
+  .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-/* 히어로 */
-.hero{position:relative;padding:128px 0 72px;overflow:hidden}
-.hero__bg{position:absolute;inset:0;z-index:0}
-.hero__bg img{width:100%;height:100%;object-fit:cover;opacity:.5;filter:saturate(1.05) brightness(.85)}
-.hero__bg::after{content:"";position:absolute;inset:0;background:radial-gradient(66% 58% at 78% 16%,rgba(228,174,112,.32),transparent 60%),linear-gradient(180deg,rgba(23,17,14,.5),var(--bg) 92%)}
-.hero__in{position:relative;z-index:2;display:grid;grid-template-columns:1.12fr .88fr;gap:42px;align-items:center}
-.hero h1{font-size:clamp(2.4rem,5.6vw,3.9rem);font-weight:700;line-height:1.18;letter-spacing:-.02em;margin:14px 0 0}
-.hero h1 .em{color:var(--wine)}
-.hero__sub{font-size:clamp(1.04rem,2.1vw,1.22rem);color:var(--muted);margin-top:22px;font-weight:400;max-width:26ch;line-height:1.7}
-.hero__btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.trust-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
-.chip{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:1px solid var(--line);border-radius:30px;padding:8px 15px;font-size:.84rem;font-weight:500;color:var(--ink)}
-.chip i{width:6px;height:6px;border-radius:50%;background:var(--wine);display:inline-block}
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:clamp(52px,10vh,116px) 0 clamp(34px,5vh,56px);text-align:center}
+  .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .hero-bg .hbimg{
+    position:absolute;inset:-2%;background-size:cover;background-position:center;
+    opacity:0;transform:scale(1.06);filter:grayscale(.15) contrast(1.03);
+    transition:opacity 1.6s ease, transform 7s ease!important;will-change:opacity,transform
+  }
+  .hero-bg .hbimg.active{opacity:.9;transform:scale(1)}
+  .hero-scrim{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 60% 82% at 50% 46%, rgba(255,255,255,.85) 0%, rgba(255,255,255,.72) 48%, rgba(255,255,255,.30) 76%, rgba(255,255,255,0) 100%)}
+  .hero .wrap{position:relative;z-index:2}
+  .hero .eyebrow{margin-bottom:clamp(22px,3vw,32px)}
+  .hero h1{
+    font-weight:800;letter-spacing:-.038em;line-height:1.06;color:var(--ink);
+    font-size:clamp(2.5rem,7vw,5rem);max-width:16ch;margin:0 auto;
+  }
+  .hero h1 .em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.01em;padding:0 .06em}
+  .hero h1 .accent{color:var(--accent)}
+  .hero .sub{font-family:var(--disp);font-weight:200;font-size:clamp(1rem,2.4vw,1.5rem);letter-spacing:.06em;color:var(--ink-soft);margin-top:18px}
+  .hero-lead{margin:clamp(22px,3vw,28px) auto 0;max-width:50ch;font-size:clamp(1rem,1.5vw,1.14rem);color:var(--ink-2);line-height:1.7}
+  .hero-lead b{color:var(--ink);font-weight:700}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(28px,4vw,36px);justify-content:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:.55em;font-weight:600;font-size:.98rem;
+    padding:15px 28px;border-radius:100px;border:1px solid transparent;
+    transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-2);transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--line-2);color:var(--ink);background:var(--paper)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn .arrow{transition:transform .25s ease}
+  .btn:hover .arrow{transform:translateX(4px)}
+  .hero-meta{
+    margin-top:clamp(40px,6vw,66px);padding-top:26px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(26px,6vw,74px)
+  }
+  .hero-meta .stat{display:flex;flex-direction:column;gap:5px;align-items:center}
+  .hero-meta .stat b{font-family:var(--serif);font-size:clamp(1.9rem,3.6vw,2.5rem);font-weight:500;letter-spacing:-.01em;line-height:1;color:var(--ink)}
+  .hero-meta .stat b small{font-family:var(--sans);font-size:.42em;font-weight:600;color:var(--ink-soft);margin-left:.1em}
+  .hero-meta .stat span{font-family:var(--disp);font-size:.78rem;color:var(--ink-2);font-weight:500;letter-spacing:.04em}
 
-/* 로테이션 다이어그램 */
-.rot{position:relative;width:330px;height:330px;margin:0 auto;max-width:84vw}
-.rot__ring{position:absolute;inset:0;animation:spin 30s linear infinite}
-.rot__seat{position:absolute;top:50%;left:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:600;color:#FCF3EC;box-shadow:0 7px 16px -7px rgba(60,20,30,.5)}
-.rot__seat.m{background:var(--wine)}
-.rot__seat.f{background:var(--plum)}
-.rot__hub{position:absolute;top:50%;left:50%;width:130px;height:130px;margin:-65px 0 0 -65px;border-radius:50%;background:var(--paper);border:1.5px solid var(--line2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:var(--shadow)}
-.rot__hub .n{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:2.5rem;color:var(--wine);line-height:1}
-.rot__hub .t{font-size:.78rem;color:var(--muted);font-weight:500;margin-top:2px}
-.rot__arrow{position:absolute;top:50%;left:50%;width:202px;height:202px;margin:-101px 0 0 -101px;border-radius:50%;border:1.5px solid var(--wine-soft);border-top-color:var(--wine);animation:spin 9s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-/* 동작 줄이기 강제 무시(오너 결정 2026-07-19): 데모 샘플은 전 효과 강제 출력 통일. reduce 블록 제거. */
+  /* ---------- Section frame ---------- */
+  section{padding:clamp(58px,9vh,112px) 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(30px,5vw,52px)}
+  .sec-head .idx{flex-shrink:0;font-size:clamp(1.1rem,2vw,1.4rem)}
+  .sec-head h2{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.032em;line-height:1.1;color:var(--ink)}
+  .sec-head h2 .em{font-family:var(--serif);font-style:italic;font-weight:500;padding:0 .1em}
+  .sec-head .tail{margin-left:auto;font-family:var(--disp);font-weight:300;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;color:var(--ink-faint);align-self:center}
 
-section{position:relative}
-.sec{padding:90px 0}
-.sec-head{text-align:center;max-width:48ch;margin:0 auto 48px}
-.sec-head h2{font-size:clamp(1.8rem,4.2vw,2.6rem);font-weight:700;letter-spacing:-.02em;margin-top:10px;line-height:1.22}
-.sec-head p{color:var(--muted);margin-top:14px;font-weight:400}
+  /* ---------- Work carousel (gallery-first, auto horizontal scroll) ---------- */
+  .wscroll{overflow-x:auto;overflow-y:hidden;padding:4px var(--pad) 6px;scrollbar-width:none;-ms-overflow-style:none;cursor:grab}
+  .wscroll::-webkit-scrollbar{display:none}
+  .wtrack{display:flex;gap:clamp(16px,2vw,24px);width:max-content}
+  .wcard{flex:0 0 clamp(238px,74vw,300px);display:block;position:relative}
+  .thumb{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--paper-2);border:1px solid var(--line)}
+  .thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(.12) contrast(1.02);transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s ease}
+  .frameno{position:absolute;top:12px;left:14px;z-index:2;font-family:var(--serif);font-style:italic;font-size:1rem;color:#fff;mix-blend-mode:difference;letter-spacing:0}
+  .view{
+    position:absolute;left:0;right:0;bottom:0;z-index:2;padding:16px 16px 14px;
+    display:flex;align-items:center;gap:.5em;color:#fff;font-weight:600;font-size:.9rem;letter-spacing:.01em;
+    background:linear-gradient(to top,rgba(10,10,11,.62),rgba(10,10,11,0));
+    opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease
+  }
+  .view .arrow{transition:transform .25s ease}
+  .wcard:hover .view{opacity:1;transform:none}
+  .wcard:hover .view .arrow{transform:translateX(4px)}
+  @media (hover:hover){
+    .wcard:hover .thumb img{transform:scale(1.045);filter:grayscale(0) contrast(1.03)}
+  }
+  .gmeta{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:14px}
+  .gmeta .gname{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+  .gmeta .gname .en{font-size:.78rem;color:var(--ink-faint);margin-left:.45em;text-transform:uppercase;letter-spacing:.12em}
+  .gmeta .gcat{font-family:var(--disp);font-weight:300;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;flex-shrink:0}
+  .gnote{margin-top:clamp(24px,4vw,34px);font-size:.9rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:20px;line-height:1.6}
+  .brm{display:none}
+  .wbar{height:6px;background:var(--line);border-radius:100px;position:relative;margin-top:20px;cursor:pointer;touch-action:none}
+  .wbar-thumb{position:absolute;top:0;left:0;height:100%;min-width:30px;width:30px;background:var(--accent);border-radius:100px;transition:background .2s}
+  .wbar:hover .wbar-thumb{background:var(--accent-2)}
 
-/* 진행 */
-#how{background:linear-gradient(180deg,var(--bg),var(--cream))}
-.how-grid{display:grid;grid-template-columns:auto 1fr;gap:50px;align-items:center}
-.steps{display:grid;gap:13px}
-.step{display:flex;gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-s);padding:18px 22px;transition:transform .2s,box-shadow .2s}
-.step:hover{transform:translateX(4px);box-shadow:var(--shadow)}
-.step__n{flex:none;width:40px;height:40px;border-radius:50%;background:var(--wine-soft);color:var(--amber);font-family:"Cormorant Garamond",serif;font-weight:600;font-size:1.3rem;display:flex;align-items:center;justify-content:center}
-.step__b h4{font-size:1.08rem;font-weight:600}
-.step__b p{color:var(--muted);font-size:.93rem;margin-top:3px}
+  /* ---------- Real case (실제 제작 사례) ---------- */
+  /* 샘플과 종류가 다른 '실제 납품' 증거. n=1 이라 무거운 번호 섹션 대신
+     paper-2 틴트 밴드 + featured 카드 하나. 사례 늘면 정식 섹션 승격. */
+  .case{background:var(--paper-2)}
+  .case .case-ey{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(26px,4vw,40px);flex-wrap:wrap}
+  .case .case-ey h2{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;letter-spacing:-.034em;line-height:1.1;color:var(--ink)}
+  .case .case-ey .tail{margin-left:auto;font-family:var(--disp);font-weight:300;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;color:var(--ink-faint);align-self:center}
+  .casecard{display:grid;grid-template-columns:1.05fr 1fr;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .casecard+.casecard{margin-top:clamp(20px,3.2vw,34px)}
+  .casecard .cc-img{position:relative;overflow:hidden;min-height:240px}
+  .casecard .cc-img img{width:100%;height:100%;object-fit:cover;transform:translateZ(0) scale(1.001);
+    will-change:transform;transition:transform 1.05s cubic-bezier(.22,.61,.36,1)}
+  @media (hover:hover){.casecard:hover .cc-img img{transform:translateZ(0) scale(1.055)}}
+  .cc-body{padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column}
+  .cc-cat{font-family:var(--disp);font-weight:300;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+  .cc-name{font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800;letter-spacing:-.03em;color:var(--ink);margin:10px 0 2px}
+  .cc-name .en{font-family:var(--serif);font-style:italic;font-weight:500;font-size:.6em;color:var(--ink-faint);margin-left:.4em;letter-spacing:0}
+  .cc-what{font-size:1rem;color:var(--ink-2);margin-top:14px;line-height:1.6}
+  .cc-what b{color:var(--ink);font-weight:700}
+  .cc-quote{margin-top:20px;padding:16px 18px;background:var(--paper-2);border-left:2px solid var(--accent);
+    font-family:var(--serif);font-size:1.02rem;line-height:1.65;color:var(--ink-2)}
+  .cc-quote cite{display:block;margin-top:8px;font-family:var(--sans);font-style:normal;font-size:.82rem;color:var(--ink-soft);letter-spacing:0}
+  .cc-actions{margin-top:auto;padding-top:24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .cc-note{font-size:.82rem;color:var(--ink-faint)}
+  @media (max-width:760px){
+    .casecard{grid-template-columns:1fr}
+    .casecard .cc-img{min-height:0;aspect-ratio:3/2}
+  }
 
-/* 거리/큐레이션 */
-#curate{background:var(--cream)}
-.tcards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.tcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px}
-.tcard .ic{width:48px;height:48px;border-radius:50%;background:var(--plum-soft);color:var(--plum);display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-.tcard h4{font-size:1.12rem;font-weight:600;margin:16px 0 8px}
-.tcard p{color:var(--muted);font-size:.93rem}
+  /* ---------- Value (dark) ---------- */
+  .value{background:var(--dark);color:#fff}
+  .value .idx{color:var(--dark-soft)}
+  .value .sec-head h2{color:#fff}
+  .value .sec-head h2 .em{margin:0 .16em}
+  .value .sec-head .tail{color:var(--dark-faint)}
+  .value-grid{display:grid;grid-template-columns:1fr;gap:0}
+  .value-item{padding:clamp(26px,3vw,34px) 0;border-top:1px solid var(--dark-line);display:flex;flex-direction:column;gap:12px}
+  .value-item:last-child{border-bottom:1px solid var(--dark-line)}
+  .value-item .vnum{font-family:var(--serif);font-style:italic;color:var(--dark-soft);font-size:1.15rem}
+  .value-item h3{font-size:clamp(1.18rem,2vw,1.5rem);font-weight:700;letter-spacing:-.02em;color:#fff;text-wrap:balance}
+  .value-item p{color:var(--dark-soft);max-width:54ch;font-size:1rem}
 
-/* 회차 */
-#rounds{background:var(--bg)}
-.round-list{display:grid;gap:14px}
-.round{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;transition:box-shadow .2s,border-color .2s}
-.round:hover{box-shadow:var(--shadow);border-color:var(--wine-soft)}
-.round__date{text-align:center;min-width:60px}
-.round__date .d{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:2.1rem;color:var(--wine);line-height:1}
-.round__date .m{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:.92rem;color:var(--muted)}
-.round__info h4{font-size:1.12rem;font-weight:600}
-.round__meta{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:7px;color:var(--muted);font-size:.88rem}
-.round__meta b{color:var(--ink);font-weight:600}
-.round__cta{display:flex;flex-direction:column;align-items:flex-end;gap:9px}
-.badge{font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:30px}
-.badge--open{background:var(--wine-soft);color:var(--wine)}
-.badge--soon{background:var(--amber-soft);color:var(--amber)}
-.badge--full{background:rgba(239,228,212,.08);color:var(--faint)}
+  /* ---------- Process ---------- */
+  .step{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3vw,34px);padding:24px 0;border-top:1px solid var(--line);align-items:start}
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .step .snum{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--accent);line-height:1.05;min-width:2.4ch}
+  .step .sbody h3{font-size:1.18rem;font-weight:700;letter-spacing:-.02em;margin-bottom:5px;color:var(--ink)}
+  .step .sbody h3 .free{font-size:.7rem;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--accent);border-radius:100px;padding:3px 11px;margin-left:9px;vertical-align:middle;text-transform:uppercase}
+  .step .sbody h3 .chip{font-size:.68rem;font-weight:700;letter-spacing:.02em;color:var(--accent);border:1px solid var(--line-2);border-radius:100px;padding:3px 10px;margin-left:9px;vertical-align:middle}
+  .step .sbody p{color:var(--ink-soft);font-size:.97rem;max-width:60ch}
+  .step .sbody p b{color:var(--ink)}
 
-/* 테마 */
-#themes{background:linear-gradient(180deg,var(--bg),var(--cream))}
-.theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.theme{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4;background:var(--plum)}
-.theme img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .55s}
-.theme:hover img{transform:scale(1.06)}
-.theme::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(45,22,28,.8))}
-.theme span{position:absolute;left:17px;bottom:15px;z-index:2;color:#FCF3EC;font-weight:600;font-size:1.06rem}
-.theme small{position:absolute;left:17px;bottom:40px;z-index:2;color:rgba(252,243,236,.82);font-family:"Cormorant Garamond",serif;font-style:italic;font-size:.95rem}
+  /* ---------- Pricing ---------- */
+  .price-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+  .price-card{
+    border-bottom:1px solid var(--line);padding:clamp(26px,3vw,34px) 0;position:relative;
+    display:grid;grid-template-columns:1fr;gap:12px;transition:padding .25s ease
+  }
+  .price-card .ptop{display:flex;align-items:baseline;gap:.6em;flex-wrap:wrap}
+  .price-card .pname{font-size:1.32rem;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+  .price-card .ptag{font-family:var(--serif);font-style:italic;font-size:.98rem;color:var(--accent);font-weight:500}
+  .price-card .badge{font-family:var(--disp);font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 10px;border-radius:100px;align-self:center}
+  .price-card .pwho{font-size:.95rem;color:var(--ink-soft);max-width:56ch}
+  .price-card .pprice{font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.5rem);font-weight:500;letter-spacing:-.01em;color:var(--ink)}
+  .price-card .pprice small{font-family:var(--sans);font-size:.42em;font-weight:600;color:var(--ink-faint);margin-left:.15em}
+  .price-card .pdesc{font-size:.9rem;color:var(--ink-soft);line-height:1.6}
+  .price-note{margin-top:22px;font-size:.87rem;color:var(--ink-soft);line-height:1.75}
+  .price-note b{color:var(--accent)}
 
-/* 후기 + 통계 */
-#voices{background:var(--cream)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:38px}
-.stat{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px 20px;text-align:center}
-.stat .num{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:2.9rem;color:var(--wine);line-height:1}
-.stat .lab{color:var(--muted);font-size:.9rem;font-weight:500;margin-top:8px}
-.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.review{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-.review .q{font-family:"Cormorant Garamond",serif;font-size:2.4rem;color:var(--amber);line-height:.6}
-.review p{margin:6px 0 14px;font-size:.96rem;line-height:1.62}
-.review .who{color:var(--muted);font-size:.84rem;font-weight:500}
+  /* ---------- CTA ---------- */
+  .cta{text-align:center}
+  .cta .eyebrow{margin-bottom:20px}
+  .cta h2{font-size:clamp(2rem,6vw,3.7rem);font-weight:800;letter-spacing:-.036em;line-height:1.06;max-width:17ch;margin:0 auto;color:var(--ink)}
+  .cta h2 .em{font-family:var(--serif);font-style:italic;font-weight:500;padding:0 .06em}
+  .cta p{margin:22px auto 0;max-width:46ch;color:var(--ink-2);font-size:1.06rem}
+  .cta .hero-actions{justify-content:center;margin-top:30px}
+  .cta-mail{margin-top:16px;font-size:.9rem;color:var(--ink-soft)}
+  .mailcopy{background:none;border:0;cursor:pointer;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px;font-size:.9rem;font-family:inherit;padding:0}
+  .mailcopy:hover{color:var(--accent-2)}
+  .cform{max-width:560px;margin:clamp(28px,4vw,38px) auto 0;text-align:left;display:grid;gap:16px}
+  .cfield{display:grid;gap:7px}
+  .cfield label{font-size:.82rem;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .cfield .req{color:var(--accent)}
+  .cfield .opt{color:var(--ink-faint);font-weight:400;font-size:.9em}
+  .cform input[type=text],.cform input[type=email],.cform textarea{
+    width:100%;font-family:inherit;font-size:1rem;color:var(--ink);background:var(--paper);
+    border:1px solid var(--line-2);border-radius:4px;padding:12px 14px;transition:border-color .2s ease
+  }
+  .cform input::placeholder,.cform textarea::placeholder{color:var(--ink-faint)}
+  .cform input:focus,.cform textarea:focus{outline:none;border-color:var(--accent)}
+  .cform textarea{resize:vertical;min-height:112px;line-height:1.6}
+  .cagree{display:flex;align-items:flex-start;gap:9px;font-size:.86rem;color:var(--ink-soft);cursor:pointer;line-height:1.55}
+  .cagree input{margin-top:3px;width:16px;height:16px;accent-color:var(--accent);flex-shrink:0}
+  .cagree-sub{color:var(--ink-faint);font-size:.82rem}
+  .cform-submit{justify-content:center;margin-top:4px}
+  .cform-submit[disabled]{opacity:.6;cursor:default}
+  .cform-status{font-size:.9rem;min-height:1.2em;text-align:center;margin-top:2px}
+  .cform-status.ok{color:var(--accent);font-weight:600}
+  .cform-status.err{color:#B23B3B;font-weight:600}
+  .spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;margin-right:.55em;vertical-align:-2px}
+  .ok-check{width:58px;height:58px;margin:0 auto 10px;border-radius:50%;background:color-mix(in srgb,var(--accent) 12%,var(--paper));color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:700}
+  .cta-alt{margin-top:24px;font-size:.92rem;color:var(--ink-soft)}
+  .cta-alt a{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+  .cta-alt a:hover{color:var(--accent-2)}
 
-/* 신청 */
-#apply{background:var(--bg)}
-.apply-card{background:var(--paper);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:44px;max-width:760px;margin:0 auto}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form .full{grid-column:1/3}
-.field label{display:block;font-size:.82rem;color:var(--muted);font-weight:500;margin-bottom:7px}
-.field input,.field select,.field textarea{width:100%;background:var(--cream);border:1px solid var(--line2);border-radius:12px;padding:13px 14px;color:var(--ink);font-family:inherit;font-size:.95rem;transition:border .2s,box-shadow .2s}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--wine);box-shadow:0 0 0 3px rgba(168,66,90,.14);background:var(--paper)}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
-.field textarea{resize:vertical;min-height:84px}
-.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23B6A794' stroke-width='1.6'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
-.apply-note{text-align:center;color:var(--faint);font-size:.82rem;margin-top:16px}
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);padding:clamp(46px,6vw,72px) 0 40px;background:var(--paper-2)}
+  .foot-grid{display:grid;grid-template-columns:1fr;gap:34px}
+  .foot-col .flabel{font-family:var(--disp);font-weight:300;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line-2);display:block}
+  .foot-brand .bname{font-weight:800;font-size:1.2rem;letter-spacing:-.02em;color:var(--ink)}
+  .foot-brand .bname .en{font-size:.78rem;letter-spacing:.24em;color:var(--ink-faint);font-weight:300;margin-left:.5em;text-transform:uppercase}
+  .foot-brand p{font-size:.9rem;color:var(--ink-soft);margin-top:12px;max-width:38ch;line-height:1.7}
+  .foot-col a{display:block;font-size:.92rem;color:var(--ink-2);padding:5px 0;transition:color .2s}
+  .foot-col a:hover{color:var(--accent)}
+  .foot-col a .fmini{color:var(--ink-faint);font-size:.76rem;letter-spacing:0}
+  .foot-col .fline{font-size:.92rem;color:var(--ink-2);padding:3px 0;line-height:1.6}
+  .foot-legal{margin-top:38px;padding-top:22px;border-top:1px solid var(--line-2);font-size:.78rem;color:var(--ink-faint);line-height:1.7}
 
-/* FAQ */
-#faq{background:var(--cream)}
-.faq{max-width:760px;margin:0 auto;display:grid;gap:12px}
-.qa{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-s);overflow:hidden}
-.qa button{width:100%;text-align:left;background:none;border:0;padding:20px 22px;font-size:1.02rem;font-weight:600;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;font-family:inherit}
-.qa button .x{flex:none;color:var(--wine);font-size:1.4rem;transition:transform .25s}
-.qa.open button .x{transform:rotate(45deg)}
-.qa .a{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.qa.open .a{max-height:260px}
-.qa .a p{padding:0 22px 20px;color:var(--muted);font-size:.94rem}
+  /* ---------- Event modal (first visit) ---------- */
+  .modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(10,10,11,.55);animation:mIn .3s ease both}
+  .modal[hidden]{display:none}
+  .modal.closing{animation:mOut .34s ease forwards}
+  @keyframes mIn{from{opacity:0}to{opacity:1}}
+  @keyframes mOut{from{opacity:1}to{opacity:0}}
+  .modal-card{
+    position:relative;background:var(--paper);border-radius:6px;max-width:440px;width:100%;
+    padding:clamp(28px,5vw,40px);text-align:center;box-shadow:0 24px 70px rgba(10,10,11,.28);
+    animation:cardIn .5s cubic-bezier(.2,.9,.2,1) both
+  }
+  .modal.closing .modal-card{animation:cardOut .32s cubic-bezier(.4,0,1,1) forwards}
+  @keyframes cardIn{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+  @keyframes cardOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(48px)}}
+  .modal-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border:0;background:none;cursor:pointer;font-size:1.1rem;color:var(--ink-soft);border-radius:100px;line-height:1}
+  .modal-close:hover{background:var(--paper-2);color:var(--ink)}
+  .modal-kicker{font-family:var(--disp);font-weight:300;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .modal-card h2{font-size:clamp(1.5rem,5vw,1.9rem);font-weight:800;letter-spacing:-.03em;line-height:1.16;color:var(--ink)}
+  .modal-card h2 .em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--accent);padding:0 .04em}
+  .modal-desc{margin-top:14px;font-size:.98rem;color:var(--ink-2);line-height:1.65}
+  .modal-desc b{color:var(--accent)}
+  .modal-desc .modal-sub{display:block;margin-top:6px;font-size:.84rem;color:var(--ink-faint)}
+  .modal-actions{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+  .modal-actions .btn{justify-content:center;text-align:center;line-height:1.3}
+  .modal-dismiss{margin-top:16px;background:none;border:0;cursor:pointer;font-size:.84rem;color:var(--ink-faint);text-decoration:underline;text-underline-offset:3px}
+  .modal-dismiss:hover{color:var(--ink-soft)}
 
-footer{background:#100B08;color:#FCF3EC;padding:54px 0 110px}
-.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:flex-end}
-.foot__brand{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:1.8rem;letter-spacing:.02em}
-.foot small{color:rgba(252,243,236,.55);font-size:.82rem;line-height:1.9;display:block;margin-top:8px}
-.foot__sns{display:flex;gap:18px}
-.foot__sns a{color:rgba(252,243,236,.8);font-size:.86rem;font-weight:500}
-.foot__sns a:hover{color:var(--amber)}
+  /* ---------- Reveal ---------- */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  /* 동작 줄이기(prefers-reduced-motion) 강제 무시 — 오너 결정(2026-07-19): 국내 대상,
+     모션이 페이드·호버 정도로 과격하지 않아 전 효과 강제 출력. 원래 있던 reduce 블록 제거.
+     콘텐츠 가시성 안전망은 아래 <noscript> 폴백 + JS 1.6s 세이프티로 대체. */
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
 
-.mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;grid-template-columns:1fr 1.4fr;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line2)}
-.mbar a{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px;border-radius:30px;font-size:.92rem;font-weight:600}
-.mbar .m-kakao{border:1.5px solid var(--line2);color:var(--ink)}
-.mbar .m-apply{background:var(--wine);color:#fff}
-
-@media(max-width:880px){
-  .nav{display:none}.burger{display:flex}
-  .hero__in{grid-template-columns:1fr;gap:30px}
-  .hero .rot{order:-1}
-  .how-grid{grid-template-columns:1fr;gap:32px}
-  .rot{margin:0 auto}
-  .tcards,.theme-grid,.stats,.reviews{grid-template-columns:1fr}
-  .theme-grid{grid-template-columns:1fr 1fr}.theme{aspect-ratio:1}
-  .round{grid-template-columns:auto 1fr;gap:14px}
-  .round__cta{grid-column:1/3;flex-direction:row;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:12px;margin-top:2px}
-  .form{grid-template-columns:1fr}.form .full{grid-column:1}
-  .apply-card{padding:26px}
-  .mbar{display:grid}body{padding-bottom:72px}
-  .sec{padding:64px 0}
-}
-
-/* ───── 실험 효과 (영감 풀 적용) ───── */
-/* 필름 그레인 */
-.grain{position:fixed;inset:0;z-index:9997;pointer-events:none;opacity:.09;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:180px 180px;animation:grain 5s steps(5) infinite}
-@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,2%)}100%{transform:translate(0,0)}}
-
-/* 마퀴 띠 */
-.marquee{overflow:hidden;background:var(--wine);color:#FCF3EC;padding:13px 0;white-space:nowrap;position:relative;z-index:2}
-.marquee__t{display:inline-flex;will-change:transform;animation:marq 26s linear infinite}
-.marquee__t span{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.55rem;letter-spacing:.01em}
-.sbar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--wine);z-index:9999;box-shadow:0 0 8px rgba(168,66,90,.6)}
-.marquee__t b{color:#F5DEBB;font-style:normal;font-weight:600;margin:0 6px}
-@keyframes marq{to{transform:translateX(-50%)}}
-.marquee:hover .marquee__t{animation-play-state:paused}
-
-/* 커스텀 커서 + 자석 버튼 */
-.cursor{position:fixed;top:0;left:0;width:34px;height:34px;border:1.6px solid var(--wine);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;mix-blend-mode:screen;transition:width .22s,height .22s,background .22s}
-.cursor.grow{width:56px;height:56px;background:rgba(168,66,90,.12)}
-.magnetic{transition:transform .2s cubic-bezier(.2,.8,.3,1)}
-
-/* 내비 링크 호버 와이프 밑줄 */
-.nav a:not(.btn){position:relative}
-.nav a:not(.btn)::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1.5px;background:var(--wine);transition:right .28s ease}
-.nav a:not(.btn):hover::after{right:0}
-
-@media(hover:none),(pointer:coarse){.cursor{display:none}}
+  /* ---------- Responsive ---------- */
+  @media (min-width:640px){
+    .value-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1.6fr 1fr 1.1fr}
+    .modal-actions{flex-direction:row}
+    .modal-actions .btn{flex:1}
+  }
+  @media (min-width:1000px){
+    .value-grid{grid-template-columns:repeat(3,1fr);gap:0}
+    .value-item{border-top:none;border-bottom:none;border-left:1px solid var(--dark-line);padding:6px clamp(26px,2.5vw,38px) 6px;min-height:200px}
+    .value-item:first-child{border-left:none;padding-left:0}
+    .value-item:last-child{border-bottom:none}
+    .price-card{grid-template-columns:1.1fr .7fr 1.5fr;align-items:center;gap:clamp(20px,3vw,40px);padding:clamp(28px,3vw,38px) 0}
+    .price-card .pcol-a,.price-card .pcol-b,.price-card .pdesc{min-width:0}
+    .price-card .pcol-a{display:flex;flex-direction:column;gap:8px}
+    .price-card .pprice{text-align:left}
+  }
+  @media (max-width:999px){
+    .price-card .pcol-b{margin-top:2px}
+  }
+  @media (max-width:767px){
+    .brm{display:inline}
+    .nav-links{
+      position:fixed;inset:68px 0 auto 0;background:var(--paper);border-bottom:1px solid var(--line);
+      flex-direction:column;align-items:stretch;gap:0;padding:8px var(--pad) 20px;
+      transform:translateY(-120%);transition:transform .35s cubic-bezier(.4,0,.2,1);opacity:0;pointer-events:none
+    }
+    .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    .nav-links a{width:100%;padding:15px 0;font-size:.92rem;border-bottom:1px solid var(--line)}
+    .nav-links a::after{display:none}
+    .nav-links a.nav-cta{border:0;text-align:center;justify-content:center;display:flex;margin-top:14px;padding:15px;border-radius:100px}
+    .menu-btn{display:flex}
+  }
+  .gmeta .gstyle{position:absolute;top:12px;right:12px;left:auto;max-width:62%;text-align:right;font-size:10px;font-weight:600;letter-spacing:.01em;line-height:1.32;color:#fff;background:rgba(17,18,20,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);padding:5px 9px;border-radius:8px;z-index:3;pointer-events:none}
+  /* ── 데모뷰어 모달 (2026-08-06 파일럿 · 네일 아뜰리에) ── */
+  html.dv-open,body.dv-open{overflow:hidden}
+  #demoViewer{position:fixed;inset:0;z-index:1000;display:none}
+  #demoViewer.on{display:block}
+  #demoViewer .dv-back{position:absolute;inset:0;background:rgba(18,20,24,.72);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+  #demoViewer .dv-card{position:absolute;inset:clamp(10px,3vw,34px);background:#fff;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  #demoViewer .dv-bar{flex:0 0 auto;display:flex;align-items:center;gap:9px;padding:10px 12px;border-bottom:1px solid var(--line,#e7e2d8);background:#fff}
+  #demoViewer .dv-title{margin-right:auto;display:flex;align-items:baseline;gap:7px;min-width:0}
+  #demoViewer .dv-name{font-weight:700;font-size:14px;color:var(--ink,#211c17)}
+  #demoViewer .dv-cat{font-weight:400;color:#9a948a;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #demoViewer .dv-seg{display:inline-flex;border:1px solid var(--line,#e7e2d8);border-radius:9px;overflow:hidden}
+  #demoViewer .dv-seg button{appearance:none;border:0;background:#fff;color:#6b655c;font:inherit;font-size:12.5px;padding:7px 12px;cursor:pointer;transition:background-color .15s ease,color .15s ease}
+  #demoViewer .dv-seg button[aria-pressed="true"]{background:var(--navy,#1e2a44);color:#fff}
+  #demoViewer .dv-act{appearance:none;border:1px solid var(--line,#e7e2d8);background:#fff;border-radius:9px;padding:7px 11px;font:inherit;font-size:12.5px;color:#4a453d;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+  #demoViewer .dv-close{width:34px;height:34px;justify-content:center;padding:0;font-size:15px}
+  #demoViewer .dv-stage{flex:1 1 auto;position:relative;background:#f2efe9;overflow:auto;display:flex;justify-content:center}
+  #demoViewer .dv-frame{width:100%;height:100%;border:0;background:#fff;transition:width .28s cubic-bezier(.2,.7,.2,1)}
+  #demoViewer.mobile .dv-stage{padding:18px 0}
+  #demoViewer.mobile .dv-frame{width:390px;max-width:100%;height:100%;border:1px solid var(--line,#e7e2d8);border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,.14)}
+  @media (max-width:600px){
+    #demoViewer .dv-card{inset:0;border-radius:0}
+    #demoViewer .dv-cat{display:none}
+    #demoViewer .dv-newtab .t{display:none}
+    #demoViewer.mobile .dv-stage{padding:0}
+    #demoViewer.mobile .dv-frame{width:100%;border:0;border-radius:0;box-shadow:none}
+  }
+  #demoViewer .dv-cta{flex:0 0 auto;display:flex;justify-content:center;padding:10px 12px;border-top:1px solid var(--line,#e7e2d8);background:#fff}
+  #demoViewer .dv-cta a{display:inline-flex;align-items:center;gap:8px;background:var(--navy,#1e2a44);color:#fff;text-decoration:none;font-weight:700;font-size:13.5px;letter-spacing:-.01em;padding:12px 22px;border-radius:100px;line-height:1.3;transition:filter .15s}
+  #demoViewer .dv-cta a:hover{filter:brightness(1.1)}
+  @media (max-width:600px){#demoViewer .dv-cta a{width:100%;justify-content:center}}
+  @media (prefers-reduced-motion:reduce){#demoViewer .dv-frame{transition:none}}
 </style>
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
-<div class="grain" aria-hidden="true"></div>
-<div class="sbar" id="sbar" aria-hidden="true"></div>
-
-<div class="topbar" id="topbar">
-  <a href="#top" class="brand"><span class="mark"></span> 라운드</a>
-  <nav class="nav">
-    <a href="#how">어떻게 만나요</a>
-    <a href="#rounds">다가오는 회차</a>
-    <a href="#voices">후기</a>
-    <a href="#faq">FAQ</a>
-    <a href="#apply" class="btn btn--wine btn--sm magnetic">이번 회차 신청</a>
-  </nav>
-  <button class="burger" id="burger" aria-label="메뉴" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
-</div>
-<div class="drawer" id="drawer">
-  <a href="#how">어떻게 만나요</a>
-  <a href="#rounds">다가오는 회차</a>
-  <a href="#voices">후기</a>
-  <a href="#faq">FAQ</a>
-  <a href="#apply">이번 회차 신청</a>
-</div>
-
-<!-- 히어로 -->
-<header class="hero" id="top">
-  <div class="hero__bg"><img src="photo-1484659619207-9165d119dafe.jpg" alt="촛불 아래 사람들이 둘러앉은 저녁 모임" loading="eager"></div>
-  <div class="wrap hero__in">
-    <div>
-      <span class="kicker">An evening of good taste</span>
-      <h1>취향이 통하는 사람과,<br><span class="em">설렘이 시작되는</span> 저녁.</h1>
-      <p class="hero__sub">비슷한 결의 어른들이 한자리에. 10분씩 천천히 대화하고, 마음이 가는 사람에게만 조용히 다음을 건네요.</p>
-      <div class="hero__btns">
-        <a href="#rounds" class="btn btn--wine magnetic">다가오는 회차 보기</a>
-        <a href="#how" class="btn btn--ghost magnetic">어떻게 만나는지</a>
-      </div>
-      <div class="trust-row">
-        <span class="chip"><i></i>취향으로 모인 사람들</span>
-        <span class="chip"><i></i>검증된 멤버만</span>
-        <span class="chip"><i></i>남·녀 같은 수로</span>
-      </div>
-    </div>
-    <div class="rot" id="rot" aria-hidden="true">
-      <div class="rot__arrow"></div>
-      <div class="rot__ring" id="rotRing"></div>
-      <div class="rot__hub"><span class="n ser">10</span><span class="t">분의 대화, 그리고 이동</span></div>
-    </div>
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="이피웹 홈">이피웹<span class="en">Yipi Web</span></a>
+    <nav class="nav-links" id="menu" aria-label="주요 메뉴">
+      <a href="#work">Work</a>
+      <a href="#value">About</a>
+      <a href="#process">Process</a>
+      <a href="#price">Price</a>
+      <a href="/nakseo.html" class="nav-nak">낙서장</a>
+      <a href="#contact" class="nav-cta">문의하기</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<!-- 마퀴 띠 -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__t">
-    <span>마주 앉은 저녁<b>·</b>와인 한 잔<b>·</b>10분의 대화<b>·</b>취향이 통하는 사람<b>·</b>조용히 건네는 마음<b>·</b>&nbsp;</span>
-    <span>마주 앉은 저녁<b>·</b>와인 한 잔<b>·</b>10분의 대화<b>·</b>취향이 통하는 사람<b>·</b>조용히 건네는 마음<b>·</b>&nbsp;</span>
-  </div>
-</div>
-
-<!-- 어떻게 만나요 -->
-<section class="sec" id="how">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">How a round unfolds</span>
-      <h2>대화 속에서, 자연스럽게</h2>
-      <p>정해진 한 사람을 마주하는 부담도, 어색한 첫인사의 무게도 없이.</p>
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hbimg" style="background-image:url('https://stay-sample.lgt3232.workers.dev/photo-1592990379716-aec6e89a6a69.jpg')"></div>
+      <div class="hbimg" style="background-image:url('https://interior-sample.lgt3232.workers.dev/photo-1724582586529-62622e50c0b3.jpg')"></div>
+      <div class="hbimg" style="background-image:url('https://flower-studio-sample.lgt3232.workers.dev/photo-1457089328109-e5d9bd499191.jpg')"></div>
+      <div class="hbimg" style="background-image:url('https://gyeol-sample.lgt3232.workers.dev/photo-1746723378067-83a345ff3160.jpg')"></div>
+      <div class="hbimg" style="background-image:url('https://pilates-sample.lgt3232.workers.dev/photo-1717500252297-b09508db7ceb.jpg')"></div>
     </div>
-    <div class="how-grid">
-      <div class="rot reveal" aria-hidden="true">
-        <div class="rot__arrow"></div>
-        <div class="rot__ring" id="rotRing2"></div>
-        <div class="rot__hub"><span class="n ser">1:1</span><span class="t">남·녀 같은 수</span></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow rv">웹사이트 제작 · 감성 소상공인 전문</p>
+      <h1 class="rv">우리 가게를 <span class="em accent">닮은</span><br>홈페이지 <span class="em">한 장.</span></h1>
+      <p class="sub rv">A one-page website, in your shop's own mood.</p>
+      <p class="hero-lead rv">인스타 감성 그대로, 매달 나가는 돈은 <b>0원.</b><br>사장님은 사진만 주시면 만들어 드립니다.<br><b>완성본을 먼저 보고,</b> 마음에 들 때만 결제하세요.</p>
+      <div class="hero-actions rv">
+        <a href="#contact" class="btn btn-primary">무료로 먼저 만들어 보기 <span class="arrow">→</span></a>
+        <a href="#work" class="btn btn-ghost">작업물 보기</a>
       </div>
-      <div class="steps reveal">
-        <div class="step"><div class="step__n ser">1</div><div class="step__b"><h4>한 테이블에 앉아요</h4><p>비슷한 취향으로 큐레이션된 사람들과 같은 자리에서 저녁을 시작해요.</p></div></div>
-        <div class="step"><div class="step__n ser">2</div><div class="step__b"><h4>10분의 대화</h4><p>10분씩 이야기를 나누고 자리를 옮겨요. 부담 없이, 여러 사람과 천천히.</p></div></div>
-        <div class="step"><div class="step__n ser">3</div><div class="step__b"><h4>마음을 건네요</h4><p>더 알고 싶은 사람에게만 조용히 신호를 남겨요. 거절은 서로 모르게.</p></div></div>
-        <div class="step"><div class="step__n ser">4</div><div class="step__b"><h4>인연으로</h4><p>서로의 마음이 닿으면 연락처를 나눠요. 그날의 설렘이 다음 약속으로.</p></div></div>
+      <div class="hero-meta rv">
+        <div class="stat"><b>16<small>종+</small></b><span>업종별 실제 샘플</span></div>
+        <div class="stat"><b>0<small>원</small></b><span>매달 유지비</span></div>
+        <div class="stat"><b>100<small>%</small></b><span>사장님 완전 소유</span></div>
+        <div class="stat"><b>3~5<small>일</small></b><span>사진 받고 완성</span></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 거리 / 큐레이션 -->
-<section class="sec" id="curate">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Just the right distance</span>
-      <h2>가볍지 않게, 부담스럽지도 않게</h2>
-      <p>앱의 가벼움도, 정보업체의 부담도 없이. 마주 앉아 천천히 알아가는 자리예요.</p>
-    </div>
-    <div class="tcards">
-      <div class="tcard reveal"><div class="ic">◇</div><h4>아무나 오지 않아요</h4><p>본인과 미혼 여부를 확인한 분들로만. 누구에게나 열린 자리가 아니에요.</p></div>
-      <div class="tcard reveal"><div class="ic">◷</div><h4>취향으로 모여요</h4><p>관심사·라이프스타일이 닿는 사람들로 회차를 구성해요. 대화가 통하도록.</p></div>
-      <div class="tcard reveal"><div class="ic">♡</div><h4>조용한 마음</h4><p>누가 누구에게 끌렸는지 드러나지 않아요. 서로의 마음에만 닿게.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 회차 -->
-<section class="sec" id="rounds">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Upcoming rounds</span>
-      <h2>다가오는 회차</h2>
-      <p>원하는 날짜·분위기·연령대의 저녁을 골라보세요. (예시 일정입니다.)</p>
-    </div>
-    <div class="round-list reveal">
-      <div class="round">
-        <div class="round__date"><div class="d ser">28</div><div class="m ser">Jun</div></div>
-        <div class="round__info"><h4>금요일 밤 · 강남 와인 라운드</h4><div class="round__meta"><span>20:00–22:30</span><span>20대 후반–30대 초반</span><span>남·녀 <b>8:8</b></span></div></div>
-        <div class="round__cta"><span class="badge badge--soon">마감 임박 · 2석</span><a href="#apply" class="btn btn--wine btn--sm">신청</a></div>
-      </div>
-      <div class="round">
-        <div class="round__date"><div class="d ser">29</div><div class="m ser">Jun</div></div>
-        <div class="round__info"><h4>토요일 오후 · 홍대 취향 라운드</h4><div class="round__meta"><span>15:00–18:00</span><span>30대</span><span>남·녀 <b>6:6</b></span></div></div>
-        <div class="round__cta"><span class="badge badge--open">모집 중</span><a href="#apply" class="btn btn--wine btn--sm">신청</a></div>
-      </div>
-      <div class="round">
-        <div class="round__date"><div class="d ser">05</div><div class="m ser">Jul</div></div>
-        <div class="round__info"><h4>토요일 저녁 · 종로 한옥 라운드</h4><div class="round__meta"><span>19:00–21:30</span><span>20대 후반–30대 중반</span><span>남·녀 <b>7:7</b></span></div></div>
-        <div class="round__cta"><span class="badge badge--open">모집 중</span><a href="#apply" class="btn btn--wine btn--sm">신청</a></div>
-      </div>
-      <div class="round">
-        <div class="round__date"><div class="d ser">21</div><div class="m ser">Jun</div></div>
-        <div class="round__info"><h4>지난 회차 · 성수 다이닝 라운드</h4><div class="round__meta"><span>마감</span><span>참여 14명</span><span>이어진 인연 4쌍</span></div></div>
-        <div class="round__cta"><span class="badge badge--full">마감</span><a href="#apply" class="btn btn--ghost btn--sm">대기 신청</a></div>
+  <!-- WORK (gallery-first, auto horizontal carousel) -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="idx">01</span>
+        <h2>직접 눌러보는 <span class="em">작업물</span></h2>
+        <span class="tail">Selected Work</span>
       </div>
     </div>
-  </div>
-</section>
+    <div class="wscroll rv" id="wscroll" tabindex="0" aria-label="작업물 가로 스크롤 갤러리">
+      <div class="wtrack" id="wtrack">
+        <a class="wcard" href="https://stay-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="고요 GOYO 독채 스테이 사이트 열기"><div class="thumb"><span class="frameno">01</span><img src="https://stay-sample.lgt3232.workers.dev/photo-1592990379716-aec6e89a6a69.jpg" alt="고요 GOYO 독채 스테이 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">고요<span class="en">Goyo</span></span><span class="gcat">독채 스테이</span><span class="gstyle">차분 자연광·미니멀 세리프</span></div></a>
+        <a class="wcard" href="https://flower-studio-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="플뢰르 FLEUR 플라워 스튜디오 사이트 열기"><div class="thumb"><span class="frameno">02</span><img src="https://flower-studio-sample.lgt3232.workers.dev/photo-1457089328109-e5d9bd499191.jpg" alt="플뢰르 FLEUR 플라워 스튜디오 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">플뢰르<span class="en">Fleur</span></span><span class="gcat">플라워 스튜디오</span><span class="gstyle">파스텔·에디토리얼 여백</span></div></a>
+        <a class="wcard" href="https://studio-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="스튜디오 눈 NOON 프로필 사진 사이트 열기"><div class="thumb"><span class="frameno">03</span><img src="https://studio-sample.lgt3232.workers.dev/photo-1506863530036-1efeddceb993.jpg" alt="스튜디오 눈 NOON 프로필 사진 스튜디오 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">스튜디오 눈<span class="en">Noon</span></span><span class="gcat">프로필 사진</span><span class="gstyle">모던 그리드·흑백 대비</span></div></a>
+        <a class="wcard" href="https://bar-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="녹턴 NOCTURNE 칵테일 바 사이트 열기"><div class="thumb"><span class="frameno">04</span><img src="https://bar-sample.lgt3232.workers.dev/photo-1572116469696-31de0f17cc34.jpg" alt="녹턴 NOCTURNE 칵테일 바 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">녹턴<span class="en">Nocturne</span></span><span class="gcat">칵테일 바</span><span class="gstyle">다크 무드·네온 액센트</span></div></a>
+        <a class="wcard" href="https://select-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="캥즈 QUINZE 패션 셀렉트샵 사이트 열기"><div class="thumb"><span class="frameno">05</span><img src="https://select-sample.lgt3232.workers.dev/photo-1603189343302-e603f7add05a.jpg" alt="캥즈 QUINZE 패션 셀렉트샵 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">캥즈<span class="en">Quinze</span></span><span class="gcat">패션 셀렉트샵</span><span class="gstyle">하이패션·타이포 대비</span></div></a>
+        <a class="wcard" href="https://cafe-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="하루치 HARUCHI 동네 베이커리 사이트 열기"><div class="thumb"><span class="frameno">06</span><img src="https://cafe-sample.lgt3232.workers.dev/photo-1689037676470-b72230d5236e.jpg" alt="하루치 HARUCHI 동네 베이커리 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">하루치<span class="en">Haruchi</span></span><span class="gcat">동네 베이커리</span><span class="gstyle">웜 크림·손그림 감성</span></div></a>
+        <a class="wcard" href="https://interior-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="온집 ONJIP 인테리어 시공 사이트 열기"><div class="thumb"><span class="frameno">07</span><img src="https://interior-sample.lgt3232.workers.dev/photo-1724582586529-62622e50c0b3.jpg" alt="온집 ONJIP 인테리어 시공 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">온집<span class="en">Onjip</span></span><span class="gcat">인테리어 시공</span><span class="gstyle">뉴트럴·건축적 그리드</span></div></a>
+        <a class="wcard" href="https://object-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="베슬 VESSEL 오브제 편집숍 사이트 열기"><div class="thumb"><span class="frameno">08</span><img src="https://object-sample.lgt3232.workers.dev/photo-1557644978-f61037cfbe49.jpg" alt="베슬 VESSEL 오브제 편집숍 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">베슬<span class="en">Vessel</span></span><span class="gcat">오브제 편집숍</span><span class="gstyle">절제 미니멀·제품 중심</span></div></a>
+        <a class="wcard" href="https://gyeol-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="결 GYEOL 프라이빗 헤어살롱 사이트 열기"><div class="thumb"><span class="frameno">09</span><img src="https://gyeol-sample.lgt3232.workers.dev/photo-1781450090585-1a511b7066d9.jpg" alt="결 GYEOL 프라이빗 헤어살롱 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">결<span class="en">Gyeol</span></span><span class="gcat">프라이빗 헤어살롱</span><span class="gstyle">프라이빗·모노톤 우아</span></div></a>
+        <a class="wcard" data-demo="https://nail-atelier-sample.lgt3232.workers.dev" data-demo-name="네일 아뜰리에" data-demo-cat="네일샵" href="https://nail-atelier-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="네일 아뜰리에 네일샵 데모 미리보기"><div class="thumb"><span class="frameno">10</span><img src="https://nail-atelier-sample.lgt3232.workers.dev/photo-1604654894610-df63bc536371.jpg" alt="네일 아뜰리에 네일샵 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">네일 아뜰리에<span class="en">Atelier</span></span><span class="gcat">네일샵</span><span class="gstyle">다크 로즈·세리프 감성</span></div></a>
+        <a class="wcard" href="https://pilates-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="스튜디오 베르뒤르 필라테스 사이트 열기"><div class="thumb"><span class="frameno">11</span><img src="https://pilates-sample.lgt3232.workers.dev/photo-1717500252297-b09508db7ceb.jpg" alt="스튜디오 베르뒤르 필라테스 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">베르뒤르<span class="en">Verdure</span></span><span class="gcat">필라테스</span><span class="gstyle">세이지 그린·클린 웰니스</span></div></a>
+        <a class="wcard" href="https://yipiweb.lgt3232.workers.dev/tattoo.html" target="_blank" rel="noopener" aria-label="가린 타투 GARIN 커스텀 타투 스튜디오 사이트 열기"><div class="thumb"><span class="frameno">12</span><img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?auto=format&amp;fit=crop&amp;w=680&amp;q=72" alt="가린 타투 GARIN 커스텀 타투 스튜디오 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">가린 타투<span class="en">Garin</span></span><span class="gcat">타투 스튜디오</span><span class="gstyle">다크 버밀리온·에디토리얼 볼드</span></div></a>
+        <a class="wcard" href="https://portfolio-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="여백 YEOBAEK 디자인 스튜디오 사이트 열기"><div class="thumb"><span class="frameno">13</span><img src="https://portfolio-sample.lgt3232.workers.dev/photo-1732022427254-daf058e80795.jpg" alt="여백 YEOBAEK 디자인 스튜디오 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">여백<span class="en">Yeobaek</span></span><span class="gcat">디자인 스튜디오</span><span class="gstyle">스위스 미니멀·극단 여백</span></div></a>
+        <a class="wcard" href="https://academy-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="정상학원 입시 학원 사이트 열기"><div class="thumb"><span class="frameno">14</span><img src="https://academy-sample.lgt3232.workers.dev/photo-1434030216411-0b793f4b4173.jpg" alt="정상학원 입시 학원 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">정상학원<span class="en">Jeongsang</span></span><span class="gcat">입시 학원</span><span class="gstyle">신뢰 네이비·정보 명료</span></div></a>
+        <a class="wcard" href="https://sogon-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="소곤소곤 소품 가게 사이트 열기"><div class="thumb"><span class="frameno">15</span><img src="https://sogon-sample.lgt3232.workers.dev/photo-1779684998928-2d824ee831cf.jpg" alt="소곤소곤 소품 가게 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">소곤소곤<span class="en">Sogon</span></span><span class="gcat">소품 가게</span><span class="gstyle">아기자기·따뜻한 파스텔</span></div></a>
+        <a class="wcard" href="https://pogeun-pet-sample.lgt3232.workers.dev" target="_blank" rel="noopener" aria-label="포근 펫살롱 반려동물 미용 사이트 열기"><div class="thumb"><span class="frameno">16</span><img src="https://pogeun-pet-sample.lgt3232.workers.dev/photo-1611173622933-91942d394b04.jpg" alt="포근 펫살롱 반려동물 미용 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">포근 펫살롱<span class="en">Pogeun</span></span><span class="gcat">반려동물 미용</span><span class="gstyle">둥근·친근 파스텔</span></div></a>
+        <a class="wcard" href="https://yipiweb.lgt3232.workers.dev/lash.html" target="_blank" rel="noopener" aria-label="살롱 드 란 SALON DE RAN 속눈썹펌 스튜디오 사이트 열기"><div class="thumb"><span class="frameno">17</span><img src="https://yipiweb.lgt3232.workers.dev/photo-1542833807-ad5af0977050.jpg" alt="살롱 드 란 SALON DE RAN 속눈썹펌 스튜디오 홈페이지 미리보기" loading="lazy"><span class="view">사이트 보기 <span class="arrow">→</span></span></div><div class="gmeta"><span class="gname">살롱 드 란<span class="en">Salon de Ran</span></span><span class="gcat">속눈썹펌</span><span class="gstyle">소프트 아치·연분홍 세리프</span></div></a>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="wbar" id="wbar" aria-hidden="true"><div class="wbar-thumb" id="wthumb"></div></div>
+      <p class="gnote rv">— 총 17종, 모두 실제로 제작해 배포한 사이트예요. <br class="brm">아래 바를 마우스로 끌거나, 카드를 눌러 직접 둘러보세요.</p>
+    </div>
+  </section>
 
-<!-- 테마 -->
-<section class="sec" id="themes">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Set the mood</span>
-      <h2>그날의 분위기를 고르세요</h2>
-      <p>대화가 자연스럽게 풀리도록, 회차마다 결이 다른 저녁을 준비했어요.</p>
+  <!-- REAL CASE (실제 제작 사례) -->
+  <section class="case" id="case">
+    <div class="wrap">
+      <div class="case-ey rv">
+        <h2>실제 제작 사례</h2>
+        <span class="tail">Real Case</span>
+      </div>
+      <article class="casecard rv" data-case="summerhill">
+        <a class="cc-img" href="https://www.summerhilldessert.workers.dev" target="_blank" rel="noopener" aria-label="썸머힐디저트 실제 사이트 새 창으로 열기">
+          <img src="case-summerhill.webp" alt="썸머힐디저트 링크 허브 사이트 미리보기" width="1200" height="800" loading="lazy">
+        </a>
+        <div class="cc-body">
+          <span class="cc-cat">디저트·베이킹 클래스 · 군포 금정역</span>
+          <h3 class="cc-name">썸머힐디저트<span class="en">Summerhill</span></h3>
+          <p class="cc-what">블로그·인스타·카톡·예약이 여기저기 흩어져 있던 걸, <b>브랜드 그대로의 링크 허브</b> 한 장으로 정리해 드렸어요. 사장님 계정으로 인계까지 완료된 <b>실제 운영 중인 사이트</b>예요.</p>
+          <div class="cc-actions">
+            <a class="btn btn-primary" href="https://www.summerhilldessert.workers.dev" target="_blank" rel="noopener">실제 사이트 보기 <span class="arrow">→</span></a>
+            <span class="cc-note">누르면 실제 운영 사이트로 이동해요</span>
+          </div>
+        </div>
+      </article>
+      <article class="casecard rv" data-case="nailurban">
+        <a class="cc-img" href="https://www.nailurban.workers.dev" target="_blank" rel="noopener" aria-label="네일어반 실제 사이트 새 창으로 열기">
+          <img src="case-nailurban.webp" alt="네일어반 프라이빗 네일샵 사이트 미리보기" width="1200" height="800" loading="lazy">
+        </a>
+        <div class="cc-body">
+          <span class="cc-cat">프라이빗 네일 · 수원 인계동</span>
+          <h3 class="cc-name">네일어반<span class="en">Nail Urban</span></h3>
+          <p class="cc-what">인스타·카톡으로 흩어져 있던 예약 문의를, <b>브랜드 무드 그대로의 한 페이지</b>로 모아 드렸어요. 시술·갤러리·오시는 길까지 담아 <b>사장님 계정으로 인계 완료된 실제 운영 사이트</b>예요.</p>
+          <div class="cc-actions">
+            <a class="btn btn-primary" href="https://www.nailurban.workers.dev" target="_blank" rel="noopener">실제 사이트 보기 <span class="arrow">→</span></a>
+            <span class="cc-note">누르면 실제 운영 사이트로 이동해요</span>
+          </div>
+        </div>
+      </article>
     </div>
-    <div class="theme-grid reveal">
-      <div class="theme"><img src="photo-1414235077428-338989a2e8c0.jpg" alt="와인 라운드" loading="lazy"><small>Wine</small><span>와인 한 잔 곁들여</span></div>
-      <div class="theme"><img src="photo-1543269865-cbf427effbad.jpg" alt="취향 라운드" loading="lazy"><small>Taste</small><span>취향이 통하는</span></div>
-      <div class="theme"><img src="photo-1517457373958-b7bdd4587205.jpg" alt="루프탑 라운드" loading="lazy"><small>Rooftop</small><span>여름밤 루프탑</span></div>
-      <div class="theme"><img src="photo-1511795409834-ef04bbd61622.jpg" alt="다이닝 라운드" loading="lazy"><small>Dining</small><span>느린 다이닝</span></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- 후기 + 통계 -->
-<section class="sec" id="voices">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="kicker">Voices</span><h2>그날 저녁, 이런 마음이었대요</h2></div>
-    <div class="stats reveal">
-      <div class="stat"><div class="num ser">320</div><div class="lab">이어진 인연</div></div>
-      <div class="stat"><div class="num ser">4.8</div><div class="lab">참가자 평균 만족도 (5점)</div></div>
-      <div class="stat"><div class="num ser">62%</div><div class="lab">다시 찾은 분들</div></div>
+  <!-- VALUE (dark) -->
+  <section class="value" id="value">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="idx">02</span>
+        <h2>왜 <span class="em">이피웹</span>인가</h2>
+        <span class="tail">Why Yipi</span>
+      </div>
+      <div class="value-grid">
+        <div class="value-item rv">
+          <span class="vnum">i.</span>
+          <h3>유지비는 없습니다.</h3>
+          <p>홈페이지 관리에 들던 관리비가 없습니다.<br>한 번 만들면 끝. 월 고정비가 없어요.<br>부담은 줄이고, 가치는 오래갑니다.</p>
+        </div>
+        <div class="value-item rv">
+          <span class="vnum">ii.</span>
+          <h3>100% 사장님 소유입니다.</h3>
+          <p>전부 사장님 명의로 만들어 드립니다. 제작 후에는 이피웹이 관여하지 않아요. 가만히 두어도 몇 년 간 편하게 사용할 수 있어요.</p>
+        </div>
+        <div class="value-item rv">
+          <span class="vnum">iii.</span>
+          <h3>맡기고 본업에 집중하세요.</h3>
+          <p>직접 만들기엔 시간과 비용이 들어갑니다.<br>이피웹은 사진만 주시면 됩니다.<br>신청하고, 자료 주고, 확인하면 끝입니다.</p>
+        </div>
+      </div>
     </div>
-    <div class="reviews reveal">
-      <div class="review"><div class="q ser">“</div><p>어색할 틈도 없이 대화가 통했어요. 집에 와서도 그 사람이 계속 생각나더라고요.</p><div class="who">30대 · 직장인</div></div>
-      <div class="review"><div class="q ser">“</div><p>소개팅처럼 부담스럽지 않아서 좋았어요. 자연스럽게 마음이 가는 게 신기했어요.</p><div class="who">20대 후반 · 디자이너</div></div>
-      <div class="review"><div class="q ser">“</div><p>분위기가 어른스러웠어요. 가벼운 자리가 아니라는 게 느껴져서 더 편했습니다.</p><div class="who">30대 초반 · 개발자</div></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- 신청 -->
-<section class="sec" id="apply">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Join a round</span>
-      <h2>이번 회차 신청</h2>
-      <p>아래로 남겨 주시면, 어울리는 회차와 함께 신청을 도와드려요.</p>
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="idx">03</span>
+        <h2>이렇게 <span class="em">진행돼요</span></h2>
+        <span class="tail">How It Works</span>
+      </div>
+      <div class="process">
+        <div class="step rv">
+          <span class="snum">01</span>
+          <div class="sbody"><h3>가볍게 신청</h3><p>인스타 DM이나 이메일로 편하게 남겨주세요. 부담 없이 시작합니다.</p></div>
+        </div>
+        <div class="step rv">
+          <span class="snum">02</span>
+          <div class="sbody"><h3>무료 시안 &amp; 수정 <span class="chip">무료 · 수정 2~3회</span></h3><p>사장님 가게에 맞춰 <b>완성본을 먼저 만들어</b> 보여드려요. 여기서 색·문구·구성을 원하시는 대로 <b>수정(패키지별 2~3회)까지 전부 무료</b>. 미리보기도 수정도 결제 전이라 공짜입니다.</p></div>
+        </div>
+        <div class="step rv">
+          <span class="snum">03</span>
+          <div class="sbody"><h3>보고 나서 결제</h3><p>결과물이 마음에 드실 때만 결제하세요. <br class="brm">마음에 들지 않으면 안 하셔도 됩니다.</p></div>
+        </div>
+        <div class="step rv">
+          <span class="snum">04</span>
+          <div class="sbody"><h3>납품 · 소유권 인계</h3><p>확정되면 사장님 명의로 계정과 소유권을 넘겨드려요. 이때 <b>무료 호스팅(클라우드플레어) 계정</b>을 사장님 이메일로 하나 만들어야 해요. 사이트를 온전히 넘겨드리기 위해 <b>비용 및 기타 정보 없이 메일 인증 한 번</b>으로 가입하시면 돼요.</p></div>
+        </div>
+        <div class="step rv">
+          <span class="snum">05</span>
+          <div class="sbody"><h3>30일 무료 AS <span class="chip">결제 후</span></h3><p>결제·납품 후 <b>30일간은 오류·깨짐은 물론 수정까지 모두 무료</b>예요.<br>(30일 이후 간단 수정은 건당 1~3만 원)</p></div>
+        </div>
+      </div>
     </div>
-    <div class="apply-card reveal">
-      <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="field"><label>성함 / 닉네임</label><input type="text" name="name" required></div>
-        <div class="field"><label>연락처</label><input type="tel" name="phone" inputmode="tel" required></div>
-        <div class="field"><label>성별</label><select name="gender"><option>여성</option><option>남성</option></select></div>
-        <div class="field"><label>나이대</label><select name="age"><option>20대 초반</option><option>20대 후반</option><option>30대 초반</option><option>30대 중반</option><option>30대 후반+</option></select></div>
-        <div class="field"><label>관심 회차 / 지역</label><input type="text" name="round" placeholder="예) 6/29 홍대 취향 라운드"></div>
-        <div class="field"><label>하시는 일</label><input type="text" name="job" placeholder="예) 직장인 / IT"></div>
-        <div class="field full"><label>하고 싶은 말 (선택)</label><textarea name="msg" placeholder="원하는 분위기·궁금한 점 등"></textarea></div>
-        <div class="field full"><button type="submit" class="btn btn--wine" style="width:100%">신청 보내기</button></div>
+  </section>
+
+  <!-- PRICE -->
+  <section id="price">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="idx">04</span>
+        <h2>가격</h2>
+        <span class="tail">Pricing</span>
+      </div>
+      <div class="price-grid">
+        <div class="price-card rv">
+          <div class="pcol-a">
+            <div class="ptop"><span class="pname">베이직</span><span class="ptag">보여주기</span></div>
+            <p class="pwho">가게를 깔끔한 한 장으로 보여주기만.<br>소개·메뉴·지도·연락 등</p>
+          </div>
+          <div class="pcol-b"><div class="pprice">9.9<small>만원</small></div></div>
+          <p class="pdesc">디지털 명함 같은 원페이지. 문의 폼 없음. 무료 시안 수정 2회.</p>
+        </div>
+        <div class="price-card rv">
+          <div class="pcol-a">
+            <div class="ptop"><span class="pname">스탠다드</span><span class="ptag">문의받기</span><span class="badge">추천</span></div>
+            <p class="pwho">손님이 사이트에서 직접 문의·예약하게.<br>폼·연동·검색 노출까지.</p>
+          </div>
+          <div class="pcol-b"><div class="pprice">18<small>만원</small></div></div>
+          <p class="pdesc">문의/예약 폼 · 카톡·네이버 연동 · 인스타 · 검색 노출 세팅. 무료 시안 수정 3회.</p>
+        </div>
+        <div class="price-card rv">
+          <div class="pcol-a">
+            <div class="ptop"><span class="pname">프리미엄</span><span class="ptag">확장·연동</span></div>
+            <p class="pwho">멀티페이지·고급 구성이나 네이버예약 등 외부 연동이 필요할 때.</p>
+          </div>
+          <div class="pcol-b"><div class="pprice">32<small>만원~</small></div></div>
+          <p class="pdesc">멀티페이지 · 갤러리 · 고급 폼 · 네이버예약/인스타 연동. 무료 시안 수정 3회.</p>
+        </div>
+      </div>
+      <p class="price-note rv">
+        · <b>매달 유지비 0원</b>. 위 가격은 처음 한 번만 냅니다. 결제·납품 후 30일간 수정은 무료, 이후 간단 수정(영업시간·메뉴 글자 등)은 건당 1~3만 원이에요.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <p class="eyebrow rv">지금 시작하기</p>
+      <h2 class="rv">완성본을 먼저 보고,<br><span class="em">결정하세요.</span></h2>
+      <p class="rv">아래로 남겨주시면 가게 느낌에 맞춰 <br class="brm"><b>한 장 먼저 잡아</b> 보여드려요.<br>확인 후 이메일로 회신드립니다.</p>
+
+      <form class="cform rv" id="cform" novalidate>
+        <div class="cfield">
+          <label for="cf-name">가게명 · 이름</label>
+          <input id="cf-name" name="name" type="text" autocomplete="organization" placeholder="예: 하루치 베이커리 / 김사장">
+        </div>
+        <div class="cfield">
+          <label for="cf-email">연락받을 이메일 <span class="req">*</span></label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="reply@example.com">
+        </div>
+        <div class="cfield">
+          <label for="cf-msg">문의 내용 <span class="opt">(선택)</span></label>
+          <textarea id="cf-msg" name="message" rows="4" placeholder="무료 시안만 받고 싶으면 비워두셔도 돼요. 가게 인스타·원하는 느낌 등 있으면 편하게 적어주세요."></textarea>
+        </div>
+        <label class="cagree">
+          <input type="checkbox" id="cf-agree" name="agree" value="1" required>
+          <span>개인정보 수집·이용에 동의합니다. <span class="cagree-sub">(수집: 이메일·문의내용 / 목적: 문의 응대 / 보유: 응대 후 파기)</span></span>
+        </label>
+        <input type="hidden" name="source" value="yipiweb">
+        <button type="submit" class="btn btn-primary cform-submit" id="cf-submit">문의 보내기 <span class="arrow">→</span></button>
+        <p class="cform-status" id="cf-status" role="status" aria-live="polite"></p>
       </form>
-      <p class="apply-note">신청 후 본인·미혼 확인 절차가 진행됩니다. * 위 회차·통계·요금은 샘플 예시입니다.</p>
-    </div>
-  </div>
-</section>
 
-<!-- FAQ -->
-<section class="sec" id="faq">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="kicker">FAQ</span><h2>자주 묻는 질문</h2></div>
-    <div class="faq reveal">
-      <div class="qa"><button>어떤 사람들이 오나요? <span class="x">+</span></button><div class="a"><p>20–30대, 취향과 라이프스타일이 비슷한 분들이에요. 가벼운 만남을 찾는 자리는 아니에요.</p></div></div>
-      <div class="qa"><button>혼자 가도 괜찮나요? <span class="x">+</span></button><div class="a"><p>네, 대부분 혼자 오세요. 남·녀 같은 수로 진행되어 모두 같은 출발선이라 어색하지 않아요.</p></div></div>
-      <div class="qa"><button>꼭 누군가에게 마음을 건네야 하나요? <span class="x">+</span></button><div class="a"><p>아니요. 좋은 사람들과 대화만 나눠도 충분히 좋은 저녁이에요. 끌리는 사람이 있다면 그때 건네면 돼요.</p></div></div>
-      <div class="qa"><button>소개팅과는 뭐가 다른가요? <span class="x">+</span></button><div class="a"><p>정해진 한 사람을 마주하는 부담 없이, 여러 사람과 자연스럽게. 그 사이에서 끌림이 생기면 그때 마음을 건네는 자리예요.</p></div></div>
+      <p class="cta-alt rv">또는 편한 채널로 — <a href="https://ig.me/m/your.page_yp" target="_blank" rel="noopener">인스타 DM</a> · <button type="button" class="mailcopy" data-mail="lgt31311@gmail.com">lgt31311@gmail.com 복사</button></p>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer>
-  <div class="wrap foot">
-    <div>
-      <div class="foot__brand">ROUND · 라운드</div>
-      <small>취향이 통하는 사람들의 저녁 · 만 19세 이상<br>© 2026 ROUND. 이피웹 제작 샘플.</small>
+  <div class="wrap foot-grid">
+    <div class="foot-col foot-brand">
+      <div class="bname">이피웹<span class="en">Yipi Web</span></div>
+      <p>인스타 감성 그대로, 매달 0원인 홈페이지 한 장.<br>감성 소상공인을 위한 원페이지 웹사이트를 만듭니다.</p>
     </div>
-    <div class="foot__sns">
-      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://pf.kakao.com" target="_blank" rel="noopener">카카오 채널</a>
-      <a href="#apply">회차 신청</a>
+    <div class="foot-col">
+      <span class="flabel">Menu</span>
+      <a href="#work">작업물</a>
+      <a href="#value">왜 이피웹</a>
+      <a href="#process">진행 방법</a>
+      <a href="#price">가격</a>
+      <a href="/nakseo.html">낙서장 ✎<span class="fmini"> 팔 생각 없이 만든 실험작</span></a>
     </div>
+    <div class="foot-col">
+      <span class="flabel">Contact</span>
+      <a href="https://ig.me/m/your.page_yp" target="_blank" rel="noopener">Instagram DM →</a>
+      <a href="mailto:lgt31311@gmail.com?subject=이피웹%20홈페이지%20제작%20문의">이메일 문의 →</a>
+      <span class="fline">lgt31311@gmail.com</span>
+      <span class="fline">사진 받고 3~5일 완성</span>
+    </div>
+  </div>
+  <div class="wrap foot-legal">
+    © 2026 이피웹 (YIPI WEB). 제작한 홈페이지의 소유권은 사장님께 귀속됩니다. · 문의: 인스타그램 DM · lgt31311@gmail.com
   </div>
 </footer>
 
-<div class="mbar">
-  <a href="https://pf.kakao.com" target="_blank" rel="noopener" class="m-kakao">카카오 문의</a>
-  <a href="#apply" class="m-apply">이번 회차 신청</a>
+<!-- Success popup (after form submit) -->
+<div class="modal" id="okModal" role="dialog" aria-modal="true" aria-labelledby="okTitle" hidden>
+  <div class="modal-card">
+    <button class="modal-close" type="button" aria-label="닫기" data-okclose>✕</button>
+    <div class="ok-check" aria-hidden="true">✓</div>
+    <h2 id="okTitle">문의가 접수됐어요</h2>
+    <p class="modal-desc">확인 후 남겨주신 이메일로 회신드릴게요. 감사합니다!</p>
+    <div class="modal-actions"><button type="button" class="btn btn-primary" data-okclose style="flex:1;justify-content:center">확인</button></div>
+  </div>
 </div>
 
 <script>
-/* 로테이션 다이어그램 */
 (function(){
-  function build(ring, n){
-    if(!ring) return;
-    var R=132;
-    for(var i=0;i<n;i++){
-      var ang=(i/n)*2*Math.PI - Math.PI/2;
-      var seat=document.createElement('div');
-      seat.className='rot__seat '+(i%2===0?'m':'f');
-      seat.textContent=(i%2===0?'남':'여');
-      seat.style.transform='translate('+(Math.cos(ang)*R)+'px,'+(Math.sin(ang)*R)+'px)';
-      ring.appendChild(seat);
-    }
-  }
-  build(document.getElementById('rotRing'),10);
-  build(document.getElementById('rotRing2'),8);
-})();
+  // header shadow on scroll
+  var hdr=document.getElementById('hdr');
+  var onScroll=function(){hdr.classList.toggle('scrolled',window.scrollY>8)};
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
 
-/* 상단바 + 버거 */
-(function(){
-  var tb=document.getElementById('topbar');
-  function s(){ tb.classList.toggle('solid', window.scrollY>30); }
-  window.addEventListener('scroll',s,{passive:true}); s();
-  var b=document.getElementById('burger'), dr=document.getElementById('drawer');
-  if(b&&dr){ b.addEventListener('click',function(){b.setAttribute('aria-expanded',dr.classList.toggle('open'));});
-    dr.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){dr.classList.remove('open');b.setAttribute('aria-expanded','false');});}); }
-})();
-
-/* FAQ */
-(function(){
-  document.querySelectorAll('.qa button').forEach(function(btn){
-    btn.addEventListener('click',function(){ btn.parentElement.classList.toggle('open'); });
+  // mobile menu
+  var btn=document.getElementById('menuBtn'),menu=document.getElementById('menu');
+  btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.setAttribute('aria-label',open?'메뉴 닫기':'메뉴 열기');
   });
-})();
+  menu.addEventListener('click',function(e){
+    if(e.target.closest('a')){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','메뉴 열기');}
+  });
 
-/* reveal + rescue */
-(function(){
-  if(window.matchMedia('(min-width:881px)').matches && 'IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-  }
-  function rv(){var els=document.querySelectorAll('.reveal:not(.in)');for(var i=0;i<els.length;i++){var r=els[i].getBoundingClientRect();if(r.top<innerHeight*0.92&&r.bottom>0)els[i].classList.add('in');}}
-  document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(rv,60);});
-  window.addEventListener('load',function(){setTimeout(rv,1200);});
-})();
-
-/* 공통 폼 핸들러 */
-(function(){
-  var forms=document.querySelectorAll('form[action*="formspree.io"]');
-  forms.forEach(function(form){
-    var btn=form.querySelector('[type="submit"]');
-    var label=btn?btn.textContent:'';
-    var msg=document.createElement('p');
-    msg.setAttribute('role','status');
-    msg.style.cssText='grid-column:1/-1;margin:6px 0 0;font-size:.95rem;line-height:1.55;display:none;font-weight:600';
-    form.appendChild(msg);
-    function show(t,ok){msg.style.display='block';msg.style.color=ok?'#3F8F5E':'#A8425A';msg.textContent=t;}
-    function reset(){if(btn){btn.disabled=false;btn.style.opacity='';btn.style.cursor='';btn.textContent=label;}}
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-      if(btn){btn.disabled=true;btn.style.opacity='.6';btn.style.cursor='default';btn.textContent='보내는 중…';}
-      if(/YOUR_FORM_ID/.test(form.getAttribute('action')||'')){
-        setTimeout(function(){show('신청이 접수되었습니다. 어울리는 회차와 함께 연락드릴게요.',true);form.reset();reset();},700);return;
+  // 앵커 부드러운 스크롤 — rAF 커스텀이라 OS '동작 줄이기'에서도 강제(오너 결정 2026-07-19).
+  // 네이티브 scroll-behavior:smooth 는 reduce 켜지면 브라우저가 즉시점프로 강제 → rAF 만 우회 가능.
+  // seq = 이 호출의 소유권 토큰: 연속 클릭 시 두 루프 경합(재진입) 방지. 먼저 끝난 게 나중 걸 죽이는 버그 차단.
+  // ⚠️ rAF 는 백그라운드 탭에서 프레임 0 → preventDefault 뒤라 링크가 죽음 → setTimeout(DUR+300) 즉시이동 가드 필수.
+  (function(){
+    var hdr=document.getElementById('hdr'), DUR=680, seq=0;
+    function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+    function go(el){
+      var my=++seq, off=(hdr?hdr.offsetHeight:0)+8, start=window.pageYOffset,
+          end=Math.max(0, el.getBoundingClientRect().top+start-off), t0=null, guard;
+      function step(ts){
+        if(my!==seq) return;
+        if(t0===null) t0=ts;
+        var p=Math.min(1,(ts-t0)/DUR);
+        window.scrollTo({top:start+(end-start)*ease(p), behavior:'instant'});
+        if(p<1) requestAnimationFrame(step); else clearTimeout(guard);
       }
-      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
-        .then(function(r){if(r.ok){show('신청이 접수되었습니다. 어울리는 회차와 함께 연락드릴게요.',true);form.reset();}else{show('전송에 실패했어요. 카카오 채널로 문의해 주세요.',false);}})
-        .catch(function(){show('전송에 실패했어요. 카카오 채널로 문의해 주세요.',false);})
-        .finally(reset);
+      guard=setTimeout(function(){ if(my!==seq) return; window.scrollTo({top:end,behavior:'instant'}); }, DUR+300);
+      requestAnimationFrame(step);
+    }
+    document.addEventListener('click', function(e){
+      var a=e.target&&e.target.closest?e.target.closest('a[href^="#"]'):null;
+      if(!a) return;
+      var id=a.getAttribute('href');
+      if(!id||id==='#') return;
+      var el = id==='#top' ? document.body : document.querySelector(id);
+      if(!el) return;
+      e.preventDefault();
+      go(el);
+      if(history.replaceState) history.replaceState(null,'',id);
+    });
+  })();
+
+  // 오너 결정(2026-07-19): 동작 줄이기가 켜져 있어도 전 효과 강제 출력 → reduce 를 항상 false 로.
+  // (IntersectionObserver 미지원 구형 브라우저 안전망 + 1.6s 세이프티는 아래에서 그대로 유지.)
+  var reduce=false;
+
+  // hero background crossfade — JS-driven so it never freezes (owner-requested)
+  var hbimgs=[].slice.call(document.querySelectorAll('.hbimg'));
+  if(hbimgs.length){
+    var hi=0;hbimgs[0].classList.add('active');
+    setInterval(function(){
+      hbimgs[hi].classList.remove('active');
+      hi=(hi+1)%hbimgs.length;
+      hbimgs[hi].classList.add('active');
+    },5000);
+  }
+
+  // scroll reveal
+  var els=[].slice.call(document.querySelectorAll('.rv'));
+  if(reduce||!('IntersectionObserver'in window)){els.forEach(function(el){el.classList.add('in')});}
+  else{
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+    },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){io.observe(el)});
+    setTimeout(function(){els.forEach(function(el){el.classList.add('in')})},1600);
+  }
+
+  // work carousel — slow auto scroll (loops) + draggable scrollbar + manual scroll.
+  // Runs regardless of reduced-motion (owner-requested gentle motion); pausable.
+  var mq=document.getElementById('wscroll'),track=document.getElementById('wtrack'),
+      bar=document.getElementById('wbar'),thumb=document.getElementById('wthumb');
+  if(mq&&track){
+    track.insertAdjacentHTML('beforeend',track.innerHTML); // duplicate for seamless loop
+    var half=function(){return track.scrollWidth/2;};
+    var dragging=false,paused=false,resumeT;
+    var pause=function(){paused=true;clearTimeout(resumeT);};
+    var resumeLater=function(){clearTimeout(resumeT);resumeT=setTimeout(function(){paused=false;},1400);};
+    mq.addEventListener('pointerenter',pause);
+    mq.addEventListener('pointerleave',function(){if(!dragging)paused=false;});
+    mq.addEventListener('touchstart',pause,{passive:true});
+    mq.addEventListener('touchend',resumeLater,{passive:true});
+    mq.addEventListener('wheel',function(){pause();resumeLater();},{passive:true});
+
+    var refresh=function(){
+      if(!bar||!thumb)return;
+      var h=half();if(h<=0)return;
+      var bw=bar.clientWidth;
+      var vis=Math.min(mq.clientWidth/h,1);
+      var tw=Math.max(bw*vis,30);
+      var prog=(mq.scrollLeft%h)/h;
+      thumb.style.width=tw+'px';
+      thumb.style.left=(prog*(bw-tw))+'px';
+    };
+    mq.addEventListener('scroll',function(){
+      var h=half();
+      if(h>0&&mq.scrollLeft>=h){mq.scrollLeft-=h;}
+      refresh();
+    },{passive:true});
+
+    if(bar){
+      var barToScroll=function(clientX){
+        var r=bar.getBoundingClientRect();
+        var ratio=Math.min(Math.max((clientX-r.left)/r.width,0),1);
+        mq.scrollLeft=ratio*half();
+      };
+      bar.addEventListener('pointerdown',function(e){dragging=true;pause();try{bar.setPointerCapture(e.pointerId);}catch(_){}barToScroll(e.clientX);e.preventDefault();});
+      bar.addEventListener('pointermove',function(e){if(dragging)barToScroll(e.clientX);});
+      var endDrag=function(){if(dragging){dragging=false;resumeLater();}};
+      bar.addEventListener('pointerup',endDrag);
+      bar.addEventListener('pointercancel',endDrag);
+    }
+
+    // setInterval (not rAF) so it keeps moving even where rAF is throttled
+    setInterval(function(){
+      if(!paused&&!dragging){mq.scrollLeft+=0.7;} // slow; scroll handler normalizes loop
+    },28);
+    window.addEventListener('resize',refresh);
+    setTimeout(refresh,300);refresh();
+  }
+
+  // mail copy fallback (mailto may not open on all devices)
+  [].slice.call(document.querySelectorAll('.mailcopy')).forEach(function(mc){
+    mc.addEventListener('click',function(){
+      var mail=mc.getAttribute('data-mail');
+      var done=function(){mc.textContent='복사됨 ✓';setTimeout(function(){mc.textContent=mail+' 복사';},1600);};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(mail).then(done,done);}else{done();}
     });
   });
-})();
 
-/* ── 실험 효과: 커스텀 커서 + 자석 버튼 (데스크톱·모션 허용시) ── */
-(function(){
-  // 터치기기(pointer:coarse)에선 커서 개념이 없어 계속 제외. reduce 조건은 제거(오너 결정: 모션 강제).
-  if(matchMedia('(pointer:coarse)').matches) return;
-  var cur=document.createElement('div');cur.className='cursor';cur.style.opacity='0';document.body.appendChild(cur);
-  var mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,on=false;
-  addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;on=true;},{passive:true});
-  (function loop(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;cur.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';cur.style.opacity=on?'1':'0';requestAnimationFrame(loop);})();
-  document.querySelectorAll('a,button,.magnetic').forEach(function(el){
-    el.addEventListener('mouseenter',function(){cur.classList.add('grow');});
-    el.addEventListener('mouseleave',function(){cur.classList.remove('grow');});
-  });
-  document.querySelectorAll('.magnetic').forEach(function(el){
-    el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+(e.clientX-(r.left+r.width/2))*.3+'px,'+(e.clientY-(r.top+r.height/2))*.3+'px)';});
-    el.addEventListener('mouseleave',function(){el.style.transform='';});
-  });
-})();
+  // shared animated modal open/close (rise up / slide down; setTimeout fallback for reduced-motion)
+  var closeModal=function(el){
+    if(!el||el.hidden)return;
+    el.classList.add('closing');document.body.style.overflow='';
+    setTimeout(function(){el.hidden=true;el.classList.remove('closing');},330);
+  };
+  var openModal=function(el,focusSel){
+    if(!el)return;el.classList.remove('closing');el.hidden=false;document.body.style.overflow='hidden';
+    var f=focusSel?el.querySelector(focusSel):null;if(f)f.focus();
+  };
 
-/* ── 실험 효과: 키네틱 히어로 + 스크롤 진행바 (스크롤 기반, 항상 동작) ── */
-(function(){
-  var h=document.querySelector('.hero h1');
-  var sb=document.getElementById('sbar');
-  function onScroll(){
-    var max=document.documentElement.scrollHeight-innerHeight;
-    var p=max>0?scrollY/max:0;
-    if(sb) sb.style.width=(p*100)+'%';
-    if(h){var y=Math.min(scrollY,560)/560;h.style.transform='translateY('+(-y*22)+'px)';h.style.opacity=(1-y*0.55).toFixed(3);}
+  // success popup (after form submit)
+  var okM=document.getElementById('okModal');
+  var closeOk=function(){closeModal(okM);};
+  var showOk=function(){openModal(okM,'[data-okclose]');};
+  if(okM){
+    okM.addEventListener('click',function(e){if(e.target===okM||e.target.closest('[data-okclose]'))closeOk();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!okM.hidden)closeOk();});
   }
-  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  // contact form → Google Apps Script (Sheet 적립 + 메일 알림). no-cors: fire-and-forget.
+  var cform=document.getElementById('cform');
+  if(cform){
+    var SCRIPT_URL='https://script.google.com/macros/s/AKfycbzp1Vja3jlVK5drfKSMNPCc_tiGt_t8i26PbRe4uv73OHxSu14ixpbD3HKfOjGktKQJ/exec';
+    var cstatus=document.getElementById('cf-status'),csub=document.getElementById('cf-submit'),sending=false;
+    var origBtn=csub.innerHTML,spinTimer=null;
+    var startSpin=function(){
+      csub.innerHTML='<span class="spin" id="cf-spin"></span>보내는 중…';
+      var sp=document.getElementById('cf-spin'),d=0;
+      spinTimer=setInterval(function(){d=(d+30)%360;if(sp)sp.style.transform='rotate('+d+'deg)';},60);
+    };
+    var stopSpin=function(){if(spinTimer){clearInterval(spinTimer);spinTimer=null;}csub.innerHTML=origBtn;};
+    cform.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(sending)return;
+      var email=(cform.email.value||'').trim(),msg=(cform.message.value||'').trim();
+      if(!email){cstatus.textContent='연락받을 이메일을 입력해 주세요.';cstatus.className='cform-status err';return;}
+      if(!cform.agree.checked){cstatus.textContent='개인정보 수집·이용 동의가 필요합니다.';cstatus.className='cform-status err';return;}
+      sending=true;csub.disabled=true;cstatus.textContent='';cstatus.className='cform-status';startSpin();
+      fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(cform))})
+        .then(function(){cform.reset();showOk();})
+        .catch(function(){cstatus.textContent='전송에 실패했어요. 잠시 후 다시 시도하거나 lgt31311@gmail.com 으로 보내주세요.';cstatus.className='cform-status err';})
+        .finally(function(){sending=false;csub.disabled=false;stopSpin();});
+    });
+  }
+
 })();
 </script>
-<!-- 이피웹 인사이트: 가상 샘플 계측(단일 소스, host로 샘플 구분) · 실고객 사이트엔 절대 넣지 않음 -->
-<script src="https://yipiweb.lgt3232.workers.dev/yw-beacon.js"></script>
+
+<!-- Cloudflare Web Analytics (쿠키 없음 · 방문/레퍼러/기기 베이스라인) -->
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a70241e82e564826b47b1b83d95509c0"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+<!-- 인사이트 비콘: 단일 소스 /yw-beacon.js (설계 §10 · 6개 페이지 공용, 낙서장 포함) -->
+<div id="demoViewer" role="dialog" aria-modal="true" aria-label="샘플 데모 미리보기" aria-hidden="true">
+  <div class="dv-back" data-dv-close></div>
+  <div class="dv-card">
+    <div class="dv-bar">
+      <span class="dv-title"><b class="dv-name">데모</b><span class="dv-cat"></span></span>
+      <span class="dv-seg" role="group" aria-label="화면 크기 전환">
+        <button type="button" data-dv-view="desktop" aria-pressed="true">🖥 데스크톱</button>
+        <button type="button" data-dv-view="mobile" aria-pressed="false">📱 모바일</button>
+      </span>
+      <a class="dv-act dv-newtab" href="#" target="_blank" rel="noopener">↗ <span class="t">새 탭</span></a>
+      <button type="button" class="dv-act dv-close" data-dv-close aria-label="닫기">✕</button>
+    </div>
+    <div class="dv-stage"><iframe class="dv-frame" title="샘플 데모 미리보기" loading="lazy"></iframe></div>
+    <div class="dv-cta"><a href="https://ig.me/m/your.page_yp" target="_blank" rel="noopener">💬 내 가게도 이렇게 만들기 · 인스타 DM →</a></div>
+  </div>
+</div>
+<script>
+(function(){
+  var v=document.getElementById('demoViewer'); if(!v) return;
+  var frame=v.querySelector('.dv-frame'), nameEl=v.querySelector('.dv-name'),
+      catEl=v.querySelector('.dv-cat'), newtab=v.querySelector('.dv-newtab'),
+      segBtns=v.querySelectorAll('[data-dv-view]'), lastFocus=null;
+  function setView(m){ v.classList.toggle('mobile', m==='mobile');
+    for(var i=0;i<segBtns.length;i++){ segBtns[i].setAttribute('aria-pressed', String(segBtns[i].getAttribute('data-dv-view')===m)); } }
+  function open(url,name,cat){
+    lastFocus=document.activeElement;
+    frame.src=url; nameEl.textContent=name||'데모'; catEl.textContent=cat?('· '+cat):'';
+    newtab.href=url; setView('desktop');
+    v.classList.add('on'); v.setAttribute('aria-hidden','false');
+    document.documentElement.classList.add('dv-open'); document.body.classList.add('dv-open');
+    var c=v.querySelector('.dv-close'); if(c) c.focus();
+  }
+  function close(){
+    v.classList.remove('on'); v.setAttribute('aria-hidden','true');
+    document.documentElement.classList.remove('dv-open'); document.body.classList.remove('dv-open');
+    frame.src='about:blank';
+    if(lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener('click', function(e){
+    var card=e.target.closest && e.target.closest('a.wcard');
+    if(card && !card.hasAttribute('data-no-demo')){ e.preventDefault();
+      var url=card.getAttribute('data-demo')||card.getAttribute('href');
+      var nm=card.getAttribute('data-demo-name');
+      var ct=card.getAttribute('data-demo-cat');
+      if(!nm){ var g=card.querySelector('.gname'); nm=g?((g.childNodes[0]&&g.childNodes[0].textContent.trim())||g.textContent.trim()):''; }
+      if(!ct){ var c=card.querySelector('.gcat'); ct=c?c.textContent.trim():''; }
+      open(url,nm,ct);
+      return; }
+    if(e.target.closest && e.target.closest('[data-dv-close]')){ close(); return; }
+    var seg=e.target.closest && e.target.closest('[data-dv-view]');
+    if(seg){ setView(seg.getAttribute('data-dv-view')); }
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && v.classList.contains('on')) close(); });
+})();
+</script>
+<script src="/yw-beacon.js"></script>
 </body>
 </html>
