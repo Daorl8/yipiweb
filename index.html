@@ -164,6 +164,15 @@
   .gmeta .gname .en{font-size:.78rem;color:var(--ink-faint);margin-left:.45em;text-transform:uppercase;letter-spacing:.12em}
   .gmeta .gcat{font-family:var(--disp);font-weight:300;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;flex-shrink:0}
   .gnote{margin-top:clamp(24px,4vw,34px);font-size:.9rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:20px;line-height:1.6}
+  .gnote a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line-2)}
+  .gnote a:hover{border-color:var(--accent)}
+  /* INSTAGRAM 갤러리 (가로 3:2 셀 — IG 세로/정사각과 일부러 다른 모양·크롭 테스트) */
+  #gram .gram-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,18px)}
+  #gram .gram-cell{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:var(--paper-2);border:1px solid var(--line);border-radius:5px}
+  #gram .gram-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  #gram .gram-cell:hover img{transform:scale(1.045)}
+  @media(max-width:820px){#gram .gram-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){#gram .gram-grid{grid-template-columns:1fr 1fr;gap:8px}}
   .brm{display:none}
   .wbar{height:6px;background:var(--line);border-radius:100px;position:relative;margin-top:20px;cursor:pointer;touch-action:none}
   .wbar-thumb{position:absolute;top:0;left:0;height:100%;min-width:30px;width:30px;background:var(--accent);border-radius:100px;transition:background .2s}
@@ -522,6 +531,26 @@
           </div>
         </div>
       </article>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM (라이브 피드 테스트 · 가로 3:2 셀) -->
+  <!-- Behold 연결 지점: 아래 .gram-grid 안을 (a)위젯 임베드로 교체 또는 (b)JSON 렌더로 채움. feed-id=VT6UFr6UW6MN0bVZGFKI -->
+  <section id="gram">
+    <div class="wrap">
+      <div class="case-ey rv">
+        <h2>인스타그램 소식</h2>
+        <span class="tail">Latest on Instagram</span>
+      </div>
+      <div class="gram-grid rv">
+        <a class="gram-cell" href="https://instagram.com/your.page_yp" target="_blank" rel="noopener" aria-label="인스타그램 게시물 1"><img src="photo-1542727365-19732a80dcfd.jpg" alt="인스타그램 게시물 미리보기" loading="lazy"></a>
+        <a class="gram-cell" href="https://instagram.com/your.page_yp" target="_blank" rel="noopener" aria-label="인스타그램 게시물 2"><img src="photo-1562962230-16e4623d36e6.jpg" alt="인스타그램 게시물 미리보기" loading="lazy"></a>
+        <a class="gram-cell" href="https://instagram.com/your.page_yp" target="_blank" rel="noopener" aria-label="인스타그램 게시물 3"><img src="photo-1564426622559-5af68da63b96.jpg" alt="인스타그램 게시물 미리보기" loading="lazy"></a>
+        <a class="gram-cell" href="https://instagram.com/your.page_yp" target="_blank" rel="noopener" aria-label="인스타그램 게시물 4"><img src="photo-1583213261205-63258746ed4c.jpg" alt="인스타그램 게시물 미리보기" loading="lazy"></a>
+        <a class="gram-cell" href="https://instagram.com/your.page_yp" target="_blank" rel="noopener" aria-label="인스타그램 게시물 5"><img src="photo-1586243287039-23f4c8e2e7ab.jpg" alt="인스타그램 게시물 미리보기" loading="lazy"></a>
+        <a class="gram-cell" href="https://instagram.com/your.page_yp" target="_blank" rel="noopener" aria-label="인스타그램 게시물 6"><img src="photo-1598371839696-5c5bb00bdc28.jpg" alt="인스타그램 게시물 미리보기" loading="lazy"></a>
+      </div>
+      <p class="gnote rv">— 인스타그램에 새 게시물을 올리면 이 갤러리에 자동으로 반영돼요. <a href="https://instagram.com/your.page_yp" target="_blank" rel="noopener">@your.page_yp에서 더 보기 →</a></p>
     </div>
   </section>
 
@@ -944,6 +973,29 @@
     if(seg){ setView(seg.getAttribute('data-dv-view')); }
   });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && v.classList.contains('on')) close(); });
+})();
+</script>
+<!-- Behold JSON → #gram 갤러리 렌더 (IG 최신글을 3:2 셀에 채움 · 실패 시 플레이스홀더 유지) -->
+<script>
+(() => {
+  const FEED = "DopC0vCggR28swpjD5EV";   // Behold JSON 피드 (source: your.page_yp)
+  const MAX = 6;
+  const grid = document.querySelector('#gram .gram-grid');
+  if(!grid || !FEED || FEED.indexOf("REPLACE") === 0) return;   // 미설정이면 로컬 플레이스홀더 유지
+  fetch("https://feeds.behold.so/" + FEED)
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(data => {
+      const posts = (data.posts || []).slice(0, MAX);
+      if(!posts.length) return;   // 게시물 없으면 플레이스홀더 유지
+      grid.innerHTML = posts.map(p => {
+        const s = p.sizes && (p.sizes.medium || p.sizes.large || p.sizes.small);
+        const src = (s && s.mediaUrl) || p.mediaUrl;
+        const alt = String(p.altText || p.prunedCaption || '인스타그램 게시물').slice(0,120).replace(/"/g,'&quot;');
+        const link = p.permalink || 'https://instagram.com/your.page_yp';
+        return '<a class="gram-cell" href="'+link+'" target="_blank" rel="noopener" aria-label="인스타그램 게시물"><img src="'+src+'" alt="'+alt+'" loading="lazy"></a>';
+      }).join('');
+    })
+    .catch(() => {/* 실패 시 플레이스홀더 유지 */});
 })();
 </script>
 <script src="/yw-beacon.js"></script>
