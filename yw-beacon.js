@@ -19,6 +19,7 @@
  *   click_lab   = 낙서장 실험작 타일 클릭 (.tile)
  *   demo_open   = 인페이지 데모뷰어 열람 (a.wcard 클릭 → 모달 iframe, 2026-08-06). 이탈 아님·체류 신호. data-no-demo 카드는 제외(→click_work)
  *   click_work  = 가상 샘플 클릭 (workers.dev, #case 아님 · 새탭 이탈형; data-no-demo 카드만 해당)
+ *   click_gram  = 인스타 피드 갤러리(#gram) 클릭 = 라이브 피드 관심 (2026-09-06)
  *   click_channel(instagram/email/phone/kakao/kakao_map/naver_booking/naver_store/naver_place) · click_cta · form_submit · popup_shown/close
  *   page 컬럼 = location.host+pathname (샘플들이 각자 도메인의 '/' 라 host 로 구분)
  * ───────────────────────────────────────────────────────────── */
@@ -108,6 +109,8 @@
     if(a.closest('#case')){                                       // 실고객 사례 = 신뢰 강신호
       var _cc=a.closest('.casecard'); var _nm=_cc&&_cc.getAttribute('data-case');
       send('click_case', _nm || txt || href);
+    }else if(a.closest('#gram')){                                 // 인스타 피드 갤러리 클릭 = 라이브 피드 관심 (2026-09-06). instagram href지만 click_channel보다 먼저 잡아 구분
+      send('click_gram', txt || href);
     }else if(a.classList && a.classList.contains('tile')){        // 낙서장 실험작 타일
       send('click_lab', txt || href);
     }else if(/workers\.dev/i.test(href)){                         // 가상 샘플 = 어떤 업종이 먹히나
