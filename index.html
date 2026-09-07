@@ -173,6 +173,15 @@
   #gram .gram-cell:hover img{transform:scale(1.045)}
   @media(max-width:820px){#gram .gram-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:480px){#gram .gram-grid{grid-template-columns:1fr 1fr;gap:8px}}
+  /* 옵션 애드온 (가격 카드 아래 정식 서비스) */
+  #price .addon{margin-top:clamp(16px,2.5vw,26px);display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:clamp(16px,2.4vw,22px) clamp(18px,2.6vw,26px);border:1px solid var(--line);border-radius:14px;background:var(--paper-2)}
+  #price .addon-l{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1 1 320px}
+  #price .addon-name{font-weight:800;font-size:1.04rem;color:var(--ink);letter-spacing:-.01em}
+  #price .addon-name .en{font-family:var(--disp);font-weight:300;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-left:.55em}
+  #price .addon-name .badge{margin-left:.5em}
+  #price .addon-desc{font-size:.9rem;color:var(--ink-soft);line-height:1.55}
+  #price .addon-tag{flex-shrink:0;font-weight:800;color:var(--accent);font-size:1rem;white-space:nowrap}
+  @media(max-width:560px){#price .addon{align-items:flex-start}}
   .brm{display:none}
   .wbar{height:6px;background:var(--line);border-radius:100px;position:relative;margin-top:20px;cursor:pointer;touch-action:none}
   .wbar-thumb{position:absolute;top:0;left:0;height:100%;min-width:30px;width:30px;background:var(--accent);border-radius:100px;transition:background .2s}
@@ -663,8 +672,15 @@
           <p class="pdesc">추가 페이지 + 검색(SEO) 노출 세팅 (원하시면 문의 폼도). 무료 시안 수정 3회.</p>
         </div>
       </div>
+      <div class="addon rv">
+        <div class="addon-l">
+          <span class="addon-name">인스타 자동 연동<span class="en">Instagram Sync</span><span class="badge">옵션</span></span>
+          <p class="addon-desc">인스타에 사진을 올리면 사이트 갤러리에 <b>자동으로 반영</b>돼요. 코드 손댈 필요 없이, 올리기만 하면 끝. 원하시는 분만 더해 드려요.</p>
+        </div>
+        <span class="addon-tag">+2~3만원</span>
+      </div>
       <p class="price-note rv">
-        · <b>매달 유지비 0원</b>. 위 가격은 처음 한 번만 냅니다. 결제·납품 후 30일간 수정은 무료, 이후 간단 수정(영업시간·메뉴 글자 등)은 건당 1~3만 원이에요. 추가 페이지·사진 보정 등은 옵션으로 더할 수 있어요. 인스타에 사진을 올리면 사이트 갤러리에 <b>자동으로 반영되는 인스타 연동</b>도 원하시는 분만 옵션으로 넣어 드려요.
+        · <b>매달 유지비 0원</b>. 위 가격은 처음 한 번만 냅니다. 결제·납품 후 30일간 수정은 무료, 이후 간단 수정(영업시간·메뉴 글자 등)은 건당 1~3만 원이에요. 추가 페이지·사진 보정 등은 옵션으로 더할 수 있어요.
       </p>
     </div>
   </section>
