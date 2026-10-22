@@ -187,33 +187,42 @@
   .wbar-thumb{position:absolute;top:0;left:0;height:100%;min-width:30px;width:30px;background:var(--accent);border-radius:100px;transition:background .2s}
   .wbar:hover .wbar-thumb{background:var(--accent-2)}
 
-  /* ---------- Real case (실제 제작 사례) ---------- */
-  /* 샘플과 종류가 다른 '실제 납품' 증거. n=1 이라 무거운 번호 섹션 대신
-     paper-2 틴트 밴드 + featured 카드 하나. 사례 늘면 정식 섹션 승격. */
+  /* ---------- Real case (실제 제작 사례) · 갤러리 (2026-10-22) ---------- */
+  /* 썸네일 클릭 = 실제 사이트 새 탭. 홈은 최신 6건, 전체는 /cases.html. 카드 = a.casecard[data-case] (비콘 click_case) */
   .case{background:var(--paper-2)}
   .case .case-ey{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(26px,4vw,40px);flex-wrap:wrap}
-  .case .case-ey h2{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;letter-spacing:-.034em;line-height:1.1;color:var(--ink)}
+  .case .case-ey h2,.case .case-ey h1{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;letter-spacing:-.034em;line-height:1.1;color:var(--ink)}
   .case .case-ey .tail{margin-left:auto;font-family:var(--disp);font-weight:300;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;color:var(--ink-faint);align-self:center}
-  .casecard{display:grid;grid-template-columns:1.05fr 1fr;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
-  .casecard+.casecard{margin-top:clamp(20px,3.2vw,34px)}
-  .casecard .cc-img{position:relative;overflow:hidden;min-height:240px}
-  .casecard .cc-img img{width:100%;height:100%;object-fit:cover;transform:translateZ(0) scale(1.001);
+  .case-lead{font-size:1rem;color:var(--ink-soft);margin:-12px 0 clamp(26px,4vw,40px);max-width:56ch}
+  .case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,28px)}
+  .casecard{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden;
+    transition:border-color .25s ease,box-shadow .25s ease}
+  .casecard .cc-img{display:block;position:relative;overflow:hidden;aspect-ratio:3/2;background:var(--line)}
+  .casecard .cc-img img{width:100%;height:100%;object-fit:cover;object-position:top center;transform:translateZ(0) scale(1.001);
     will-change:transform;transition:transform 1.05s cubic-bezier(.22,.61,.36,1)}
-  @media (hover:hover){.casecard:hover .cc-img img{transform:translateZ(0) scale(1.055)}}
-  .cc-body{padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column}
-  .cc-cat{font-family:var(--disp);font-weight:300;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
-  .cc-name{font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800;letter-spacing:-.03em;color:var(--ink);margin:10px 0 2px}
-  .cc-name .en{font-family:var(--serif);font-style:italic;font-weight:500;font-size:.6em;color:var(--ink-faint);margin-left:.4em;letter-spacing:0}
-  .cc-what{font-size:1rem;color:var(--ink-2);margin-top:14px;line-height:1.6}
-  .cc-what b{color:var(--ink);font-weight:700}
-  .cc-quote{margin-top:20px;padding:16px 18px;background:var(--paper-2);border-left:2px solid var(--accent);
-    font-family:var(--serif);font-size:1.02rem;line-height:1.65;color:var(--ink-2)}
-  .cc-quote cite{display:block;margin-top:8px;font-family:var(--sans);font-style:normal;font-size:.82rem;color:var(--ink-soft);letter-spacing:0}
-  .cc-actions{margin-top:auto;padding-top:24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .cc-note{font-size:.82rem;color:var(--ink-faint)}
-  @media (max-width:760px){
-    .casecard{grid-template-columns:1fr}
-    .casecard .cc-img{min-height:0;aspect-ratio:3/2}
+  @media (hover:hover){
+    .casecard:hover{border-color:var(--line-2);box-shadow:0 10px 30px -18px rgba(10,10,11,.35)}
+    .casecard:hover .cc-img img{transform:translateZ(0) scale(1.045)}
+    .casecard:hover .cc-go .arrow{transform:translateX(4px)}
+  }
+  .casecard:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .cc-body{display:flex;flex-direction:column;flex:1;padding:clamp(18px,2vw,24px)}
+  .cc-cat{font-family:var(--disp);font-weight:300;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .cc-name{font-size:clamp(1.15rem,1.7vw,1.35rem);font-weight:800;letter-spacing:-.03em;color:var(--ink);margin:6px 0 0;line-height:1.3}
+  .cc-name .en{font-family:var(--serif);font-style:italic;font-weight:500;font-size:.72em;color:var(--ink-faint);margin-left:.4em;letter-spacing:0}
+  .cc-what{display:block;font-size:.92rem;color:var(--ink-2);margin-top:8px;line-height:1.55}
+  .cc-go{margin-top:auto;padding-top:16px;font-size:.86rem;font-weight:600;color:var(--accent)}
+  .cc-go .arrow{display:inline-block;transition:transform .25s ease}
+  .case-more{display:flex;justify-content:center;margin-top:clamp(28px,4vw,44px)}
+  @media (max-width:980px){.case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:560px){
+    /* 모바일 = 2열 컴팩트(썸네일+이름) — 1열이면 6장이 화면 6~7개 길이 */
+    .case-grid{gap:12px}
+    .cc-body{padding:12px 12px 14px}
+    .cc-cat{font-size:.62rem;letter-spacing:.06em;line-height:1.4}
+    .cc-name{font-size:1rem;margin-top:4px}
+    .cc-name .en{display:block;margin:2px 0 0;font-size:.78rem}
+    .cc-what,.cc-go{display:none}
   }
 
   /* ---------- Value (dark) ---------- */
@@ -498,62 +507,65 @@
         <h2>실제 제작 사례</h2>
         <span class="tail">Real Case</span>
       </div>
-      <article class="casecard rv" data-case="summerhill">
-        <a class="cc-img" href="https://www.summerhilldessert.workers.dev" target="_blank" rel="noopener" aria-label="썸머힐디저트 실제 사이트 새 창으로 열기">
-          <img src="case-summerhill.webp" alt="썸머힐디저트 링크 허브 사이트 미리보기" width="1200" height="800" loading="lazy">
-        </a>
-        <div class="cc-body">
-          <span class="cc-cat">디저트·베이킹 클래스 · 군포 금정역</span>
-          <h3 class="cc-name">썸머힐디저트<span class="en">Summerhill</span></h3>
-          <p class="cc-what">블로그·인스타·카톡·예약이 여기저기 흩어져 있던 걸, <b>브랜드 그대로의 링크 허브</b> 한 장으로 정리해 드렸어요. 사장님 계정으로 인계까지 완료된 <b>실제 운영 중인 사이트</b>예요.</p>
-          <div class="cc-actions">
-            <a class="btn btn-primary" href="https://www.summerhilldessert.workers.dev" target="_blank" rel="noopener">실제 사이트 보기 <span class="arrow">→</span></a>
-            <span class="cc-note">누르면 실제 운영 사이트로 이동해요</span>
-          </div>
-        </div>
-      </article>
-      <article class="casecard rv" data-case="nailurban">
-        <a class="cc-img" href="https://www.nailurban.workers.dev" target="_blank" rel="noopener" aria-label="네일어반 실제 사이트 새 창으로 열기">
-          <img src="case-nailurban.webp" alt="네일어반 프라이빗 네일샵 사이트 미리보기" width="1200" height="800" loading="lazy">
-        </a>
-        <div class="cc-body">
-          <span class="cc-cat">프라이빗 네일 · 수원 인계동</span>
-          <h3 class="cc-name">네일어반<span class="en">Nail Urban</span></h3>
-          <p class="cc-what">인스타·카톡으로 흩어져 있던 예약 문의를, <b>브랜드 무드 그대로의 한 페이지</b>로 모아 드렸어요. 시술·갤러리·오시는 길까지 담아 <b>사장님 계정으로 인계 완료된 실제 운영 사이트</b>예요.</p>
-          <div class="cc-actions">
-            <a class="btn btn-primary" href="https://www.nailurban.workers.dev" target="_blank" rel="noopener">실제 사이트 보기 <span class="arrow">→</span></a>
-            <span class="cc-note">누르면 실제 운영 사이트로 이동해요</span>
-          </div>
-        </div>
-      </article>
-      <article class="casecard rv" data-case="eunasoo">
-        <a class="cc-img" href="https://www.eunasoo.workers.dev" target="_blank" rel="noopener" aria-label="으나수네일 실제 사이트 새 창으로 열기">
-          <img src="case-eunasoo.webp" alt="으나수네일 프라이빗 네일 스튜디오 사이트 미리보기" width="1200" height="800" loading="lazy">
-        </a>
-        <div class="cc-body">
-          <span class="cc-cat">예약제 1인 네일 스튜디오 · 창원 의창구</span>
-          <h3 class="cc-name">으나수네일<span class="en">Eunasoo</span></h3>
-          <p class="cc-what">네이버·카카오·프로필 링크로 흩어져 있던 예약 문의를, <b>브랜드 무드 그대로의 한 페이지</b>로 모아 드렸어요. 시술·갤러리·오시는 길까지 담아 <b>사장님 계정으로 인계 완료된 실제 운영 사이트</b>예요.</p>
-          <div class="cc-actions">
-            <a class="btn btn-primary" href="https://www.eunasoo.workers.dev" target="_blank" rel="noopener">실제 사이트 보기 <span class="arrow">→</span></a>
-            <span class="cc-note">누르면 실제 운영 사이트로 이동해요</span>
-          </div>
-        </div>
-      </article>
-      <article class="casecard rv" data-case="ourstudio">
-        <a class="cc-img" href="https://ourstudio-today.pages.dev/" target="_blank" rel="noopener" aria-label="오늘 우리 사진관 실제 사이트 새 창으로 열기">
-          <img src="case-ourstudio.webp" alt="오늘, 우리 사진관 셀프 사진관 사이트 미리보기" width="1200" height="800" loading="lazy">
-        </a>
-        <div class="cc-body">
+      <div class="case-grid">
+      <a class="casecard rv" data-case="wuhobeauty" href="https://wuhobeauty.pages.dev" target="_blank" rel="noopener" aria-label="우호뷰티 실제 사이트 새 창으로 열기">
+        <span class="cc-img"><img src="case-wuhobeauty.webp" alt="우호뷰티 사이트 첫 화면" width="1200" height="800" loading="lazy"></span>
+        <span class="cc-body">
+          <span class="cc-cat">왁싱 스튜디오·아카데미 · 시흥 배곧</span>
+          <h3 class="cc-name">우호뷰티<span class="en">Wuho Beauty</span></h3>
+          <span class="cc-what">시그니처 시술·웨딩 패키지·교육 커리큘럼을 한 페이지로</span>
+          <span class="cc-go">사이트 보기 <span class="arrow">→</span></span>
+        </span>
+      </a>
+      <a class="casecard rv" data-case="kurodacoffee" href="https://kurodacoffee.pages.dev" target="_blank" rel="noopener" aria-label="쿠로다 커피점 실제 사이트 새 창으로 열기">
+        <span class="cc-img"><img src="case-kurodacoffee.webp" alt="쿠로다 커피점 사이트 첫 화면" width="1200" height="800" loading="lazy"></span>
+        <span class="cc-body">
+          <span class="cc-cat">일본식 옛 다방 · 전주 남노송동</span>
+          <h3 class="cc-name">쿠로다 커피점<span class="en">Kuroda Coffee</span></h3>
+          <span class="cc-what">다방 무드 그대로 메뉴판·모닝세트·오시는 길을 한 페이지로</span>
+          <span class="cc-go">사이트 보기 <span class="arrow">→</span></span>
+        </span>
+      </a>
+      <a class="casecard rv" data-case="eroom" href="https://eroom.pages.dev" target="_blank" rel="noopener" aria-label="이룸미당 실제 사이트 새 창으로 열기">
+        <span class="cc-img"><img src="case-eroom.webp" alt="이룸미당 사이트 첫 화면" width="1200" height="800" loading="lazy"></span>
+        <span class="cc-body">
+          <span class="cc-cat">수제 찰떡·인절미 · 의정부</span>
+          <h3 class="cc-name">이룸미당<span class="en">Eroom Midang</span></h3>
+          <span class="cc-what">전화·택배·방문 예약으로 흩어진 주문 동선을 한 곳에</span>
+          <span class="cc-go">사이트 보기 <span class="arrow">→</span></span>
+        </span>
+      </a>
+      <a class="casecard rv" data-case="sandybutter" href="https://sandybutter.pages.dev" target="_blank" rel="noopener" aria-label="샌디버터 실제 사이트 새 창으로 열기">
+        <span class="cc-img"><img src="case-sandybutter.webp" alt="샌디버터 사이트 첫 화면" width="1200" height="800" loading="lazy"></span>
+        <span class="cc-body">
+          <span class="cc-cat">수제 디저트 온라인 브랜드</span>
+          <h3 class="cc-name">샌디버터<span class="en">Sandy Butter</span></h3>
+          <span class="cc-what">택배 주문·카톡·인스타를 브랜드 캐릭터 그대로 담은 링크 허브</span>
+          <span class="cc-go">사이트 보기 <span class="arrow">→</span></span>
+        </span>
+      </a>
+      <a class="casecard rv" data-case="latrie" href="https://latrie.pages.dev" target="_blank" rel="noopener" aria-label="라트리 실제 사이트 새 창으로 열기">
+        <span class="cc-img"><img src="case-latrie.webp" alt="라트리 사이트 첫 화면" width="1200" height="800" loading="lazy"></span>
+        <span class="cc-body">
+          <span class="cc-cat">베이킹·카페창업 클래스</span>
+          <h3 class="cc-name">라트리<span class="en">Latrie</span></h3>
+          <span class="cc-what">클래스·온라인 강의·대표 이력을 한 페이지로</span>
+          <span class="cc-go">사이트 보기 <span class="arrow">→</span></span>
+        </span>
+      </a>
+      <a class="casecard rv" data-case="ourstudio" href="https://ourstudio-today.pages.dev/" target="_blank" rel="noopener" aria-label="오늘, 우리 사진관 실제 사이트 새 창으로 열기">
+        <span class="cc-img"><img src="case-ourstudio.webp" alt="오늘, 우리 사진관 사이트 첫 화면" width="1200" height="800" loading="lazy"></span>
+        <span class="cc-body">
           <span class="cc-cat">셀프 사진관 · 전국 10개 지점</span>
           <h3 class="cc-name">오늘, 우리 사진관<span class="en">Ourstudio</span></h3>
-          <p class="cc-what">블로그·인스타에 흩어져 있던 지점·이용 정보를, 고객이 보기 쉽게 <b>한 페이지로 구조화</b>해 드렸어요. 10개 지점·색감·가격·이용안내까지 담아 <b>사장님께 인계 완료된 실제 운영 사이트</b>예요.</p>
-          <div class="cc-actions">
-            <a class="btn btn-primary" href="https://ourstudio-today.pages.dev/" target="_blank" rel="noopener">실제 사이트 보기 <span class="arrow">→</span></a>
-            <span class="cc-note">누르면 실제 운영 사이트로 이동해요</span>
-          </div>
-        </div>
-      </article>
+          <span class="cc-what">10개 지점·색감·가격·이용안내를 한 페이지로 구조화</span>
+          <span class="cc-go">사이트 보기 <span class="arrow">→</span></span>
+        </span>
+      </a>
+      </div>
+      <div class="case-more rv">
+        <a class="btn btn-ghost" href="/cases.html">실제 제작 사례 더 보기 (10건) <span class="arrow">→</span></a>
+      </div>
     </div>
   </section>
 
