@@ -2,7 +2,7 @@
  * yw-beacon.js — 이피웹 인사이트 비콘 (단일 소스)
  * 정본 설계 = 문서/인사이트_수집_설계.md §5 + §10
  * ─────────────────────────────────────────────────────────────
- * 홈페이지 6페이지: index + nakseo + art/y2k/maximal/premiere. 상대경로 <script src="/yw-beacon.js">.
+ * 홈페이지 7페이지: index + cases(2026-10-22) + nakseo + art/y2k/maximal/premiere. 상대경로 <script src="/yw-beacon.js">.
  * 가상 샘플(stay·flower·cafe·object …): 절대 URL <script src="https://yipiweb.lgt3232.workers.dev/yw-beacon.js">
  *   로 이 파일 하나를 참조(진짜 단일 소스). ⚠️ 실고객 사이트엔 절대 넣지 않음(개인정보·소유).
  *   ⚠️ 로직은 여기 한 곳뿐. 고칠 때 이 파일만 고치고 재배포하면 전부 반영.
@@ -15,7 +15,8 @@
  *
  * 이벤트:
  *   page_view · section_view(section[id] 자동) · exit(scroll_max·secs)
- *   click_case  = 실고객 사례 클릭 (#case 안) — 신뢰 강신호
+ *   click_case  = 실고객 사례 카드 클릭 (#case 안 .casecard[data-case]) — 신뢰 강신호. detail=사례 slug
+ *   click_case_more = #case 안 카드 아닌 링크(홈 "실제 제작 사례 더 보기" → /cases.html) (2026-10-25)
  *   click_lab   = 낙서장 실험작 타일 클릭 (.tile)
  *   demo_open   = 인페이지 데모뷰어 열람 (a.wcard 클릭 → 모달 iframe, 2026-08-06). 이탈 아님·체류 신호. data-no-demo 카드는 제외(→click_work)
  *   click_work  = 가상 샘플 클릭 (workers.dev, #case 아님 · 새탭 이탈형; data-no-demo 카드만 해당)
@@ -108,7 +109,8 @@
     }
     if(a.closest('#case')){                                       // 실고객 사례 = 신뢰 강신호
       var _cc=a.closest('.casecard'); var _nm=_cc&&_cc.getAttribute('data-case');
-      send('click_case', _nm || txt || href);
+      if(_nm) send('click_case', _nm);
+      else    send('click_case_more', txt || href);               // "더 보기" 등 카드 아닌 링크 — click_case 집계 오염 방지 (2026-10-25)
     }else if(a.closest('#gram')){                                 // 인스타 피드 갤러리 클릭 = 라이브 피드 관심 (2026-09-06). instagram href지만 click_channel보다 먼저 잡아 구분
       send('click_gram', txt || href);
     }else if(a.classList && a.classList.contains('tile')){        // 낙서장 실험작 타일
